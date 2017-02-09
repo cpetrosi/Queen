@@ -25,10 +25,10 @@ QUEEN {
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
     bool = "true"                      --true
-           | "false"                   --false 
+           | "false"                   --false
     id = ~keyword letter idrest*
-    idrest = letter                    --letter
-             | digit                   --digit
+    idrest = letter                    --ltr
+             | digit                   --dgt
              | "_"                     --underscore
              | "@"                     --at
              | "$"                     --dollar
@@ -36,7 +36,7 @@ QUEEN {
     char =  escape
             |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
-              |  "\\u{" hexDigit+ "}"   -- codepoint
+              |  "\\u{" hexDigit+ "}"   --codepoint
     charlit =  "'" (char | "\"") "'"
     string =  "\"" (char | "\'")* "\""
     numlit = digit+ ("."digit+)? ("^"digit+)?
