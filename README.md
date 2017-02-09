@@ -5,13 +5,87 @@ Queen is a JavaScript ES6 language with pattern matching and first class functio
 ### Features
 * Emoji keywords
 * First class functions
+	* higher order functions
+	* anonymous functions
 * Pattern matching
+* no while loops (pattern matching instead)
+* no for loops (pattern matching instead)
+
+
+👑 - start a function
+🖨 - print
+😡 - error message
+🕳 - _ / else
+🚀 - =
+🍭 - |
+🤔 - if
+❗️- not
+💁🏼 - ||
+🍽 - None
+🍝 - Some
+⚡️ - cons
 
 ### Example Problems
 
+QUEEN:
 🖨 "Hello World!"
 
-myRecursiveFunction 🔄 n ➡️
+JS:
+console.log("Hello World!");
+
+QUEEN:
+👑 myRecursiveFunction n 🚀
     match n with
-    🍭 n > 0 -> myRecursiveFunction 🔄 n - 1
-    🍭 n -> something else
+    🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
+    🍭 🕳               → n
+
+JS:
+myRecursiveFunction = (n) => {
+	if (n > 0) {
+		return myRecursiveFunction(n-1);
+} else {
+		return n;
+}  
+
+QUEEN:
+```
+👑 length l 🚀
+    match l with
+    🍭 hd ⚡️ [] → 1
+    🍭 hd ⚡️ tl → 1 + length(tl)
+```
+
+JS:
+```
+let l = [1, 2, 3];
+let lengthl = l.length;
+```
+
+QUEEN:
+```
+🤔 (a 🚀 0 💁🏼 b 🚀 0) then a
+else🤔 (c 🚀 0) then c
+```
+
+JS:
+```				
+if (a  == 0 || b == 0) {
+	return a
+} else if (c == 0) {
+Return c
+}
+```
+
+QUEEN:
+```
+👑 reverse l 🚀
+  match l with
+  🍭 []     →  []
+  🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
+```
+
+JS:
+```
+let fruits = [‘strawberries’, ‘bananas’, blueberries’, ‘raspberries’];
+let reversed = fruits.reverse();
+```
