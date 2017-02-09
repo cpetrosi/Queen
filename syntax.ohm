@@ -32,7 +32,7 @@ QUEEN {
              | "_"                     --underscore
              | "@"                     --at
              | "$"                     --dollar
-    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else")
+    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else" | "true" | "false")
     char =  escape
             |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
