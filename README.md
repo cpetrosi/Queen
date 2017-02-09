@@ -11,7 +11,6 @@ Queen is a JavaScript ES6 language with pattern matching and first class functio
 * no while loops (pattern matching instead)
 * no for loops (pattern matching instead)
 
-
 👑 - start a function <br>
 🖨 - print <br>
 😡 - error message <br>
@@ -96,4 +95,29 @@ JS:
 ```
 let fruits = [‘strawberries’, ‘bananas’, blueberries’, ‘raspberries’];
 let reversed = fruits.reverse();
+```
+
+QUEEN:
+```
+👑 change n 🚀
+(let quarters 🚀 n/25 in
+let dimes 🚀 (n mod 25)/10 in
+let nickels 🚀 ((n mod 25) mod 10)/5 in
+let pennies 🚀 (((n mod 25) mod 10) mod 5) in
+[quarters;dimes;nickels;pennies])
+```
+
+JS:
+```
+var change = function (n) {
+  var changeAmt = [],
+    total = 0;
+  [25, 10, 5, 1].forEach(function(coin) {
+    while (total + coin <= n) {
+      changeAmt.push(coin);
+      total += coin;
+    }
+  });
+  return changeAmt;
+};
 ```
