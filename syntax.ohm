@@ -11,6 +11,7 @@ QUEEN {
           | id "⚡️" id                  --cons
           | "🕳"                        --wild
           | id                          --id
+          | bool                        --bool
           | string                      --string
           | numlit                      --numlit
     Match = "match" id "with" ("🍭" Exp "->" Exp)+
@@ -23,6 +24,8 @@ QUEEN {
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
+    bool = "true"                      --true
+           | "false"                   --false 
     id = ~keyword letter idrest*
     idrest = letter                    --letter
              | digit                   --digit
