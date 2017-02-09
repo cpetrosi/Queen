@@ -12,40 +12,48 @@ Queen is a JavaScript ES6 language with pattern matching and first class functio
 * no for loops (pattern matching instead)
 
 
-👑 - start a function
-🖨 - print
-😡 - error message
-🕳 - _ / else
-🚀 - =
-🍭 - |
-🤔 - if
-❗️- not
-💁🏼 - ||
-🍽 - None
-🍝 - Some
-⚡️ - cons
+👑 - start a function <br>
+🖨 - print <br>
+😡 - error message <br>
+🕳 - _ / else <br>
+🚀 - = <br>
+🍭 - | <br>
+🤔 - if <br>
+❗️- not <br>
+💁🏼 - || <br>
+🍽 - None <br>
+🍝 - Some <br>
+⚡️ - cons <br>
 
 ### Example Problems
 
 QUEEN:
+```
 🖨 "Hello World!"
+```
 
 JS:
+```
 console.log("Hello World!");
+```
 
 QUEEN:
+```
 👑 myRecursiveFunction n 🚀
     match n with
     🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
     🍭 🕳               → n
+```
 
 JS:
+```
 myRecursiveFunction = (n) => {
 	if (n > 0) {
 		return myRecursiveFunction(n-1);
 } else {
 		return n;
 }  
+```
 
 QUEEN:
 ```
