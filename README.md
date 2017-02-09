@@ -26,55 +26,6 @@ Queen is a JavaScript ES6 language with pattern matching and first class functio
 ⚡️ - cons <br>
 // - comment <br>
 
-### Syntax
-```
-QUEEN {
-    Program = (FunDecl)+
-    FunDecl = "👑" id+ "🚀" Body
-    Body = Exp                          --exp
-           | Closure                    --closure
-    Exp = "🖨" string                   --print
-          | Binop                       --binop
-          | Conditional                 --conditional
-          | Match                       --match
-          | "(" Exp ")"                 --parens
-          | id "⚡️" id                  --cons
-          | "🕳"                        --wild
-          | id                          --id
-          | string                      --string
-          | numlit                      --numlit
-    Match = "match" id "with" ("🍭" Exp "->" Exp)+
-    Closure = "let" id "🚀" Exp "in" Closure --closure
-              | Exp                    --exp
-    Binop = Exp1 addop Binop           --add
-            | Exp1                     --exp
-    Exp1 = Exp2 mulop Exp1             --mult
-           | Exp2                      --exp
-    Exp2 = "-"? Exp3
-    Exp3 = numlit("!")?
-    Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
-    id = ~keyword letter idrest*
-    idrest = letter                    --letter
-             | digit                   --digit
-             | "_"                     --underscore
-             | "@"                     --at
-             | "$"                     --dollar
-    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else")
-    char =  escape
-            |  ~"\\" ~"\"" ~"\'" ~"\\n" any
-    escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
-              |  "\\u{" hexDigit+ "}"   -- codepoint
-    charlit =  "'" (char | "\"") "'"
-    string =  "\"" (char | "\'")* "\""
-    numlit = digit+ ("."digit+)? ("^"digit+)?
-    addop = "+"                        --add
-            | "-"                      --sub
-    mulop = "*"                        --mult
-            | "/"                      --div
-    comment = "//" (~"\n" any)* "\n"
-}
-```
-
 ### Example Problems
 
 QUEEN:
