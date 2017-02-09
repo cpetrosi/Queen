@@ -25,14 +25,14 @@ QUEEN {
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
     bool = "true"                      --true
-           | "false"                   --false 
+           | "false"                   --false
     id = ~keyword letter idrest*
     idrest = letter                    --letter
              | digit                   --digit
              | "_"                     --underscore
              | "@"                     --at
              | "$"                     --dollar
-    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else")
+    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else" | "true" | "false")
     char =  escape
             |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
