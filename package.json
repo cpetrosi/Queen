@@ -1,0 +1,25 @@
+{
+  "name": "queen",
+  "version": "1.0.0",
+  "description": "Code in emoji's with Queen!",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cpetrosi/Queen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cpetrosi/Queen/issues"
+  },
+  "homepage": "https://github.com/cpetrosi/Queen#readme",
+  "dependencies": {
+    "ohm-js": "^0.12.3"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  }
+}
