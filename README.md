@@ -1,6 +1,6 @@
 # Queen
 ### Welcome to Queen
-Queen is a JavaScript ES6 language with pattern matching and first class functions, a la OCaml. Queen is designed for the programming of the future. Coders everywhere can create and complete projects on their mobile smartphones while enjoying the expressiveness of emojis. Queen is also a great way to excite kids about computer science, once they see how fun and creative it can be!
+Queen is a JavaScript ES6 language with pattern matching and first class functions, a la OCaml. Queen is designed for the programming of the future. Coders everywhere can create and complete projects on their mobile smartphones while enjoying the expressiveness of emojis. Queen is also a great way to excite kids about computer science, once they see how fun and creative it can be! We hope you enjoy seeing your functions come to life as much as we do! 
 
 ### Features
 * Emoji keywords
@@ -41,7 +41,7 @@ QUEEN:
 👑 myRecursiveFunction n 🚀
     match n with
     🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
-    🍭 🕳               → n
+    🍭 🕳           → n
 ```
 
 JS:
@@ -49,9 +49,10 @@ JS:
 myRecursiveFunction = (n) => {
 	if (n > 0) {
 		return myRecursiveFunction(n-1);
-} else {
+	} else {
 		return n;
-}  
+	}
+};  
 ```
 
 QUEEN:
@@ -79,7 +80,7 @@ JS:
 if (a  == 0 || b == 0) {
 	return a
 } else if (c == 0) {
-Return c
+	return c
 }
 ```
 
@@ -87,7 +88,7 @@ QUEEN:
 ```
 👑 reverse l 🚀
   match l with
-  🍭 []     →  []
+  🍭 []       →  []
   🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
 ```
 
