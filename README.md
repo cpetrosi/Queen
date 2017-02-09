@@ -25,6 +25,42 @@ Queen is a JavaScript ES6 language with pattern matching and first class functio
 🍝 - Some <br>
 ⚡️ - cons <br>
 
+### Microsyntax 
+```
+line = 
+letter/character
+digit = 
+keyword 
+relop
+addop
+mulop
+boolit
+char
+stringLit
+comment 
+type
+term 
+Factor
+
+```
+
+### Macrosyntax 
+```
+Program
+Block
+If Statement
+While
+Match statement
+statement
+pattern
+Type 
+Exp
+variable declaraion
+variable assignment
+args
+params
+```
+
 ### Example Problems
 
 QUEEN:
