@@ -42,7 +42,7 @@ QUEEN:
 👑 myRecursiveFunction n 🚀
     match n with
     🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
-    🍭 🕳               → n
+    🍭 🕳           → n
 ```
 
 JS:
@@ -50,9 +50,10 @@ JS:
 myRecursiveFunction = (n) => {
 	if (n > 0) {
 		return myRecursiveFunction(n-1);
-} else {
+	} else {
 		return n;
-}  
+	}
+};  
 ```
 
 QUEEN:
@@ -80,7 +81,7 @@ JS:
 if (a  == 0 || b == 0) {
 	return a
 } else if (c == 0) {
-Return c
+	return c
 }
 ```
 
@@ -88,7 +89,7 @@ QUEEN:
 ```
 👑 reverse l 🚀
   match l with
-  🍭 []     →  []
+  🍭 []       →  []
   🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
 ```
 
