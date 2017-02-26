@@ -1,16 +1,17 @@
 <img src = "logo.jpg" alt = "Queen Logo" width = 200 />
 # Queen
 ### Welcome to Queen
-Queen is a JavaScript ES6 language with OCaml's pattern matching and first class functions. Queen is designed for the programming of the future. Coders everywhere can create and complete projects on their smartphones while enjoying the expressiveness of emojis. Queen is also a great way to excite kids about computer science, once they see how fun and creative it can be! We hope you enjoy seeing your functions come to life as much as we do!
+Queen is a JavaScript ES6 language with OCaml's pattern matching and first class functions. Coders everywhere can create and complete projects on their smartphones while enjoying the expressiveness of emojis. Queen is also a great way to excite kids about computer science, once they see how fun and creative it can be! We hope you enjoy seeing your functions come to life as much as we do!
 
 ### Features
 * Emoji keywords
 * First class functions
-	* higher order functions
-	* anonymous functions
+	* Higher order functions
+	* Anonymous functions
 * Pattern matching
-* no while loops (pattern matching instead)
-* no for loops (pattern matching instead)
+* No while loops (pattern matching instead)
+* No for loops (pattern matching instead)
+* Static typing
 
 👑 - start a function <br>
 🖨 - print <br>
@@ -40,7 +41,7 @@ console.log("Hello World!");
 
 QUEEN:
 ```
-👑 myRecursiveFunction n 🚀
+👑 int myRecursiveFunction n 🚀
     match n with
     🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
     🍭 🕳           → n
@@ -59,7 +60,7 @@ myRecursiveFunction = (n) => {
 
 QUEEN:
 ```
-👑 length l 🚀
+👑 int length l 🚀
     match l with
     🍭 hd ⚡️ [] → 1
     🍭 hd ⚡️ tl → 1 + length(tl)
@@ -88,7 +89,7 @@ if (a  == 0 || b == 0) {
 
 QUEEN:
 ```
-👑 reverse l 🚀
+👑 string reverse l 🚀
   match l with
   🍭 []       →  []
   🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
@@ -102,7 +103,7 @@ let reversed = fruits.reverse();
 
 QUEEN:
 ```
-👑 change n 🚀
+👑 int change n 🚀
 (let quarters 🚀 n/25 in
 let dimes 🚀 (n mod 25)/10 in
 let nickels 🚀 ((n mod 25) mod 10)/5 in

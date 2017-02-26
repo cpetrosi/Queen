@@ -11,8 +11,8 @@ QUEEN {
           | id "⚡️" id                  --cons
           | "🕳"                        --wild
           | id                          --id
-          | bool                        --bool
-          | string                      --string
+          | boollit                     --bool
+          | stringlit                   --string
           | numlit                      --numlit
     Match = "match" id "with" ("🍭" Exp "->" Exp)+
     Closure = "let" id "🚀" Exp "in" Closure --closure
@@ -24,7 +24,7 @@ QUEEN {
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
-    bool = "true"                      --true
+    boollit = "true"                   --true
            | "false"                   --false
     id = ~keyword letter idrest*
     idrest = letter                    --ltr
@@ -32,13 +32,13 @@ QUEEN {
              | "_"                     --underscore
              | "@"                     --at
              | "$"                     --dollar
-    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else" | "true" | "false")
+    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else" | "true" | "false") ~idrest
     char =  escape
             |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
               |  "\\u{" hexDigit+ "}"   --codepoint
     charlit =  "'" (char | "\"") "'"
-    string =  "\"" (char | "\'")* "\""
+    stringlit =  "\"" (char | "\'")* "\""
     numlit = digit+ ("."digit+)? ("^"digit+)?
     addop = "+"                        --add
             | "-"                      --sub
