@@ -3,7 +3,7 @@ QUEEN {
     FunDecl = "👑" id+ "🚀" Body
     Body = Exp                          --exp
            | Closure                    --closure
-    Exp = "🖨" string                   --print
+    Exp = "🖨" stringlit                --print
           | Binop                       --binop
           | Conditional                 --conditional
           | Match                       --match
