@@ -4,13 +4,15 @@
   "description": "Code in emoji's with Queen!",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node index.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cpetrosi/Queen.git"
   },
-  "author": "",
+  "author": "Carleen Petrosian, Jordan Woods, Mary Alverson, Mackenzie Tjogas, Megan Karbowski",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cpetrosi/Queen/issues"
@@ -20,6 +22,12 @@
     "ohm-js": "^0.12.3"
   },
   "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
     "mocha": "^3.2.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
