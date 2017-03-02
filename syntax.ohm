@@ -5,7 +5,7 @@ QUEEN {
            | Let                        --let
     Exp = "🖨" stringlit                --print
           | Binexp                      --binexp
-          | 
+          |
           | Conditional                 --conditional
           | Match                       --match
           | Let                         --let
@@ -26,13 +26,13 @@ QUEEN {
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
-    Type = Type "list"
-         | Type "*" Type
-         | "bool"
-         | "int"
-         | "float"
-         | "string"
-         | id
+    Type = Type "list"              --list
+         | Type "*" Type            --tuple
+         | "bool"                   --bool
+         | "int"                    --int
+         | "float"                  --float
+         | "string"                 --string
+         | id                       --id
     boollit = "true"                   --true
            | "false"                   --false
     id = ~keyword letter idrest*
