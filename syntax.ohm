@@ -24,7 +24,7 @@ QUEEN {
          | id ("⚡️" id)*                --long
     Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
-    List = "[" listElements? "]"
+    List = "[" ListElements? "]"
     ListElements = numlit ("," numlit)*
                  | stringlit ("," stringlit)*
     Match = "match" id "with" MatchExp+
@@ -38,7 +38,7 @@ QUEEN {
          | Exp2                           --exp
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
-    Conditional = "🤔" Exp (Logical Exp)* "then" Exp ("else🤔" Exp (Logical Exp)* "then" Exp)* ("else" Exp)?
+    Conditional = "🤔" Exp (logical Exp)* "then" Exp ("else🤔" Exp (logical Exp)* "then" Exp)* ("else" Exp)?
     logical = "👍" | "🖕"
     Type = Type "list"              --list
          | Type "*" Type            --tuple
