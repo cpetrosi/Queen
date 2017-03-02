@@ -57,7 +57,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Exp_binexp(body) { return new ExpBinExp(body.ast()); },
   Exp_bool(body) { return new ExpBool(body.ast()); },
   Exp_conditional(body) { return new ExpConditional(body.ast()); },
-  Exp_id(body) { return new ExpId(body.ast()); },
+  Exp_id(body) { return new ExpId(body.sourceString); },
   Exp_let(body) { return new ExpLet(body.ast()); },
   Exp_match(body) { return new ExpMatch(body.ast()); },
   Exp_numlit(body) { return new ExpNumLit(body.ast()); },
