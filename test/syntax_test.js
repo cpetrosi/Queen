@@ -3,11 +3,11 @@ const ohm = require('ohm-js');
 const assert = require('assert');
 
 function parse(string) {
-  const grammar = ohm.grammar(fs.readFileSync(`./syntax.ohm`));
+  const grammar = ohm.grammar(fs.readFileSync('./syntax.ohm'));
   return grammar.match(string);
 }
 
-describe('QUEEN', () => {
+describe('QUEEN SYNTAX', () => {
     it('👑 string (helloWorld : string) 🚀 🖨 "Hello World!" should be a valid function', () => {
         const match = parse('👑 string (helloWorld : string) 🚀 🖨 "Hello World!"');
         assert.ok(match.succeeded());
@@ -57,5 +57,4 @@ describe('QUEEN', () => {
         const match = parse('👑 float (x : float) let floatList 🚀 x @ [1.0, 2.0]');
         assert.ok(match.failed());
     });
-
 });

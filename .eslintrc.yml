@@ -8,3 +8,5 @@ rules:
     off
   linebreak-style:
     off
+  no-console:
+    off
