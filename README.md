@@ -41,7 +41,7 @@ console.log("Hello World!");
 
 QUEEN:
 ```
-👑 int myRecursiveFunction n 🚀
+👑 int myRecursiveFunction (n : int) 🚀
     match n with
     🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
     🍭 🕳           → n
@@ -60,7 +60,7 @@ myRecursiveFunction = (n) => {
 
 QUEEN:
 ```
-👑 int length l 🚀
+👑 int length (l : string) 🚀
     match l with
     🍭 hd ⚡️ [] → 1
     🍭 hd ⚡️ tl → 1 + length(tl)
@@ -89,7 +89,7 @@ if (a  == 0 || b == 0) {
 
 QUEEN:
 ```
-👑 string reverse l 🚀
+👑 string reverse (l : string) 🚀
   match l with
   🍭 []       →  []
   🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
@@ -103,7 +103,7 @@ let reversed = fruits.reverse();
 
 QUEEN:
 ```
-👑 int change n 🚀
+👑 int change (n : int) 🚀
 (let quarters 🚀 n/25 in
 let dimes 🚀 (n mod 25)/10 in
 let nickels 🚀 ((n mod 25) mod 10)/5 in

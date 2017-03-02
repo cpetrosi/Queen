@@ -1,12 +1,13 @@
 QUEEN {
     Program = (FunDecl)+
-    FunDecl = "👑" id+ "🚀" Body
+    FunDecl = "👑" type "(" (id ":" type)+ ")" "🚀" Body
     Body = Exp                          --exp
            | Closure                    --closure
     Exp = "🖨" stringlit                --print
-          | Binop                       --binop
+          | Binexp                      --binexp
           | Conditional                 --conditional
           | Match                       --match
+          | Let                         --let
           | "(" Exp ")"                 --parens
           | id "⚡️" id                  --cons
           | "🕳"                        --wild
@@ -15,12 +16,12 @@ QUEEN {
           | stringlit                   --string
           | numlit                      --numlit
     Match = "match" id "with" ("🍭" Exp "->" Exp)+
-    Closure = "let" id "🚀" Exp "in" Closure --closure
-              | Exp                    --exp
-    Binop = Exp1 addop Binop           --add
-            | Exp1                     --exp
+    Let = "let" id "🚀" Exp "in" Let   --let
+        | Exp                    --exp
+    Binexp = Exp1 addop Binexp           --add
+           | Exp1                     --exp
     Exp1 = Exp2 mulop Exp1             --mult
-           | Exp2                      --exp
+         | Exp2                      --exp
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
