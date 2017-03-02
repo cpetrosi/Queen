@@ -67,28 +67,29 @@ const semantics = aelGrammar.createSemantics().addOperation('ast', {
   Cons_long(id, lightning, rest) {return new consLong(id.ast(), rest.ast());},
   Cons_short(id, lightning, empty) {return new consShort(id.ast());},
   Cons_nil(nil) {return new consNil(nil.ast());},
-  Funcall
-  List
-  ListElements
-  Match
-  MatchExp
-  Let_let
-  Let_exp
+  Funcall(id, left, params, commas, right) {return new funCall(id.sourceString, params.sourceString);},
+  List(left, elements, right) {return new List(elements.ast());},
+  ListElements(first, commas, rest) {return new listElements(first.sourceString, rest.sourceString);},
+  Match(match, id, with, exps) {return new Match(id.sourceString, exps.ast());},
+  MatchExp(pop, pattern, arrow, exp) {return new matchExp(pattern.ast(), exp.ast());},
+  Let_let(let1, id, rocket, exp, _, let2) {return new letLet(id.sourceString, exp.ast(), let2.ast());},
+  Let_exp(exp) {return new letExp(exp.ast());},
   Append(listOne, at, listTwo) {return new Append(listOne.ast(), listTwo.ast());},
   BinExp_add(exp1, addop, binexp) {return new binExpAdd(exp1.ast(), addop.sourceString, binexp.ast());},
   BinExp_exp(exp1) {return new binExpExp(exp1.ast());},
-  Exp1_mult
-  Exp1_exp
-  Exp2
-  Exp3
-  Conditional(Exp1, ifLogical, Exp2s, Exp3, Exp4, elseIfLogical, Exp5s, Exp6, Exp7) {
+  Exp1_mult(exp1, op, exp2) {
+      return new exp1Mult(exp1.ast(). op.sourceString, exp2.ast());
+  },
+  Exp1_exp(exp) {return new exp1Exp(exp.ast());},
+  Exp2(negative, exp) {return new Exp2(negative.sourceString, exp.ast());},
+  Exp3(num, factorial) {return new Exp3(num.sourceString, factorial.sourceString);},
+  Conditional(if, Exp1, ifLogical, Exp2s, then, Exp3, elseif, Exp4, elseIfLogical, Exp5s, then, Exp6, else, Exp7) {
       return new Conditional(Exp1.ast(), ifLogical.ast(), Exp2s.ast(), Exp3.ast(), Exp4.ast(), elseIfLogical.ast(), Exp5s.ast(), Exp6.ast(), Exp7.ast());
   },
-  Type_list
-  Type_tuple
-  Type_bool
-  Type_int
-  Type_float
-  Type_string
-
+  Type_list(type, list) {return new typeList(type.ast());},
+  Type_tuple(type1, start, type2) {return new typeTuple(type1.ast(), type2.ast());},
+  Type_bool(bool) {return new typeBool(bool.sourceString);},
+  Type_int(int) {return new typeInt(int.sourceString);},
+  Type_float(float){return new typeFloat(float.sourceString);},
+  Type_string(string) {return new typeString(string.sourceString);}
 });
