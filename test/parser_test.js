@@ -17,4 +17,14 @@ describe('QUEEN PARSER', () => {
         const expected = 'Program (Function Declaration ({n: int,m: int} n + m))';
         assert.equal(ast, expected);
     });
+    it('👑 int (n: int m: int) 🚀 n * m', () => {
+        const ast = parse('👑 int (n: int m: int) 🚀 n * m').toString();
+        const expected = 'Program (Function Declaration ({n: int,m: int} n * m))';
+        assert.equal(ast, expected);
+    });
+    it('👑 int (n: int m: int) 🚀 n / m', () => {
+        const ast = parse('👑 int (n: int m: int) 🚀 n / m').toString();
+        const expected = 'Program (Function Declaration ({n: int,m: int} n / m))';
+        assert.equal(ast, expected);
+    });
 });
