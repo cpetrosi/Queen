@@ -5,20 +5,30 @@ QUEEN {
            | Let                        --let
     Exp = "🖨" stringlit                --print
           | Binexp                      --binexp
-          |
+          | Append                      --append
           | Conditional                 --conditional
           | Match                       --match
           | Let                         --let
           | "(" Exp ")"                 --parens
-          | id "⚡️" id                  --cons
-          | "🕳"                        --wild
+          | Pattern                     --pattern
           | id                          --id
           | boollit                     --bool
           | stringlit                   --string
           | numlit                      --numlit
+    Pattern = Cons
+            | "🕳"
+            | "[" patternElements (";" patternElements)* "]"
+    Cons = "[]"
+         | id "⚡️" "[]"
+         | id ("⚡️" id)*
+    patternElements = numlit | id
+    List = "[" listElements? "]"
+    listElements = numlit ("," numlit)*
+                 | stringlit ("," stringlit)*
     Match = "match" id "with" ("🍭" Exp "->" Exp)+
     Let = "let" id "🚀" Exp "in" Let   --let
         | Exp                    --exp
+    Append = List @ List
     Binexp = Exp1 addop Binexp           --add
            | Exp1                     --exp
     Exp1 = Exp2 mulop Exp1             --mult
