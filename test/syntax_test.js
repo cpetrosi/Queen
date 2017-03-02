@@ -23,8 +23,8 @@ describe('QUEEN', () => {
         assert.ok(match.succeeded());
     });
 
-    it('👑 bool (odd : int) 🚀 match odd with 🍭 3 -> true 🍭 4 -> false should be a valid function', () => {
-        const match = parse('👑 bool (odd : int) 🚀 match odd with 🍭 3 -> true 🍭 4 -> false');
+    it('👑 bool (odd : int) 🚀 match odd with 🍭 [] -> true 🍭 hd ⚡️ tl -> false should be a valid function', () => {
+        const match = parse('👑 bool (odd : int) 🚀 match odd with 🍭 [] -> true 🍭 hd ⚡️ tl -> false');
         assert.ok(match.succeeded());
     });
 
@@ -34,7 +34,7 @@ describe('QUEEN', () => {
     });
 
     it('👑 float (x : float) 🚀 let floatList 🚀 x @ [1.0, 2.0] should be a valid function', () => {
-        const match = parse('👑 float (x : float) 🚀 let floatList 🚀 x @ [1.0, 2.0]');
+        const match = parse('👑 float (x : float) 🚀 let floatList 🚀 [3.0] @ [1.0, 2.0]');
         assert.ok(match.succeeded());
     });
 
