@@ -5,6 +5,9 @@ const BinExpExp = require('./entities/binexp_exp');
 const Body = require('./entities/body');
 const Conditional = require('./entities/conditional');
 const Cons = require('./entities/cons');
+const ConsLong = require('./entities/cons_long');
+const ConsShort = require('./entities/cons_short');
+const ConsNil = require('./entities/cons_nil');
 const ExpAppend = require('./entities/exp_append');
 const ExpBinExp = require('./entities/exp_binexp');
 const ExpBool = require('./entities/exp_bool');
@@ -28,7 +31,7 @@ const LetExp = require('./entities/let_exp');
 const List = require('./entities/list');
 const ListElements = require('./entities/listelements');
 const Match = require('./entities/match');
-const MatchExp = require('./entities/matchexp')
+const MatchExp = require('./entities/matchexp');
 const PatternCons = require('./entities/pattern_cons');
 const PatternPattern = require('./entities/pattern_pattern');
 const PatternWild = require('./entities/pattern_wild');
@@ -68,9 +71,9 @@ const semantics = aelGrammar.createSemantics().addOperation('ast', {
   Pattern_pattern(left, first, colon, rest, right) {
       return new PatternPattern(first.ast(), rest.ast());
   },
-  Cons_long(id, lightning, rest) { return new consLong(id.ast(), rest.ast()); },
-  Cons_short(id, lightning, empty) { return new consShort(id.ast()); },
-  Cons_nil(nil) { return new consNil(nil.ast()); },
+  Cons_long(id, lightning, rest) { return new ConsLong(id.ast(), rest.ast()); },
+  Cons_short(id, lightning, empty) { return new ConsShort(id.ast()); },
+  Cons_nil(nil) { return new ConsNil(nil.ast()); },
   Funcall(id, left, params, commas, right) {
       return new Funcall(id.sourceString, params.sourceString);
   },
@@ -105,5 +108,5 @@ const semantics = aelGrammar.createSemantics().addOperation('ast', {
   Type_bool(bool) { return new TypeBool(bool.sourceString); },
   Type_int(int) { return new TypeInt(int.sourceString); },
   Type_float(float) { return new TypeFloat(float.sourceString); },
-  Type_string(string) { return new TypeString(string.sourceString); }
+  Type_string(string) { return new TypeString(string.sourceString); },
 });
