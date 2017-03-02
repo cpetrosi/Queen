@@ -40,6 +40,7 @@ const TypeInt = require('./entities/type_int');
 const TypeList = require('./entities/type_list');
 const TypeString = require('./entities/type_string');
 const TypeTuple = require('./entities/type_tuple');
+
 const ohm = require('ohm-js');
 const fs = require('fs');
 
@@ -71,15 +72,23 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Cons_long(id, lightning, rest) { return new ConsLong(id.sourceString, rest.ast()); },
   Cons_short(id, lightning, empty) { return new ConsShort(id.sourceString); },
   Cons_nil(nil) { return new ConsNil(nil.ast()); },
-  Funcall(id, left, params, commas, right) { return new Funcall(id.sourceString, params.sourceString); },
+  Funcall(id, left, params, commas, right) {
+      return new Funcall(id.sourceString, params.sourceString);
+  },
   List(left, elements, right) { return new List(elements.ast()); },
-  ListElements(first, commas, rest) { return new ListElements(first.sourceString, rest.sourceString); },
+  ListElements(first, commas, rest) {
+      return new ListElements(first.sourceString, rest.sourceString);
+  },
   Match(match, id, _, exps) { return new Match(id.sourceString, exps.ast()); },
   MatchExp(pop, pattern, arrow, exp) { return new MatchExp(pattern.ast(), exp.ast()); },
-  Let_let(let1, id, rocket, exp, _, let2) { return new LetLet(id.sourceString, exp.ast(), let2.ast()); },
+  Let_let(let1, id, rocket, exp, _, let2) {
+      return new LetLet(id.sourceString, exp.ast(), let2.ast());
+  },
   Let_exp(exp) { return new LetExp(exp.ast()); },
   Append(listOne, at, listTwo) { return new Append(listOne.ast(), listTwo.ast()); },
-  Binexp_add(exp1, addop, binexp) { return new BinExpAdd(exp1.ast(), addop.sourceString, binexp.ast()); },
+  Binexp_add(exp1, addop, binexp) {
+      return new BinExpAdd(exp1.ast(), addop.sourceString, binexp.ast());
+  },
   Binexp_exp(exp1) { return new BinExpExp(exp1.ast()); },
   Exp1_mult(exp1, op, exp2) {
       return new Exp1Mult(exp1.ast(), op.sourceString, exp2.ast());
