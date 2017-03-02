@@ -1,3 +1,5 @@
+const Exp = require('./exp.js');
+
 class expAppend extends Exp {
   constructor(body) {
     super();

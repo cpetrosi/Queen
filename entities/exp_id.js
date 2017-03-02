@@ -1,3 +1,5 @@
+const Exp = require('./exp.js');
+
 class expId extends Exp {
   constructor(body) {
     super();

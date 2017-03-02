@@ -1,3 +1,5 @@
+const Exp = require('./exp.js');
+
 class expPrint extends Exp {
   constructor(string) {
     super();
