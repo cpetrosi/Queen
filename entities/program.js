@@ -4,7 +4,7 @@ class Program {
   }
 
   toString() {
-    return `Program (${this.FunDecl}.join(' '))`;
+    return `Program (${this.FunDecl})`;
   }
 }
 

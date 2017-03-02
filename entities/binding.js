@@ -5,7 +5,7 @@ class Binding {
   }
 
   toString() {
-    return `${this.id} : ${this.type}`;
+    return `{${this.id} : ${this.type}}`;
   }
 }
 
