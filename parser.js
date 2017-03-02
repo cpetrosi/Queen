@@ -48,7 +48,7 @@ const fs = require('fs');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax.ohm'));
 
-const semantics = aelGrammar.createSemantics().addOperation('ast', {
+const semantics = grammar.createSemantics().addOperation('ast', {
   Program(FunDecls) { return new Program(FunDecls.ast()); },
   FunDecl(crown, type, left, bindings, right, rocket, body) {
       return new FunDecl(bindings.ast(), body.ast());
@@ -99,7 +99,7 @@ const semantics = aelGrammar.createSemantics().addOperation('ast', {
   Exp2(negative, exp) { return new Exp2(negative.sourceString, exp.ast()); },
   Exp3(num, factorial) { return new Exp3(num.sourceString, factorial.sourceString); },
   Conditional(i, Exp1, ifLogical, Exp2s, then1, Exp3, elseif, Exp4, elseIfLogical, Exp5s,
-      then2, Exp6, e, Exp7) {
+  then2, Exp6, e, Exp7) {
       return new Conditional(Exp1.ast(), ifLogical.ast(), Exp2s.ast(), Exp3.ast(), Exp4.ast(),
         elseIfLogical.ast(), Exp5s.ast(), Exp6.ast(), Exp7.ast());
   },
