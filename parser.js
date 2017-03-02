@@ -9,6 +9,7 @@ const ExpBinExp = require('./entities/ExpBinExp');
 const ExpBool = require('./entities/ExpBool');
 const ExpConditional = require('./entities/ExpConditional');
 const ExpId = require('./entities/ExpId');
+const ExpLet = require('./entities/ExpLet');
 const ExpMatch = require('./entities/ExpMatch');
 const ExpNumLit = require('./entities/NumLit');
 const ExpParens = require('./entities/ExpParens');
