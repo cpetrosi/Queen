@@ -1,5 +1,6 @@
-class Body {
+class expBinexp extends Exp {
   constructor(body) {
+    super();
     this.body = body;
   }
 
@@ -8,4 +9,4 @@ class Body {
   }
 }
 
-module.exports = Body;
+module.exports = expBinexp;
