@@ -1,8 +1,9 @@
 QUEEN {
     Program = (FunDecl)+
-    FunDecl = "👑" Type "(" (id ":" Type)+ ")" "🚀" Body
-    Body = Exp                          --exp
-           | Let                        --let
+    FunDecl = "👑" Type "(" Binding+ ")" "🚀" Body
+    Binding = (id ":" Type)
+    Body = Exp
+           | Let
            | Funcall
     Exp = "🖨" stringlit                --print
           | Binexp                      --binexp
@@ -17,27 +18,27 @@ QUEEN {
           | numlit                      --numlit
     Pattern = Cons                      --cons
             | "🕳"                      --wild
-            | "[" patternElements (";" patternElements)* "]"            --pattern
-    Cons = "[]"                     --nil
-         | id "⚡️" "[]"             --short
-         | id ("⚡️" id)*            --long
+            | "[" patternElements (";" patternElements)* "]"      --pattern
+    Cons = "[]"                         --nil
+         | id "⚡️" "[]"                 --short
+         | id ("⚡️" id)*                --long
     Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
     List = "[" listElements? "]"
-    listElements = numlit ("," numlit)*
+    ListElements = numlit ("," numlit)*
                  | stringlit ("," stringlit)*
     Match = "match" id "with" ("🍭" Pattern "->" Exp)+
-    Let = "let" id "🚀" Exp ("in" Let)?   --let
-        | Exp                    --exp
+    Let = "let" id "🚀" Exp ("in" Let)?    --let
+        | Exp                             --exp
     Append = List "@" List
-    Binexp = Exp1 addop Binexp           --add
-           | Exp1                     --exp
-    Exp1 = Exp2 mulop Exp1             --mult
-         | Exp2                      --exp
+    Binexp = Exp1 addop Binexp            --add
+           | Exp1                         --exp
+    Exp1 = Exp2 mulop Exp1                --mult
+         | Exp2                           --exp
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp (Logical Exp)* "then" Exp ("else🤔" Exp (Logical Exp)* "then" Exp)* ("else" Exp)?
-    Logical = "👍" | "🖕"
+    logical = "👍" | "🖕"
     Type = Type "list"              --list
          | Type "*" Type            --tuple
          | "bool"                   --bool
@@ -45,13 +46,12 @@ QUEEN {
          | "float"                  --float
          | "string"                 --string
          | id                       --id
-    boollit = "true"                   --true
-           | "false"                   --false
+    boollit = "true" | "false"
     id = ~keyword letter idrest*
-    idrest = letter                    --ltr
-             | digit                   --dgt
-             | "_"                     --underscore
-             | "$"                     --dollar
+    idrest = letter                 --ltr
+             | digit                --dgt
+             | "_"                  --underscore
+             | "$"                  --dollar
     keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in"
             | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕") ~idrest
     char =  escape
