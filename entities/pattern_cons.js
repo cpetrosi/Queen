@@ -1,3 +1,5 @@
+const Pattern = require('./pattern.js');
+
 class patternCons extends Pattern {
   constructor(body) {
     super();
