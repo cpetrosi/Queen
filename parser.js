@@ -48,7 +48,7 @@ const fs = require('fs');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax.ohm'));
 
-const semantics = aelGrammar.createSemantics().addOperation('ast', {
+const semantics = grammar.createSemantics().addOperation('ast', {
   Program(FunDecls) { return new Program(FunDecls.ast()); },
   FunDecl(crown, type, left, bindings, right, rocket, body) {
       return new FunDecl(bindings.ast(), body.ast());
