@@ -3,21 +3,21 @@ QUEEN {
     FunDecl = "👑" Type "(" Binding+ ")" "🚀" Body
     Binding = (id ":" Type)
     Body = Exp
-           | Let
-           | Funcall
-    Exp = "🖨" stringlit                --print
-          | Binexp                      --binexp
-          | Append                      --append
-          | Conditional                 --conditional
-          | Match                       --match
-          | Let                         --let
-          | "(" Exp ")"                 --parens
-          | id                          --id
-          | boollit                     --bool
-          | stringlit                   --string
-          | numlit                      --numlit
-    Pattern = Cons                      --cons
-            | "🕳"                      --wild
+         | Let
+         | Funcall
+    Exp = "🖨" stringlit              --print
+        | Binexp                      --binexp
+        | Append                      --append
+        | Conditional                 --conditional
+        | Match                       --match
+        | Let                         --let
+        | "(" Exp ")"                 --parens
+        | id                          --id
+        | boollit                     --bool
+        | stringlit                   --string
+        | numlit                      --numlit
+    Pattern = Cons                    --cons
+            | "🕳"                    --wild
             | "[" patternElements (";" patternElements)* "]"      --pattern
     Cons = "[]"                         --nil
          | id "⚡️" "[]"                 --short
@@ -48,22 +48,22 @@ QUEEN {
          | "string"                 --string
     boollit = "true" | "false"
     id = ~keyword letter idrest*
-    idrest = letter                 --ltr
-             | digit                --dgt
-             | "_"                  --underscore
-             | "$"                  --dollar
+    idrest = letter               --ltr
+           | digit                --dgt
+           | "_"                  --underscore
+           | "$"                  --dollar
     keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in"
             | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕") ~idrest
     char =  escape
-            |  ~"\\" ~"\"" ~"\'" ~"\\n" any
+         |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
-              |  "\\u{" hexDigit+ "}"   --codepoint
+           |  "\\u{" hexDigit+ "}"     --codepoint
     charlit =  "'" (char | "\"") "'"
     stringlit =  "\"" (char | "\'")* "\""
     numlit = digit+ ("."digit+)? ("^"digit+)?
     addop = "+"                        --add
-            | "-"                      --sub
+          | "-"                        --sub
     mulop = "*"                        --mult
-            | "/"                      --div
+          | "/"                        --div
     comment = "//" (~"\n" any)* "\n"
 }
