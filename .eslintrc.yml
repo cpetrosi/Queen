@@ -1,7 +1,10 @@
 extends: airbnb-base
 plugins:
   - import
+env:
+  mocha: true
 rules:
-  no-console:
+  indent:
     off
-    
+  linebreak-style:
+    off
