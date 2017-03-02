@@ -5,7 +5,7 @@ QUEEN {
     Body = Exp
          | Let
          | Funcall
-    Exp = "🖨" stringlit              --print
+    Exp = "🖨" (stringlit | id)       --print
         | Binexp                      --binexp
         | Append                      --append
         | Conditional                 --conditional
@@ -37,7 +37,7 @@ QUEEN {
     Exp1 = Exp2 mulop Exp1                --mult
          | Exp2                           --exp
     Exp2 = "-"? Exp3
-    Exp3 = numlit("!")?
+    Exp3 = (numlit| id)("!")?
     Conditional = "🤔" Exp (logical Exp)* "then" Exp ("else🤔" Exp (logical Exp)* "then" Exp)* ("else" Exp)?
     logical = "👍" | "🖕"
     Type = Type "list"              --list

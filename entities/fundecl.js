@@ -5,7 +5,7 @@ class FunDecl {
   }
 
   toString() {
-    return `Function Declaration (${this.bindings} ${this.body})`;
+    return `Function Declaration ({${this.bindings}} ${this.body})`;
   }
 }
 
