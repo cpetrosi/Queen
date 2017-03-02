@@ -1,10 +1,11 @@
 QUEEN {
     Program = (FunDecl)+
-    FunDecl = "👑" type "(" (id ":" type)+ ")" "🚀" Body
+    FunDecl = "👑" Type "(" (id ":" Type)+ ")" "🚀" Body
     Body = Exp                          --exp
-           | Closure                    --closure
+           | Let                        --let
     Exp = "🖨" stringlit                --print
           | Binexp                      --binexp
+          | 
           | Conditional                 --conditional
           | Match                       --match
           | Let                         --let
@@ -25,13 +26,19 @@ QUEEN {
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
     Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
+    Type = Type "list"
+         | Type "*" Type
+         | "bool"
+         | "int"
+         | "float"
+         | "string"
+         | id
     boollit = "true"                   --true
            | "false"                   --false
     id = ~keyword letter idrest*
     idrest = letter                    --ltr
              | digit                   --dgt
              | "_"                     --underscore
-             | "@"                     --at
              | "$"                     --dollar
     keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else" | "true" | "false") ~idrest
     char =  escape
