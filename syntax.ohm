@@ -27,7 +27,8 @@ QUEEN {
     List = "[" listElements? "]"
     ListElements = numlit ("," numlit)*
                  | stringlit ("," stringlit)*
-    Match = "match" id "with" ("🍭" Pattern "->" Exp)+
+    Match = "match" id "with" MatchExp+
+    MatchExp = "🍭" Pattern "->" Exp
     Let = "let" id "🚀" Exp ("in" Let)?    --let
         | Exp                             --exp
     Append = List "@" List
