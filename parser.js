@@ -81,8 +81,8 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Match(match, id, _, exps) { return new Match(id.sourceString, exps.ast()); },
   MatchExp(pop, pattern, arrow, exp) { return new MatchExp(pattern.ast(), exp.ast()); },
-  Let_let(let1, id, rocket, exp, _, let2) {
-      return new LetLet(id.sourceString, exp.ast(), let2.ast());
+  Let_let(let1, id, rocket, exp, _, initializer) {
+      return new LetLet(id.sourceString, exp.ast(), initializer.ast());
   },
   Let_exp(exp) { return new LetExp(exp.ast()); },
   Append(listOne, at, listTwo) { return new Append(listOne.ast(), listTwo.ast()); },

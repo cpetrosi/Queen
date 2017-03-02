@@ -9,7 +9,11 @@ class letLet extends Let {
   }
 
   toString() {
-    return `let ${this.id} = ${this.exp} in ${this.rest}`;
+    if (`${this.rest}`) {
+        return `let ${this.id} = ${this.exp} in ${this.rest}`;
+    } else {
+        return `let ${this.id} = ${this.exp}`;
+    }
   }
 }
 
