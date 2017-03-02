@@ -3,6 +3,7 @@ QUEEN {
     FunDecl = "👑" Type "(" (id ":" Type)+ ")" "🚀" Body
     Body = Exp                          --exp
            | Let                        --let
+           | Funcall
     Exp = "🖨" stringlit                --print
           | Binexp                      --binexp
           | Append                      --append
@@ -10,23 +11,23 @@ QUEEN {
           | Match                       --match
           | Let                         --let
           | "(" Exp ")"                 --parens
-          | Pattern                     --pattern
           | id                          --id
           | boollit                     --bool
           | stringlit                   --string
           | numlit                      --numlit
-    Pattern = Cons
-            | "🕳"
-            | "[" patternElements (";" patternElements)* "]"
-    Cons = "[]"
-         | id "⚡️" "[]"
-         | id ("⚡️" id)*
+    Pattern = Cons                      --cons
+            | "🕳"                      --wild
+            | "[" patternElements (";" patternElements)* "]"            --pattern
+    Cons = "[]"                     --nil
+         | id "⚡️" "[]"             --short
+         | id ("⚡️" id)*            --long
+    Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
     List = "[" listElements? "]"
     listElements = numlit ("," numlit)*
                  | stringlit ("," stringlit)*
-    Match = "match" id "with" ("🍭" Exp "->" Exp)+
-    Let = "let" id "🚀" Exp "in" Let   --let
+    Match = "match" id "with" ("🍭" Pattern "->" Exp)+
+    Let = "let" id "🚀" Exp ("in" Let)?   --let
         | Exp                    --exp
     Append = List @ List
     Binexp = Exp1 addop Binexp           --add
@@ -35,7 +36,8 @@ QUEEN {
          | Exp2                      --exp
     Exp2 = "-"? Exp3
     Exp3 = numlit("!")?
-    Conditional = "🤔" Exp "then" Exp ("else🤔" Exp "then" Exp)* ("else" Exp)?
+    Conditional = "🤔" Exp (Logical Exp)* "then" Exp ("else🤔" Exp (Logical Exp)* "then" Exp)* ("else" Exp)?
+    Logical = "👍" | "🖕"
     Type = Type "list"              --list
          | Type "*" Type            --tuple
          | "bool"                   --bool
@@ -50,7 +52,8 @@ QUEEN {
              | digit                   --dgt
              | "_"                     --underscore
              | "$"                     --dollar
-    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in" | "🤔" | "else🤔" | "then" | "else" | "true" | "false") ~idrest
+    keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in"
+            | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕") ~idrest
     char =  escape
             |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
