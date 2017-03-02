@@ -45,7 +45,6 @@ QUEEN {
          | "int"                    --int
          | "float"                  --float
          | "string"                 --string
-         | id                       --id
     boollit = "true" | "false"
     id = ~keyword letter idrest*
     idrest = letter                 --ltr
