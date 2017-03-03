@@ -62,9 +62,9 @@ describe('QUEEN PARSER', () => {
         const expected = 'Program (Function Declaration ({x: int,y: int} x - y))';
         assert.equal(ast, expected);
     });
-    it('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false', () => {
+   it('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false', () => {
         const ast = parse('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false').toString();
-        const expected = 'Program (Function Declaration ({x: int} let x = 5 in match x with any -> true, any -> false))';
+        const expected = 'Program (Function Declaration ({x: int} let x = 5 in match x with any -> true,any -> false))';
         assert.equal(ast, expected);
     });
     it('👑 int (x: int y: int) 🚀 x + y', () => {
