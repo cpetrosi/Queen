@@ -5,7 +5,7 @@ class Match {
   }
 
   toString() {
-    return `match ${this.id} with ${this.matchexp}.join(' ')`;
+    return `match ${this.id} with ${this.matchexp}`;
   }
 }
 

@@ -27,19 +27,24 @@ describe('QUEEN PARSER', () => {
         const expected = 'Program (Function Declaration ({n: int,m: int} n / m))';
         assert.equal(ast, expected);
     });
-    it('👑 int (x : int) 🚀 let x 🚀 5', () => {
+    it('👑 int (x: int) 🚀 let x 🚀 5', () => {
         const ast = parse('👑 int (x : int) 🚀 let x 🚀 5').toString();
         const expected = 'Program (Function Declaration ({x: int} let x = 5))';
         assert.equal(ast, expected);
     });
-    it('👑 int (x : int) 🚀 let x 🚀 5 in y', () => {
+    it('👑 int (x: int) 🚀 let x 🚀 5 in y', () => {
         const ast = parse('👑 int (x : int) 🚀 let x 🚀 5 in y').toString();
         const expected = 'Program (Function Declaration ({x: int} let x = 5 in y))';
         assert.equal(ast, expected);
     });
-    it('👑 int (x : int) 🚀 let x 🚀 5 in let y 🚀 10 in z', () => {
+    it('👑 int (x: int) 🚀 let x 🚀 5 in let y 🚀 10 in z', () => {
         const ast = parse('👑 int (x : int) 🚀 let x 🚀 5 in let y 🚀 10 in z').toString();
         const expected = 'Program (Function Declaration ({x: int} let x = 5 in let y = 10 in z))';
+        assert.equal(ast, expected);
+    });
+    it('👑 float (x: float) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0', () => {
+        const ast = parse('👑 float (x: float) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0').toString();
+        const expected = 'Program (Function Declaration ({x: float} match x with [] -> 5.0,any -> 6.0))';
         assert.equal(ast, expected);
     });
 });
