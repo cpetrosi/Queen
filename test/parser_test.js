@@ -49,7 +49,7 @@ describe('QUEEN PARSER', () => {
     });
     it('👑 bool (odd : int) 🚀 match odd with 🍭 [] -> true 🍭 hd ⚡️ tl -> false', () => {
         const ast = parse('👑 bool (odd : int) 🚀 match odd with 🍭 [] -> true 🍭 hd ⚡️ tl -> false').toString();
-        const expected = 'Program (Function Declaration ({x: float} match x with [] -> 5.0,any -> 6.0))';
+        const expected = 'Program (Function Declaration ({odd: int} match odd with [] -> true,hd ⚡️ tl -> false))';
         assert.equal(ast, expected);
     });
     it('👑 string (n : bool) 🚀 🤔 a then "hello" else "gracias"', () => {
