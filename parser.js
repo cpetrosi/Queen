@@ -47,7 +47,7 @@ const grammar = ohm.grammar(fs.readFileSync('./syntax.ohm'));
 
 const semantics = grammar.createSemantics().addOperation('ast', {
   Program(FunDecls) { return new Program(FunDecls.ast()); },
-  FunDecl(crown, type, left, bindings, right, rocket, body) {
+  FunDecl(crown, type, id, left, bindings, right, rocket, body) {
       return new FunDecl(bindings.ast(), body.ast());
   },
   Binding(id, colon, type) { return new Binding(id.sourceString, type.ast()); },
@@ -68,8 +68,8 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Pattern_pattern(left, first, colon, rest, right) {
       return new PatternPattern(first.sourceString, rest.sourceString);
   },
-  Cons_long(id, lightning, rest) { return new ConsLong(id.sourceString, rest.ast()); },
-  Cons_short(id, lightning, empty) { return new ConsShort(id.sourceString); },
+  Cons_long(first, lightning, rest) { return new ConsLong(first.sourceString, rest.ast()); },
+  Cons_short(first, lightning, empty) { return new ConsShort(first.sourceString); },
   Cons_nil(nil) { return new ConsNil(nil.ast()); },
   Funcall(id, left, params, commas, right) {
       return new Funcall(id.sourceString, params.sourceString);

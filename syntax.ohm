@@ -1,6 +1,6 @@
 QUEEN {
     Program = (FunDecl)+
-    FunDecl = "👑" Type "(" Binding+ ")" "🚀" Body
+    FunDecl = "👑" Type id ("(" Binding+ ")")? "🚀" Body
     Binding = (id ":" Type)
     Body = Exp
          | Let
@@ -20,15 +20,15 @@ QUEEN {
             | "🕳"                    --wild
             | "[" patternElements (";" patternElements)* "]"      --pattern
     Cons = "[]"                         --nil
-         | id "⚡️" "[]"                 --short
-         | id ("⚡️" id)*                --long
+         | listElement "⚡️" "[]"                 --short
+         | listElement ("⚡️" Cons)*              --long
     Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
     List = "[" listElement ("," listElement)* "]"
-    listElement = numlit | stringlit
+    listElement = numlit | stringlit | id
     Match = "match" id "with" MatchExp+
     MatchExp = "🍭" Pattern "->" Exp
-    Let = "let" id "🚀" Exp ("in" Let)?    --let
+    Let = "let" id "🚀" Exp ("in" Let)?   --let
         | Exp                             --exp
     Append = List "@" List
     Binexp = Exp1 addop Binexp            --add
