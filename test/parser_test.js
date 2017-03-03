@@ -12,19 +12,19 @@ describe('QUEEN PARSER', () => {
       const expected = 'Program (Function Declaration ({n: int} n))';
       assert.equal(ast, expected);
   });
-  it('👑 int nM (n: int m: int) 🚀 n + m', () => {
-      const ast = parse('👑 int nM (n: int m: int) 🚀 n + m').toString();
-      const expected = 'Program (Function Declaration ({n: int,m: int} n + m))';
+  it('👑 int nM (n: int m: int) 🚀 n + m + 5 + 4', () => {
+      const ast = parse('👑 int nM (n: int m: int) 🚀 n + m + 5 + 4').toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} (((n + m) + 5) + 4)))';
       assert.equal(ast, expected);
   });
-  it('👑 int mult (n: int m: int) 🚀 n * m', () => {
-      const ast = parse('👑 int mult (n: int m: int) 🚀 n * m').toString();
-      const expected = 'Program (Function Declaration ({n: int,m: int} n * m))';
+  it('👑 int mult (n: int m: int) 🚀 n * m * 38 * 2', () => {
+      const ast = parse('👑 int mult (n: int m: int) 🚀 n * m * 38 * 2').toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} (((n * m) * 38) * 2)))';
       assert.equal(ast, expected);
   });
-  it('👑 int div (n: int m: int) 🚀 n / m', () => {
-      const ast = parse('👑 int div (n: int m: int) 🚀 n / m').toString();
-      const expected = 'Program (Function Declaration ({n: int,m: int} n / m))';
+  it('👑 int div (n: int m: int) 🚀 n / m / 4', () => {
+      const ast = parse('👑 int div (n: int m: int) 🚀 n / m / 4').toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} ((n / m) / 4)))';
       assert.equal(ast, expected);
   });
   it('👑 int xIsFive (x: int) 🚀 let x 🚀 5', () => {
@@ -59,12 +59,12 @@ describe('QUEEN PARSER', () => {
   });
   it('👑 int minus (x: int y: int) 🚀 x - y', () => {
       const ast = parse('👑 int minus (x: int y: int) 🚀 x - y').toString();
-      const expected = 'Program (Function Declaration ({x: int,y: int} x - y))';
+      const expected = 'Program (Function Declaration ({x: int,y: int} (x - y)))';
       assert.equal(ast, expected);
   });
   it('👑 int plus (x: int y: int) 🚀 x + y', () => {
-      const ast = parse('👑 int plus (x: int y: int) 🚀 x - y').toString();
-      const expected = 'Program (Function Declaration ({x: int,y: int} x - y))';
+      const ast = parse('👑 int plus (x: int y: int) 🚀 x + y').toString();
+      const expected = 'Program (Function Declaration ({x: int,y: int} (x + y)))';
       assert.equal(ast, expected);
   });
   it('👑 int * int tup (x: int) 🚀 [6] @ [9]', () => {
@@ -74,7 +74,7 @@ describe('QUEEN PARSER', () => {
   });
   it('👑 int plus (x: int y: int) 🚀 x + y 👑 int * int tup (x: int) 🚀 [6] @ [9]', () => {
       const ast = parse('👑 int plus (x: int y: int) 🚀 x - y 👑 int * int tup (x: int) 🚀 [6] @ [9]').toString();
-      const expected = 'Program (Function Declaration ({x: int,y: int} x - y),Function Declaration ({x: int} [6]@[9]))';
+      const expected = 'Program (Function Declaration ({x: int,y: int} (x - y)),Function Declaration ({x: int} [6]@[9]))';
       assert.equal(ast, expected);
   });
   it('👑 bool consMe (odd : int list) 🚀 match odd with 🍭 [] -> true 🍭 3 ⚡️ tl -> false', () => {

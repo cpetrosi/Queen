@@ -84,8 +84,8 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Let_exp(exp) { return new LetExp(exp.ast()); },
   Append(listOne, at, listTwo) { return new Append(listOne.ast(), listTwo.ast()); },
-  Binexp_add(exp1, addop, binexp) {
-      return new BinExpAdd(exp1.ast(), addop.sourceString, binexp.ast());
+  Binexp_add(binexp, addop, exp1) {
+      return new BinExpAdd(binexp.ast(), addop.sourceString, exp1.ast());
   },
   Binexp_exp(exp1) { return new BinExpExp(exp1.ast()); },
   Exp1_mult(exp1, op, exp2) {

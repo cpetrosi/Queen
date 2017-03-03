@@ -1,7 +1,7 @@
 const BinExp = require('./binexp.js');
 
 class binexpAdd extends BinExp {
-  constructor(exp1, addop, binexp) {
+  constructor(binexp, addop, exp1) {
     super();
     this.exp1 = exp1;
     this.binexp = binexp;
@@ -9,7 +9,7 @@ class binexpAdd extends BinExp {
   }
 
   toString() {
-    return `${this.exp1} ${this.op} ${this.binexp}`;
+    return `(${this.binexp} ${this.op} ${this.exp1})`;
   }
 }
 
