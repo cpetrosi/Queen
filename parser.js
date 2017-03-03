@@ -60,10 +60,10 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Exp_id(body) { return new ExpId(body.sourceString); },
   Exp_let(body) { return new ExpLet(body.ast()); },
   Exp_match(body) { return new ExpMatch(body.ast()); },
-  Exp_numlit(body) { return new ExpNumLit(body.ast()); },
+  Exp_numlit(body) { return new ExpNumLit(body.sourceString); },
   Exp_parens(right, body, left) { return new ExpParens(body.ast()); },
   Exp_print(printer, string) { return new ExpPrint(string.sourceString); },
-  Exp_string(body) { return new ExpString(body.ast()); },
+  Exp_string(body) { return new ExpString(body.sourceString); },
   Pattern_cons(cons) { return new PatternCons(cons.sourceString); },
   Pattern_wild(blackHole) { return new PatternWild(blackHole.sourceString); },
   Pattern_pattern(left, first, colon, rest, right) {

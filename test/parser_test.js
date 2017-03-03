@@ -52,4 +52,9 @@ describe('QUEEN PARSER', () => {
         const expected = 'Program (Function Declaration ({x: float} match x with [] -> 5.0,any -> 6.0))';
         assert.equal(ast, expected);
     });
+    it('👑 string (n : bool) 🚀 🤔 a then "hello" else "gracias"', () => {
+        const ast = parse('👑 string (n : bool) 🚀 🤔 a then "hello" else "gracias"').toString();
+        const expected = 'Program (Function Declaration ({n: int,m: int} n + m))';
+        assert.equal(ast, expected);
+    });
 });
