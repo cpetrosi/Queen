@@ -7,12 +7,9 @@ Queen is a JavaScript ES6 language with OCaml's pattern matching and first class
 To produce an abstract syntax tree, use the command: 
 ```
 npm install
-npm start <path_to_file>
+npm start <absoulte_path_to_file>
 ```
-Where the file path follows the format below: 
-```
-C:\Users\mary\Desktop\helloWorld.queen
-```
+
 
 ### Features
 * Emoji keywords
