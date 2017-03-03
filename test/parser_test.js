@@ -27,6 +27,11 @@ describe('QUEEN PARSER', () => {
         const expected = 'Program (Function Declaration ({n: int,m: int} n / m))';
         assert.equal(ast, expected);
     });
+    it('👑 int (n: int) 🚀 5748', () => {
+        const ast = parse('👑 int (n: int) 🚀 5748').toString();
+        const expected = 'Program (Function Declaration ({n : int} 5748))';
+        assert.equal(ast, expected);
+    });
     it('👑 int (x: int) 🚀 let x 🚀 5', () => {
         const ast = parse('👑 int (x : int) 🚀 let x 🚀 5').toString();
         const expected = 'Program (Function Declaration ({x: int} let x = 5))';
