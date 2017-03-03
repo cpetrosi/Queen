@@ -5,7 +5,7 @@ class Append {
   }
 
   toString() {
-    return `[${this.list1}]@[${this.list2}]`;
+    return `${this.list1}@${this.list2}`;
   }
 }
 
