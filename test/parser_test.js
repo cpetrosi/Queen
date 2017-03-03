@@ -52,19 +52,14 @@ describe('QUEEN PARSER', () => {
         const expected = 'Program (Function Declaration ({odd: int} match odd with [] -> true,hd ⚡️ tl -> false))';
         assert.equal(ast, expected);
     });
-        it('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 5 -> true 🍭 🕳 -> false', () => {
-        const ast = parse('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 5 -> true 🍭 _ -> false').toString();
-        const expected = 'Program (Function Declaration ({x: int} let x = 5 in match x with 5 -> true, any -> false))';
+        it('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false', () => {
+        const ast = parse('👑 bool (x: int) 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false').toString();
+        const expected = 'Program (Function Declaration ({x: int} let x = 5 in match x with any -> true,any -> false))';
         assert.equal(ast, expected);
     });
     it('👑 int (x: int y: int) 🚀 x + y', () => {
         const ast = parse('👑 int (x: int y: int) 🚀 x - y').toString();
         const expected = 'Program (Function Declaration ({x: int,y: int} x - y))';
-        assert.equal(ast, expected);
-    });
-    it('👑 int * yint (x: int) 🚀 [6, 7, 8] @ [9]', () => {
-        const ast = parse('👑 int * int (x: int) 🚀 [6, 7, 8] @ [9]').toString();
-        const expected = 'Program (Function Declaration ({x: int} [6, , 7, 8]@[9, ]))';
         assert.equal(ast, expected);
     });
 });
