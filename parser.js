@@ -67,7 +67,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Pattern_cons(cons) { return new PatternCons(cons.sourceString); },
   Pattern_wild(blackHole) { return new PatternWild(blackHole.sourceString); },
   Pattern_pattern(left, first, colon, rest, right) {
-      return new PatternPattern(first.ast(), rest.ast());
+      return new PatternPattern(first.sourceString, rest.sourceString);
   },
   Cons_long(id, lightning, rest) { return new ConsLong(id.sourceString, rest.ast()); },
   Cons_short(id, lightning, empty) { return new ConsShort(id.sourceString); },
