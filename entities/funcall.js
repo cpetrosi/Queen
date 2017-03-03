@@ -5,7 +5,7 @@ class Funcall {
   }
 
   toString() {
-    return `${this.funId}(${this.argument}.join(, ))`;
+    return `${this.funId}${this.argument}`;
   }
 }
 

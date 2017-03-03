@@ -5,7 +5,12 @@ class FunDecl {
   }
 
   toString() {
-    return `Function Declaration ({${this.bindings}} ${this.body})`;
+    let string = 'Function Declaration (';
+    if (this.bindings.length !== 0) {
+      string += `{${this.bindings}} `;
+    }
+    string += `${this.body})`;
+    return string;
   }
 }
 
