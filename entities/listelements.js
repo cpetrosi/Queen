@@ -5,7 +5,7 @@ class ListElements {
   }
 
   toString() {
-    return `${this.body}, ${this.rest}`;
+    return `${this.body}${this.rest}`;
   }
 }
 

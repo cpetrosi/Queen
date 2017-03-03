@@ -74,7 +74,7 @@ describe('QUEEN PARSER', () => {
     });
     it('👑 int * int (x: int) 🚀 [6, 7, 8] @ [9]', () => {
         const ast = parse('👑 int * int (x: int) 🚀 [6, 7, 8] @ [9]').toString();
-        const expected = 'Program (Function Declaration ({x: int} [6, , 7, 8]@[9, ]))';
+        const expected = 'Program (Function Declaration ({x: int} [6, 7, 8]@[9]))';
         assert.equal(ast, expected);
     });
 });
