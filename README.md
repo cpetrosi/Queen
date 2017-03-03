@@ -3,6 +3,17 @@
 ### Welcome to Queen
 Queen is a JavaScript ES6 language with OCaml's pattern matching and first class functions. Coders everywhere can create and complete projects on their smartphones while enjoying the expressiveness of emojis. Queen is also a great way to excite kids about computer science, once they see how fun and creative it can be! We hope you enjoy seeing your functions come to life as much as we do!
 
+### Try it out
+To produce an abstract syntax tree, use the command: 
+```
+npm install
+npm start <path_to_file>
+```
+Where the file path follows the format below: 
+```
+C:\Users\mary\Desktop\helloWorld.queen
+```
+
 ### Features
 * Emoji keywords
 * First class functions
