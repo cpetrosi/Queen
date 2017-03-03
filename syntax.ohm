@@ -24,9 +24,8 @@ QUEEN {
          | id ("⚡️" id)*                --long
     Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
-    List = "[" ListElements? "]"
-    ListElements = numlit ("," numlit)*
-                 | stringlit ("," stringlit)*
+    List = "[" listElement ("," listElement)* "]"
+    listElement = numlit | stringlit
     Match = "match" id "with" MatchExp+
     MatchExp = "🍭" Pattern "->" Exp
     Let = "let" id "🚀" Exp ("in" Let)?    --let

@@ -27,7 +27,6 @@ const FunDecl = require('./entities/fundecl');
 const LetExp = require('./entities/let_exp');
 const LetLet = require('./entities/let_let');
 const List = require('./entities/list');
-const ListElements = require('./entities/listelements');
 const Match = require('./entities/match');
 const MatchExp = require('./entities/matchexp');
 const PatternCons = require('./entities/pattern_cons');
@@ -52,18 +51,18 @@ const semantics = grammar.createSemantics().addOperation('ast', {
       return new FunDecl(bindings.ast(), body.ast());
   },
   Binding(id, colon, type) { return new Binding(id.sourceString, type.ast()); },
-  Body(arg) { return new Body(arg.ast()); },
-  Exp_append(body) { return new ExpAppend(body.ast()); },
-  Exp_binexp(body) { return new ExpBinExp(body.ast()); },
-  Exp_bool(body) { return new ExpBool(body.sourceString); },
-  Exp_conditional(body) { return new ExpConditional(body.ast()); },
-  Exp_id(body) { return new ExpId(body.sourceString); },
-  Exp_let(body) { return new ExpLet(body.ast()); },
-  Exp_match(body) { return new ExpMatch(body.ast()); },
-  Exp_numlit(body) { return new ExpNumLit(body.sourceString); },
-  Exp_parens(right, body, left) { return new ExpParens(body.ast()); },
+  Body(exp) { return new Body(exp.ast()); },
+  Exp_append(append) { return new ExpAppend(append.ast()); },
+  Exp_binexp(binexp) { return new ExpBinExp(binexp.ast()); },
+  Exp_bool(bool) { return new ExpBool(bool.sourceString); },
+  Exp_conditional(conditional) { return new ExpConditional(conditional.ast()); },
+  Exp_id(id) { return new ExpId(id.sourceString); },
+  Exp_let(exp) { return new ExpLet(exp.ast()); },
+  Exp_match(exp) { return new ExpMatch(exp.ast()); },
+  Exp_numlit(numlit) { return new ExpNumLit(numlit.sourceString); },
+  Exp_parens(right, exp, left) { return new ExpParens(exp.ast()); },
   Exp_print(printer, string) { return new ExpPrint(string.sourceString); },
-  Exp_string(body) { return new ExpString(body.sourceString); },
+  Exp_string(string) { return new ExpString(string.sourceString); },
   Pattern_cons(cons) { return new PatternCons(cons.sourceString); },
   Pattern_wild(blackHole) { return new PatternWild(blackHole.sourceString); },
   Pattern_pattern(left, first, colon, rest, right) {
@@ -75,9 +74,8 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Funcall(id, left, params, commas, right) {
       return new Funcall(id.sourceString, params.sourceString);
   },
-  List(left, elements, right) { return new List(elements.ast()); },
-  ListElements(first, commas, rest) {
-      return new ListElements(first.sourceString, rest.sourceString);
+  List(left, first, comma, rest, right) {
+    return new List(first.sourceString, rest.sourceString);
   },
   Match(match, id, _, exps) { return new Match(id.sourceString, exps.ast()); },
   MatchExp(pop, pattern, arrow, exp) { return new MatchExp(pattern.ast(), exp.ast()); },

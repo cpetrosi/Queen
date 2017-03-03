@@ -1,11 +1,11 @@
 class ListElements {
-  constructor(body, rest) {
-    this.body = body;
-    this.rest = rest;
+  constructor(first, next) {
+    this.first = first;
+    this.next = next;
   }
 
   toString() {
-    return `${this.body}${this.rest}`;
+    return `${this.first}${this.next}`;
   }
 }
 
