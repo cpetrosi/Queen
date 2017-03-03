@@ -7,7 +7,7 @@ class expString extends Exp {
   }
 
   toString() {
-    return `"${this.body}"`;
+    return `${this.body}`;
   }
 }
 

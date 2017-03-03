@@ -12,9 +12,12 @@ class Conditional {
   }
 
   toString() {
-    let string = `if (${this.exp1} ${this.ifLogical} ${this.Exp2s}.join('${this.ifLogical}')) then ${this.Exp3} `;
-    string += `elseif (${this.Exp4} ${this.elseIfLogical} ${this.Exp5s}.join('${this.elseIfLogical}') then ${this.Exp6}) `;
-    if (this.Exp7 != null) {
+    let string = `if (${this.Exp1}${this.ifLogical}${this.Exp2s}) then ${this.Exp3} `;
+    if (this.Exp4.length !== 0) {
+      string += (typeof this.Exp4);
+      string += `elseif (${this.Exp4} ${this.elseIfLogical} ${this.Exp5s} ${this.elseIfLogical} then ${this.Exp6}) `;
+    }
+    if (this.Exp7.length !== 0) {
       string += `else ${this.Exp7}`;
     }
     return string;
