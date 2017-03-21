@@ -9,6 +9,10 @@ class binexpExp extends BinExp {
   toString() {
     return `${this.exp1}`;
   }
+
+  analyze() {
+    return this.exp1.analyze();
+  }
 }
 
 module.exports = binexpExp;

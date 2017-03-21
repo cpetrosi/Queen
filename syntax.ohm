@@ -20,12 +20,11 @@ QUEEN {
             | "🕳"                    --wild
             | "[" patternElements (";" patternElements)* "]"      --pattern
     Cons = "[]"                         --nil
-         | listElement "⚡️" "[]"                 --short
-         | listElement ("⚡️" Cons)*              --long
+         | Exp "⚡️" "[]"                 --short
+         | Exp ("⚡️" Cons)*              --long
     Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
-    List = "[" listElement ("," listElement)* "]"
-    listElement = numlit | stringlit | id
+    List = "[" Exp ("," Exp)* "]"
     Match = "match" id "with" MatchExp+
     MatchExp = "🍭" Pattern "->" Exp
     Let = "let" id "🚀" Exp ("in" Let)?   --let
