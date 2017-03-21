@@ -31,6 +31,7 @@ QUEEN {
         | Exp                             --exp
     Append = List "@" List
     Binexp = Binexp addop Exp1            --add
+           | Binexp relop Exp1            --rel
            | Exp1                         --exp
     Exp1 = Exp1 mulop Exp2                --mult
          | Exp2                           --exp
@@ -63,5 +64,10 @@ QUEEN {
           | "-"                        --sub
     mulop = "*"                        --mult
           | "/"                        --div
+    relop = "<"
+          | ">"
+          | "<="
+          | ">="
+          | "=="
     comment = "//" (~"\n" any)* "\n"
 }

@@ -67,6 +67,11 @@ describe('QUEEN PARSER', () => {
       const expected = 'Program (Function Declaration ({x: int,y: int} (x + y)))';
       assert.equal(ast, expected);
   });
+  it('👑 int plus (x: int y: int) 🚀 x == y', () => {
+      const ast = parse('👑 int plus (x: int y: int) 🚀 x == y').toString();
+      const expected = 'Program (Function Declaration ({x: int,y: int} (x == y)))';
+      assert.equal(ast, expected);
+  });
   it('👑 int * int tup (x: int) 🚀 [6] @ [9]', () => {
       const ast = parse('👑 int * int tup (x: int) 🚀 [6] @ [9]').toString();
       const expected = 'Program (Function Declaration ({x: int} [6]@[9]))';

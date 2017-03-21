@@ -1,6 +1,7 @@
 const Append = require('./entities/append');
 const Binding = require('./entities/binding');
 const BinExpAdd = require('./entities/binexp_add');
+const BinExpRel = require('./entities/binexp_rel');
 const BinExpExp = require('./entities/binexp_exp');
 const Body = require('./entities/body');
 const Conditional = require('./entities/conditional');
@@ -86,6 +87,9 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Append(listOne, at, listTwo) { return new Append(listOne.ast(), listTwo.ast()); },
   Binexp_add(binexp, addop, exp1) {
       return new BinExpAdd(binexp.ast(), addop.sourceString, exp1.ast());
+  },
+  Binexp_rel(binexp, relop, exp1) {
+      return new BinExpRel(binexp.ast(), relop.sourceString, exp1.ast());
   },
   Binexp_exp(exp1) { return new BinExpExp(exp1.ast()); },
   Exp1_mult(exp1, op, exp2) {
