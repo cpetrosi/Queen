@@ -10,8 +10,8 @@ class binexpExp extends BinExp {
     return `${this.exp1}`;
   }
 
-  analyze() {
-    return this.exp1.analyze();
+  analyze(context) {
+    return this.exp1.analyze(context);
   }
 }
 
