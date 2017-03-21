@@ -18,8 +18,6 @@
       <li>No while loops (pattern matching instead)</li>
       <li>No for loops (pattern matching instead)</li>
       <li>Static typing</li>
-    </ul>
-    <ul>
       <li>👑 - start a function</li>
       <li>🖨 - print</li>
       <li>😡 - error message</li>
@@ -34,6 +32,81 @@
       <li>⚡️ - cons</li>
       <li>// - comment</li>
     </ul>
+    <h3>Example Programs</h3>
+    <pre>
+    QUEEN:
+    🖨 "Hello World!"
+
+    JS:
+    console.log("Hello World!");
+
+    QUEEN:
+    👑 int myRecursiveFunction (n : int) 🚀
+        match n with
+        🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
+        🍭 🕳           → n
+
+    JS:
+    myRecursiveFunction = (n) => {
+    	if (n > 0) {
+    		return myRecursiveFunction(n-1);
+    	} else {
+    		return n;
+    	}
+    };
+
+    QUEEN:
+    👑 int length (l : string) 🚀
+        match l with
+        🍭 hd ⚡️ [] → 1
+        🍭 hd ⚡️ tl → 1 + length(tl)
+
+    JS:
+    let l = [1, 2, 3];
+    let lengthl = l.length;
+
+    QUEEN:
+    🤔 (a 🚀 0 💁🏼 b 🚀 0) then a
+    else🤔 (c 🚀 0) then c
+
+    JS:
+    if (a  == 0 || b == 0) {
+    	return a
+    } else if (c == 0) {
+    	return c
+    }
+
+    QUEEN:
+    👑 string reverse (l : string) 🚀
+      match l with
+      🍭 []       →  []
+      🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
+
+    JS:
+    let fruits = [‘strawberries’, ‘bananas’, blueberries’, ‘raspberries’];
+    let reversed = fruits.reverse();
+
+    QUEEN:
+    👑 int change (n : int) 🚀
+    (let quarters 🚀 n/25 in
+    let dimes 🚀 (n mod 25)/10 in
+    let nickels 🚀 ((n mod 25) mod 10)/5 in
+    let pennies 🚀 (((n mod 25) mod 10) mod 5) in
+    [quarters;dimes;nickels;pennies])
+
+    JS:
+    var change = function (n) {
+      var changeAmt = [],
+        total = 0;
+      [25, 10, 5, 1].forEach(function(coin) {
+        while (total + coin <= n) {
+          changeAmt.push(coin);
+          total += coin;
+        }
+      });
+      return changeAmt;
+    };
+    </pre>
   </body>
 </html>
 
