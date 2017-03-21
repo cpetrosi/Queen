@@ -92,4 +92,9 @@ describe('QUEEN PARSER', () => {
       const expected = 'Program (Function Declaration ({x: int,y: int} (x - y)),Function Declaration ({x: int} [6, 4]@[9]))';
       assert.equal(ast, expected);
   });
+  it('👑 int plus (x: int y: int) 🚀 x + 💩 hiiiiiiii 💩 y 👑 int * int tup (x: int) 🚀 [6] @ [9]', () => {
+      const ast = parse('👑 int plus (x: int y: int) 🚀 x + 💩 hiiiiiiii 💩 y 👑 int * int tup (x: int) 🚀 [6] @ [9]').toString();
+      const expected = 'Program (Function Declaration ({x: int,y: int} (x - y)),Function Declaration ({x: int} [6, 4]@[9]))';
+      assert.equal(ast, expected);
+  });
 });

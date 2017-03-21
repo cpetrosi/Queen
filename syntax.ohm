@@ -16,6 +16,8 @@ QUEEN {
         | boollit                     --bool
         | stringlit                   --string
         | numlit                      --numlit
+        | "🍽"                        --none
+        | "🍝" Exp                    --some
     Pattern = Cons                    --cons
             | "🕳"                    --wild
             | "[" patternElements ("," patternElements)* "]"      --pattern
@@ -44,6 +46,7 @@ QUEEN {
          | "int"                    --int
          | "float"                  --float
          | "string"                 --string
+         | Type "option"            --option
     boollit = "true" | "false"
     id = ~keyword letter idrest*
     idrest = letter               --ltr
@@ -51,7 +54,7 @@ QUEEN {
            | "_"                  --underscore
            | "$"                  --dollar
     keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in"
-            | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕") ~idrest
+            | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕" | "💩") ~idrest
     char =  escape
          |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
@@ -63,5 +66,5 @@ QUEEN {
           | "-"                        --sub
     mulop = "*"                        --mult
           | "/"                        --div
-    comment = "//" (~"\n" any)* "\n"
+    comment = "💩" (~"\n" any)* "💩"
 }
