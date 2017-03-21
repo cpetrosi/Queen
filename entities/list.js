@@ -7,7 +7,7 @@ class List {
   toString() {
     let string = `[${this.first}`;
     if (this.rest.length !== 0) {
-      string += `, ${this.rest}`;
+      string += `${this.rest}`;
     }
     string += ']';
     return string;
