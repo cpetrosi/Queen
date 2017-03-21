@@ -18,7 +18,7 @@ QUEEN {
         | numlit                      --numlit
     Pattern = Cons                    --cons
             | "🕳"                    --wild
-            | "[" patternElements (";" patternElements)* "]"      --pattern
+            | "[" patternElements ("," patternElements)* "]"      --pattern
     Cons = "[]"                         --nil
          | Exp "⚡️" "[]"                 --short
          | Exp ("⚡️" Cons)*              --long
