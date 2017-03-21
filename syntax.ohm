@@ -72,5 +72,6 @@ QUEEN {
           | "<="
           | ">="
           | "=="
+    space += comment
     comment = "💩"(~"💩"any)*"💩"
 }
