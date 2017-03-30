@@ -7,7 +7,14 @@ class expId extends Exp {
   }
 
   // anaylze.. if id has not been declared throw err
-  //context.hasBeenDecalred(id)
+  // context.hasBeenDecalred(id)
+  analyze(context) {
+    if (context.hasBeenDeclared(this.id)) {
+      this.id.analyze(context);
+    } else {
+      // throw error
+    }
+  }
 
   toString() {
     return `${this.id}`;
