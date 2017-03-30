@@ -5,6 +5,7 @@ class expPrint extends Exp {
     super();
     this.string = string;
   }
+  // string must be of type string!!!!
 
   toString() {
     return `(print ${this.string})`;

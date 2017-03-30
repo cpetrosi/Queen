@@ -11,6 +11,12 @@ class Conditional {
     this.Exp7 = Exp7;
   }
 
+  analyze() {
+    condition.analyze() // must happen first so that condition has been assigned a type
+    if condition.type != Type.BOOL --> error
+    // or make a mustBeBoolean() method
+  }
+
   toString() {
     let string = `if (${this.Exp1}${this.ifLogical}${this.Exp2s}) then ${this.Exp3} `;
     if (this.Exp4.length !== 0) {

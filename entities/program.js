@@ -1,10 +1,17 @@
+//  const error = require('../error'); --> make this
+const Context = require('./context.js');
+
 class Program {
-  constructor(FunDecl) {
-    this.FunDecl = FunDecl;
+  constructor(FunDecls) {
+    this.FunDecls = FunDecls;
+  }
+
+  analyze() {
+    this.FunDecls.forEach(s => s.analyze(context.INITIAL_CONTEXT));
   }
 
   toString() {
-    return `Program (${this.FunDecl})`;
+    return `Program (${this.FunDecls})`;
   }
 }
 

@@ -1,13 +1,16 @@
 const Exp = require('./exp.js');
 
 class expId extends Exp {
-  constructor(body) {
+  constructor(id) {
     super();
-    this.body = body;
+    this.id = id;
   }
 
+  // anaylze.. if id has not been declared throw err
+  //context.hasBeenDecalred(id)
+
   toString() {
-    return `${this.body}`;
+    return `${this.id}`;
   }
 }
 

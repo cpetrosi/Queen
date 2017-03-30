@@ -6,6 +6,10 @@ class typeFloat extends Type {
     this.type = type;
   }
 
+  analyze() {
+    this.type = Type.FLOAT;
+  }
+
   toString() {
     return `${this.type}`;
   }

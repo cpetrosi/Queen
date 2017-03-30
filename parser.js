@@ -49,7 +49,7 @@ const grammar = ohm.grammar(fs.readFileSync('./syntax.ohm'));
 const semantics = grammar.createSemantics().addOperation('ast', {
   Program(FunDecls) { return new Program(FunDecls.ast()); },
   FunDecl(crown, type, id, left, bindings, right, rocket, body) {
-      return new FunDecl(bindings.ast(), body.ast());
+      return new FunDecl(id.sourceString, bindings.ast(), body.ast());
   },
   Binding(id, colon, type) { return new Binding(id.sourceString, type.ast()); },
   Body(exp) { return new Body(exp.ast()); },
