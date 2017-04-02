@@ -127,6 +127,18 @@
         Diagram(OneOrMore(Sequence(NonTerminal('FunDecl')))).addTo();
         </script>
 
+        <!-- i think this is wrong -->
+        <div>FunDecl</div>
+        <script>
+        Diagram(Sequence('👑', NonTerminal('Type'), NonTerminal('id'),
+            '(', OneOrMore(NonTerminal('Binding')), ')', '🚀', NonTerminal('Body'))).addTo();
+        </script>
+
+        <div>Block</div>
+        <script>
+        Diagram(OneOrMore(Sequence(NonTerminal('Stmt'), ';'))).addTo();
+        </script>
+
         <div>Binding</div>
         <script>
         Diagram(Choice(0,
