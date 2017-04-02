@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="site.css">
+    <title>Queen</title>
+  </head>
+  <body bgcolor='#E0FFFF'>
+    <h1><center>Welcome to Queen!</center></h1>
+    <center><img src="logo.jpg" width="558" height="168" alt="Queen logo"></center>
+    <h3>Queen is a JavaScript ES6 language that includes OCaml's pattern matching and first class functions.
+    Coders everywhere can now create and complete projects on their laptops, tablets, and smartphones while enjoying the
+    expressiveness of emojis. Queen is also a global language, relying on pictures to convey meanings rather than words in the English language.</h3>
+    <h3>Queen is also a great way to excite kids about computer science. They will be able to immediately see how fun and creative programming can be.
+      The pictures can also help further understanding. For example, it is easy to understand the idea of "printing" something when it is paired with the
+      printer emoji. Likewise, grasping the difference between None and Some is easier when they are connected to the tangible symbols of no food and some food.</h3>
+    <h3> We hope you enjoy seeing your functions come to life as much as we do!</h3>
+    <h3>Features</h3
+    <ul>
+      <li>Emoji keywords</li>
+      <li>First class functions</li>
+      <li>Higher order functions</li>
+      <li>Anonymous functions</li>
+      <li>Pattern matching</li>
+      <li>No while loops (pattern matching instead)</li>
+      <li>No for loops (pattern matching instead)</li>
+      <li>Static typing</li>
+      <li>👑 - start a function</li>
+      <li>🖨 - print</li>
+      <li>😡 - error message</li>
+      <li>🕳 - _</li>
+      <li>🚀 - =</li>
+      <li>🍭 - |</li>
+      <li>🤔 - if</li>
+      <li>❗️- not</li>
+      <li>💁🏼 - ||</li>
+      <li>🍽 - None</li>
+      <li>🍝 - Some</li>
+      <li>⚡️ - cons</li>
+      <li>// - comment</li>
+    </ul>
+    <h3>Example Programs</h3>
+    <pre>
+    QUEEN:
+    🖨 "Hello World!"
+
+    JS:
+    console.log("Hello World!");
+
+    QUEEN:
+    👑 int myRecursiveFunction (n : int) 🚀
+        match n with
+        🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
+        🍭 🕳           → n
+
+    JS:
+    myRecursiveFunction = (n) => {
+    	if (n > 0) {
+    		return myRecursiveFunction(n-1);
+    	} else {
+    		return n;
+    	}
+    };
+
+    QUEEN:
+    👑 int length (l : string) 🚀
+        match l with
+        🍭 hd ⚡️ [] → 1
+        🍭 hd ⚡️ tl → 1 + length(tl)
+
+    JS:
+    let l = [1, 2, 3];
+    let lengthl = l.length;
+
+    QUEEN:
+    🤔 (a 🚀 0 💁🏼 b 🚀 0) then a
+    else🤔 (c 🚀 0) then c
+
+    JS:
+    if (a  == 0 || b == 0) {
+    	return a
+    } else if (c == 0) {
+    	return c
+    }
+
+    QUEEN:
+    👑 string reverse (l : string) 🚀
+      match l with
+      🍭 []       →  []
+      🍭 hd ⚡️ tl →  reverse(tl) @ [hd]
+
+    JS:
+    let fruits = [‘strawberries’, ‘bananas’, blueberries’, ‘raspberries’];
+    let reversed = fruits.reverse();
+
+    QUEEN:
+    👑 int change (n : int) 🚀
+    (let quarters 🚀 n/25 in
+    let dimes 🚀 (n mod 25)/10 in
+    let nickels 🚀 ((n mod 25) mod 10)/5 in
+    let pennies 🚀 (((n mod 25) mod 10) mod 5) in
+    [quarters;dimes;nickels;pennies])
+
+    JS:
+    var change = function (n) {
+      var changeAmt = [],
+        total = 0;
+      [25, 10, 5, 1].forEach(function(coin) {
+        while (total + coin <= n) {
+          changeAmt.push(coin);
+          total += coin;
+        }
+      });
+      return changeAmt;
+    };
+    </pre>
+    <h3> Syntax Diagrams </h3>
+    <div class="syntaxdiagrams">
+        <script src="railroad-diagrams.js"></script>
+
+        <div>Program</div>
+        <script>
+        Diagram(OneOrMore(Sequence(NonTerminal('FunDecl')))).addTo();
+        </script>
+
+        <!-- i think this is wrong -->
+        <div>FunDecl</div>
+        <script>
+        Diagram(Sequence('👑', NonTerminal('Type'), NonTerminal('id'),
+            '(', OneOrMore(NonTerminal('Binding')), ')', '🚀', NonTerminal('Body'))).addTo();
+        </script>
+
+        <div>Block</div>
+        <script>
+        Diagram(OneOrMore(Sequence(NonTerminal('Stmt'), ';'))).addTo();
+        </script>
+
+        <div>Binding</div>
+        <script>
+        Diagram(Choice(0,
+          Sequence(NonTerminal('id'), ':', NonTerminal('Type')))).addTo();
+        </script>
+
+        <div>Body</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('Exp'), NonTerminal('Let'), NonTerminal('Funcall'))).addTo();
+        </script>
+
+        <div>patternElements</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('id'))).addTo();
+        </script>
+
+        <div>listElement</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('stringlit'), NonTerminal('id'))).addTo();
+        </script>
+
+        <div>Binexp</div>
+        <script>
+        Diagram(OneOrMore(NonTerminal('Exp1'), NonTerminal('addop'))).addTo();
+        </script>
+
+        <div>Exp1</div>
+        <script>
+        Diagram(OneOrMore(NonTerminal('Exp2'), NonTerminal('mulop'))).addTo();
+        </script>
+
+        <div>logical</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('👍'), NonTerminal('🖕'))).addTo();
+        </script>
+
+        <div>Type</div>
+        <script>
+        Diagram(Choice(0,
+          Sequence(NonTerminal('Type'), 'list'),
+          Sequence(NonTerminal('Type'), '*', NonTerminal('Type')),
+          'bool', 'int', 'float', 'string')).addTo();
+        </script>
+
+        <div>boollit</div>
+        <script>
+        Diagram(Choice(0, 'true', 'false')).addTo();
+        </script>
+
+        <div>idrest</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('letter'), NonTerminal('digit'), '-', '$')).addTo();
+        </script>
+
+        <div>keyword</div>
+        <script>
+        Diagram(Sequence(
+          Choice(0,'👑', '🚀', '🖨', '⚡️', '🕳', 'match',
+            'with', '🍭', '->', 'let', 'in', '🤔', 'else🤔',
+            'then', 'else', 'true', 'false', '👍', '🖕'),
+          Comment('NEGLOOKAHEAD:(alnum|"_")'))).addTo();
+        </script>
+
+        <div>addop</div>
+        <script>
+        Diagram(Choice(0, '+', '-')).addTo();
+        </script>
+
+        <div>mulop</div>
+        <script>
+        Diagram(Choice(0, '*', '/')).addTo();
+        </script>
+
+        <!-- this code is toal's code from piazza: -->
+        <div class="syntaxdiagrams">
+            <div>Program</div>
+            <script>
+            Diagram(NonTerminal('Block')).addTo();
+            </script>
+
+            <div>Block</div>
+            <script>
+            Diagram(OneOrMore(Sequence(NonTerminal('Stmt'), ';'))).addTo();
+            </script>
+
+            <div>Stmt</div>
+            <script>
+            Diagram(Choice(0,
+              Sequence('var', NonTerminal('id'), ':', NonTerminal('Type')),
+              Sequence(NonTerminal('VarExp'), '=', NonTerminal('Exp')),
+              Sequence('read', OneOrMore(NonTerminal('VarExp'), ',')),
+              Sequence('write', OneOrMore(NonTerminal('Exp'), ',')),
+              Sequence('while', NonTerminal('Exp'), 'loop', NonTerminal('Block'), 'end'))).addTo();
+            </script>
+
+            <div>Type</div>
+            <script>
+            Diagram(Choice(0, NonTerminal('int'), NonTerminal('bool'))).addTo();
+            </script>
+
+            <div>Exp</div>
+            <script>
+            Diagram(OneOrMore('Exp1', 'or')).addTo();
+            </script>
+
+            <div>Exp1</div>
+            <script>
+            Diagram(OneOrMore(NonTerminal('Exp2'), 'and')).addTo();
+            </script>
+
+            <div>Exp2</div>
+            <script>
+            Diagram(Sequence(NonTerminal('Exp3'),
+              Optional(Sequence(NonTerminal('relop'), NonTerminal('Exp3')), 'skip'))).addTo();
+            </script>
+
+            <div>Exp3</div>
+            <script>
+            Diagram(OneOrMore(NonTerminal('Exp4'), NonTerminal('addop'))).addTo();
+            </script>
+
+            <div>Exp4</div>
+            <script>
+            Diagram(OneOrMore(NonTerminal('Exp5'), NonTerminal('mulop'))).addTo();
+            </script>
+
+            <div>Exp5</div>
+            <script>
+            Diagram(Sequence(
+              Optional('prefixop', 'skip'),
+              NonTerminal('Exp6'))).addTo();
+            </script>
+
+            <div>Exp6</div>
+            <script>
+            Diagram(Choice(0, NonTerminal('boollit'), NonTerminal('intlint'), NonTerminal('VarExp'),
+              Sequence('(', NonTerminal('Exp'), ')'))).addTo();
+            </script>
+
+            <div>VarExp</div>
+            <script>
+            Diagram(NonTerminal('id')).addTo();
+            </script>
+
+            <div>keyword</div>
+            <script>
+            Diagram(Sequence(
+              Choice(0,'var','read','write','while','loop','end','int','bool','true','false'),
+              Comment('NEGLOOKAHEAD:(alnum|"_")'))).addTo();
+            </script>
+
+            <div>id</div>
+            <script>
+            Diagram(Sequence(Comment(`NEGLOOKAHEAD:keyword`), NonTerminal('letter'), ZeroOrMore(Choice(0, NonTerminal('alnum'), '_')))).addTo();
+            </script>
+
+            <div>intlit</div>
+            <script>
+            Diagram(OneOrMore(NonTerminal('digit'))).addTo();
+            </script>
+
+            <div>boollit</div>
+            <script>
+            Diagram(Choice(0, 'true', 'false')).addTo();
+            </script>
+
+            <div>addop</div>
+            <script>
+            Diagram(Choice(0, '+', '-')).addTo();
+            </script>
+
+            <div>relop</div>
+            <script>
+            Diagram(Choice(0,
+              Sequence(Choice(0, '<', '>'), Choice(0, Skip(), '=')),
+              '==',
+              '!='
+            )).addTo();
+            </script>
+
+            <div>mulop</div>
+            <script>
+            Diagram(Choice(1, '*', '/', '%')).addTo();
+            </script>
+
+            <div>prefixop</div>
+            <script>
+            Diagram(Choice(0, '-', 'not')).addTo();
+            </script>
+
+            <div>space</div>
+            <script>
+            Diagram(Choice(0,
+              Comment('any character in range \\x09..\\x0d '),
+              Comment('any character in category Zs '),
+              '\\ufeff',
+              NonTerminal('comment'))).addTo();
+            </script>
+
+            <div>comment</div>
+            <script>
+            Diagram(Sequence('--', ZeroOrMore(Comment('any character except \\n')), '\\n')).addTo();
+            </script>
+
+
+  </body>
+</html>
