@@ -116,17 +116,91 @@
     </pre>
     <h3> Syntax Diagrams </h3>
     <div class="syntaxdiagrams">
-        <div>Program</div>
+        <!-- <div>Program</div> -->
         <script src="railroad-diagrams.js"></script>
-        <script>
+        <!-- <script>
         Diagram(NonTerminal('Block')).addTo();
-        </script>
+        </script> -->
 
-        <div>Block</div>
+        <div>Program</div>
         <script>
-        Diagram(OneOrMore(Sequence(NonTerminal('Stmt'), ';'))).addTo();
+        Diagram(OneOrMore(Sequence(NonTerminal('FunDecl')))).addTo();
         </script>
 
+        <div>Binding</div>
+        <script>
+        Diagram(Choice(0,
+          Sequence(NonTerminal('id'), ':', NonTerminal('Type')))).addTo();
+        </script>
+
+        <div>Body</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('Exp'), NonTerminal('Let'), NonTerminal('Funcall'))).addTo();
+        </script>
+
+        <div>patternElements</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('id'))).addTo();
+        </script>
+
+        <div>listElement</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('stringlit'), NonTerminal('id'))).addTo();
+        </script>
+
+        <div>Binexp</div>
+        <script>
+        Diagram(OneOrMore(NonTerminal('Exp1'), NonTerminal('addop'))).addTo();
+        </script>
+
+        <div>Exp1</div>
+        <script>
+        Diagram(OneOrMore(NonTerminal('Exp2'), NonTerminal('mulop'))).addTo();
+        </script>
+
+        <div>logical</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('👍'), NonTerminal('🖕'))).addTo();
+        </script>
+
+        <div>Type</div>
+        <script>
+        Diagram(Choice(0,
+          Sequence(NonTerminal('Type'), 'list'),
+          Sequence(NonTerminal('Type'), '*', NonTerminal('Type')),
+          'bool', 'int', 'float', 'string')).addTo();
+        </script>
+
+        <div>boollit</div>
+        <script>
+        Diagram(Choice(0, 'true', 'false')).addTo();
+        </script>
+
+        <div>idrest</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('letter'), NonTerminal('digit'), '-', '$')).addTo();
+        </script>
+
+        <div>keyword</div>
+        <script>
+        Diagram(Sequence(
+          Choice(0,'👑', '🚀', '🖨', '⚡️', '🕳', 'match',
+            'with', '🍭', '->', 'let', 'in', '🤔', 'else🤔',
+            'then', 'else', 'true', 'false', '👍', '🖕'),
+          Comment('NEGLOOKAHEAD:(alnum|"_")'))).addTo();
+        </script>
+
+        <div>addop</div>
+        <script>
+        Diagram(Choice(0, '+', '-')).addTo();
+        </script>
+
+        <div>mulop</div>
+        <script>
+        Diagram(Choice(0, '*', '/')).addTo();
+        </script>
+
+        <!-- this code is toal's for examples: -->
         <div>Stmt</div>
         <script>
         Diagram(Choice(0,
