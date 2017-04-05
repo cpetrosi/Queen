@@ -6,12 +6,12 @@ class Program {
     this.FunDecls = FunDecls;
   }
 
-  analyze() {
-    this.FunDecls.forEach(s => s.analyze(context.INITIAL_CONTEXT));
-  }
-
   toString() {
     return `Program (${this.FunDecls})`;
+  }
+
+  analyze() {
+    this.FunDecls.forEach(s => s.analyze(context.INITIAL_CONTEXT));
   }
 }
 

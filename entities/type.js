@@ -1,5 +1,9 @@
 class Type {
-  // make functions to say if numeric (can be added, subtracted, gerater than)
+  /* isNumeric
+  cannotBeAssignedToAVariable
+  canBeComparedTo
+  */
+
 }
 Type.FLOAT = new Type();
 Type.INT = new Type();

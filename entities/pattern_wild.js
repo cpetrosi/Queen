@@ -1,4 +1,5 @@
 const Pattern = require('./pattern.js');
+const Type = require('./type.js');
 
 class patternWild extends Pattern {
   constructor() {
@@ -8,6 +9,10 @@ class patternWild extends Pattern {
 
   toString() {
     return `${this.body}`;
+  }
+
+  analyze(context) {
+    this.type = Type.PATTERN;
   }
 }
 

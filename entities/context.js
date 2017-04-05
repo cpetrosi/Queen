@@ -2,6 +2,8 @@ class Context {
   constructor() {
     this.parent = null;
     this.listType = null;
+    this.matchWith = null;
+    this.matchToType = null;
     this.localVariables = Object.create(null);
   }
 

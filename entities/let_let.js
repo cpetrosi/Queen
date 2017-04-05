@@ -20,6 +20,12 @@ class letLet extends Let {
     const newContext = new Context();
     newContext.parent = context;
     newContext.declare(this.id, this);
+    this.exp.analyze(newContext);
+
+    if (this.exp.type.cannotBeAssignedToAVariable()) {
+      throw new Error(`VARIABLE DECLARARTION ERROR: ${this.exp} cannot be assigned to a variable.`);
+    }
+
     this.rest.analyze(newContext);
     this.type = this.rest.type;
   }

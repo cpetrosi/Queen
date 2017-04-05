@@ -3,7 +3,7 @@ const Type = require('./type.js');
 class typeFloat extends Type {
   constructor(type) {
     super();
-    this.type = type;
+    this.typeName = type;
   }
 
   analyze() {
@@ -11,7 +11,7 @@ class typeFloat extends Type {
   }
 
   toString() {
-    return `${this.type}`;
+    return `${this.typeName}`;
   }
 }
 
