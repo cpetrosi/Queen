@@ -3,11 +3,16 @@ const Type = require('./type.js');
 class typeList extends Type {
   constructor(type) {
     super();
-    this.type = type;
+    this.typeName = type;
   }
 
   toString() {
-    return `${this.type} list`;
+    return `${this.typeName} list`;
+  }
+
+  analyze(context) {
+    this.type = Type.LIST;
+    // if statements to see the type of elelemnt
   }
 }
 

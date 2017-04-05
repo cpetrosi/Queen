@@ -10,6 +10,10 @@ class typeTuple extends Type {
   toString() {
     return `${this.typeOne} * ${this.typeTwo}`;
   }
+
+  analyze(context) {
+    this.type = Type.TUPLE;
+  }
 }
 
 module.exports = typeTuple;
