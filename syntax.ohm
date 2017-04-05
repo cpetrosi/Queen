@@ -16,22 +16,24 @@ QUEEN {
         | boollit                     --bool
         | stringlit                   --string
         | numlit                      --numlit
+        | "🍽"                        --none
+        | "🍝" Exp                    --some
     Pattern = Cons                    --cons
             | "🕳"                    --wild
-            | "[" patternElements (";" patternElements)* "]"      --pattern
+            | "[" patternElements ("," patternElements)* "]"      --pattern
     Cons = "[]"                         --nil
-         | listElement "⚡️" "[]"                 --short
-         | listElement ("⚡️" Cons)*              --long
+         | Exp "⚡️" "[]"                 --short
+         | Exp ("⚡️" Cons)*              --long
     Funcall = id "(" (id ",")+ ")"
     patternElements = numlit | id
-    List = "[" listElement ("," listElement)* "]"
-    listElement = numlit | stringlit | id
+    List = "[" Exp ("," Exp)* "]"
     Match = "match" id "with" MatchExp+
     MatchExp = "🍭" Pattern "->" Exp
     Let = "let" id "🚀" Exp ("in" Let)?   --let
         | Exp                             --exp
     Append = List "@" List
     Binexp = Binexp addop Exp1            --add
+           | Exp1 relop Exp1              --rel
            | Exp1                         --exp
     Exp1 = Exp1 mulop Exp2                --mult
          | Exp2                           --exp
@@ -45,6 +47,7 @@ QUEEN {
          | "int"                    --int
          | "float"                  --float
          | "string"                 --string
+         | Type "option"            --option
     boollit = "true" | "false"
     id = ~keyword letter idrest*
     idrest = letter               --ltr
@@ -52,7 +55,7 @@ QUEEN {
            | "_"                  --underscore
            | "$"                  --dollar
     keyword = ("👑" | "🚀" | "🖨" | "⚡️" | "🕳" | "match" | "with" | "🍭" | "->" | "let" | "in"
-            | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕") ~idrest
+            | "🤔" | "else🤔" | "then" | "else" | "true" | "false"| "👍" | "🖕" | "💩") ~idrest
     char =  escape
          |  ~"\\" ~"\"" ~"\'" ~"\\n" any
     escape =  "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
@@ -64,5 +67,11 @@ QUEEN {
           | "-"                        --sub
     mulop = "*"                        --mult
           | "/"                        --div
-    comment = "//" (~"\n" any)* "\n"
+    relop = "<"
+          | ">"
+          | "<="
+          | ">="
+          | "=="
+    space += comment
+    comment = "💩"(~"💩"any)*"💩"
 }
