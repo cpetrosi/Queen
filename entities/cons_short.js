@@ -2,20 +2,30 @@ const Cons = require('./cons.js');
 const Type = require('./type.js');
 
 class consShort extends Cons {
-  constructor(exp) {
+  constructor(e) {
     super();
-    this.exp = exp;
+    this.e = e;
   }
 
   toString() {
-    return `(${this.exp} cons nil)`;
+    return `(${this.exp1})`;
   }
 
   analyze(context) {
     this.type = Type.CONS;
-    if (context.consElementType && context.consElementType !== this.exp.type) {
-        throw new Error('TYPE ERROR: All cons elements must be of the same type.');
-      }
+    let elementType = Type.NUMBER;
+
+    if (context.hasBeenDeclared(this.e)) {
+      const val = context.getValue(this.e);
+      val.analyze(context);
+      elementType = val.type;
+    } else if (isNaN(this.e)) {
+      throw new Error(`UNDECLARED VARIABLE: ${this.e} has not been declared.`);
+    }
+
+    if (!elementType.isNumeric()) {
+      throw new Error(`TYPE ERROR: ${this.e} must be numeric.`);
+    }
   }
 }
 

@@ -9,6 +9,10 @@ class typeBool extends Type {
   toString() {
     return `${this.type}`;
   }
+
+  analyze(context) {
+    this.type = Type.BOOL;
+  }
 }
 
 module.exports = typeBool;

@@ -1,7 +1,6 @@
 class Context {
   constructor() {
     this.parent = null;
-    this.consElementType = null;
     this.listType = null;
     this.localVariables = Object.create(null);
   }
@@ -16,13 +15,13 @@ class Context {
     return false;
   }
 
-  declare(id, type, value) {
-    this.localVariables.id = { type, value };
+  declare(id, obj) {
+    this.localVariables.id = obj;
   }
 
   getValue(id) {
     if (id in this.localVariables) {
-      return this.localVariables.id.value;
+      return this.localVariables.id;
     }
     if (this.parent) {
       return this.parent.getValue(id);

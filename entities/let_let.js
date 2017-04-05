@@ -1,4 +1,5 @@
 const Let = require('./let.js');
+const Context = require('./context.js');
 
 class letLet extends Let {
   constructor(id, exp, rest) {
@@ -7,15 +8,20 @@ class letLet extends Let {
     this.exp = exp;
     this.rest = rest;
   }
-  analyze(context) {
-    context.declare(this.id, this);
-    this.rest.forEach(x => x.analyze(context));
-  }
+
   toString() {
     if (`${this.rest}`) {
       return `let ${this.id} = ${this.exp} in ${this.rest}`;
     }
     return `let ${this.id} = ${this.exp}`;
+  }
+
+  analyze(context) {
+    const newContext = new Context();
+    newContext.parent = context;
+    newContext.declare(this.id, this);
+    this.rest.analyze(newContext);
+    this.type = this.rest.type;
   }
 }
 

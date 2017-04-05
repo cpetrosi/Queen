@@ -6,6 +6,10 @@ class expId extends Exp {
     this.id = id;
   }
 
+  toString() {
+    return `${this.id}`;
+  }
+
   analyze(context) {
     if (context.hasBeenDeclared(this.id)) {
       const val = context.getValue(this.id);
@@ -14,10 +18,6 @@ class expId extends Exp {
     } else {
       throw new Error(`UNDECLARED VARIABLE: ${this.id} has not been declared.`);
     }
-  }
-
-  toString() {
-    return `${this.id}`;
   }
 }
 

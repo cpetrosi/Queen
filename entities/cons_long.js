@@ -3,9 +3,9 @@ const Context = require('./context.js');
 const Type = require('./type.js');
 
 class consLong extends Cons {
-  constructor(exp, rest) {
+  constructor(e, rest) {
     super();
-    this.exp = exp;
+    this.e = e;
     this.rest = rest;
   }
 
@@ -14,15 +14,22 @@ class consLong extends Cons {
   }
 
   analyze(context) {
-    let newContext = context;
-    if (!context.consElementType) {
-      newContext = new Context();
-      newContext.consElementType = this.exp.type;
-    } else if (context.consElementType !== this.exp.type) {
-        throw new Error('TYPE ERROR: All cons elements must be of the same type.');
-      }
     this.type = Type.CONS;
-    this.rest.analyze(newContext);
+    let elementType = Type.NUMBER;
+
+    if (context.hasBeenDeclared(this.e)) {
+      const val = context.getValue(this.e);
+      val.analyze(context);
+      elementType = val.type;
+    } else if (isNaN(this.e)) {
+      throw new Error(`UNDECLARED VARIABLE: ${this.e} has not been declared.`);
+    }
+
+    if (!elementType.isNumeric()) {
+      throw new Error(`TYPE ERROR: ${this.e} must be numeric.`);
+    }
+
+    this.rest.analyze(context);
   }
 }
 

@@ -70,7 +70,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
       return new PatternPattern(first.sourceString, rest.sourceString);
   },
   Cons_long(first, lightning, rest) { return new ConsLong(first.sourceString, rest.ast()); },
-  Cons_short(first, lightning, empty) { return new ConsShort(first.sourceString); },
+  Cons_short(first) { return new ConsShort(first.sourceString); },
   Cons_nil(nil) { return new ConsNil(nil.ast()); },
   Funcall(id, left, params, commas, right) {
       return new Funcall(id.sourceString, params.sourceString);

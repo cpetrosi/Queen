@@ -9,6 +9,11 @@ class letExp extends Let {
   toString() {
     return `${this.exp}`;
   }
+
+  analyze(context) {
+    this.exp.analyze(context);
+    this.type = this.exp.type;
+  }
 }
 
 module.exports = letExp;

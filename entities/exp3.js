@@ -7,7 +7,7 @@ class Exp3 {
   }
 
   toString() {
-    return `${this.numlit}${this.factorial}`;
+    return `${this.n}${this.factorial}`;
   }
 
   analyze(context) {
