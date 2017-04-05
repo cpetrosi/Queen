@@ -1,17 +1,18 @@
 const Exp = require('./exp.js');
+const Type = require('./type.js');
 
 class expPrint extends Exp {
   constructor(string) {
     super();
     this.string = string;
   }
-  // string must be of type string!!!!
 
   analyze(context) {
+    this.string.analyze(context);
+    this.type = Type.PRINT;
+
     if (this.string.type !== Type.STRING) {
-      // throw error
-    } else {
-      this.string.analyze(context);
+      throw new Error(`TYPE ERROR: ${this.string} is not a string.`);
     }
   }
 

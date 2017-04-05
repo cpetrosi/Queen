@@ -6,13 +6,13 @@ class expId extends Exp {
     this.id = id;
   }
 
-  // anaylze.. if id has not been declared throw err
-  // context.hasBeenDecalred(id)
   analyze(context) {
     if (context.hasBeenDeclared(this.id)) {
-      this.id.analyze(context);
+      const val = context.getValue(this.id);
+      val.analyze(context);
+      this.type = val.type;
     } else {
-      // throw error
+      throw new Error(`UNDECLARED VARIABLE: ${this.id} has not been declared.`);
     }
   }
 

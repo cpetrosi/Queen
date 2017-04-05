@@ -1,4 +1,5 @@
 const Exp = require('./exp.js');
+const Type = require('./type.js');
 
 class expBool extends Exp {
   constructor(body) {
@@ -8,6 +9,10 @@ class expBool extends Exp {
 
   toString() {
     return `${this.body}`;
+  }
+
+  analyze(context) {
+    this.type = Type.BOOL;
   }
 }
 

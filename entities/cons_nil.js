@@ -1,4 +1,5 @@
 const Cons = require('./cons.js');
+const Type = require('./type.js');
 
 class consNil extends Cons {
   constructor() {
@@ -9,6 +10,11 @@ class consNil extends Cons {
   toString() {
     return `${this.body}`;
   }
+
+  analyze(context) {
+    this.type = Type.CONS;
+  }
+
 }
 
 module.exports = consNil;

@@ -9,6 +9,10 @@ class expConditional extends Exp {
   toString() {
     return `${this.body}`;
   }
+
+  analyze(context) {
+    this.body.analyze(context);
+  }
 }
 
 module.exports = expConditional;

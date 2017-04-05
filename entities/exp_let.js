@@ -9,6 +9,11 @@ class expLet extends Exp {
   toString() {
     return `${this.body}`;
   }
+
+  analyze(context) {
+    this.body.analyze(context);
+    this.type = this.body.type;
+  }
 }
 
 module.exports = expLet;

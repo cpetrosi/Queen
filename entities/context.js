@@ -1,7 +1,8 @@
 class Context {
-  constructor({ parent, inFunDecl }) {
-    this.parent = parent;
-    this.inFunDecl = inFunDecl;
+  constructor() {
+    this.parent = null;
+    this.consElementType = null;
+    this.listType = null;
     this.localVariables = Object.create(null);
   }
 
@@ -13,18 +14,24 @@ class Context {
       return this.parent.hasBeenDeclared(id);
     }
     return false;
-    // js objects have prototypes :/ so must create null object instead of
-    // using an empty dict.
   }
 
-  declare(id, type) {
-    // add to local variables
+  declare(id, type, value) {
+    this.localVariables.id = { type, value };
   }
+
+  getValue(id) {
+    if (id in this.localVariables) {
+      return this.localVariables.id.value;
+    }
+    if (this.parent) {
+      return this.parent.getValue(id);
+    }
+    return null;
+  }
+
 }
 
-Context.INITIAL_CONTEXT = new Context({
-  parent: null,
-  inFunDecl: false,
-});
+Context.INITIAL_CONTEXT = new Context();
 
 module.exports = Context;

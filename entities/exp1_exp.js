@@ -9,6 +9,11 @@ class exp1Exp extends Exp1 {
   toString() {
     return `${this.exp1}`;
   }
+
+  analyze(context) {
+    this.exp1.analyze(context);
+    this.type = this.exp1.type;
+  }
 }
 
 module.exports = exp1Exp;

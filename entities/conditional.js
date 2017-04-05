@@ -1,3 +1,5 @@
+const Type = require('./type.js');
+
 class Conditional {
   constructor(Exp1, ifLogical, Exp2s, Exp3, Exp4, elseIfLogical, Exp5s, Exp6, Exp7) {
     this.Exp1 = Exp1;
@@ -11,10 +13,21 @@ class Conditional {
     this.Exp7 = Exp7;
   }
 
-  analyze() {
-    condition.analyze() // must happen first so that condition has been assigned a type
-    if condition.type != Type.BOOL --> error
-    // or make a mustBeBoolean() method
+  analyze(context) {
+    this.type = Type.CONDITIONAL;
+    this.Exp1.analyze(context); // if condition
+    this.Exp2s.analyze(context);
+    this.Exp3.analyze(context);
+
+    this.Exp4.analyze(context); // else if condition
+    this.Exp5s.analyze(context);
+    this.Exp6.analyze(context);
+
+    this.Exp7.analyze(context);
+
+    if (!this.Exp1.type.isBoolean() || !this.Exp4.type.isBoolean()) {
+      throw new Error('TYPE ERROR: Condition must be a boolean.');
+    }
   }
 
   toString() {
