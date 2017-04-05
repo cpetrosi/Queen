@@ -119,51 +119,109 @@
         <script src="railroad-diagrams.js"></script>
 
         <div>Program</div>
-        <script>
-        Diagram(OneOrMore(Sequence(NonTerminal('FunDecl')))).addTo();
-        </script>
+        <script>
+        Diagram(OneOrMore(Sequence(NonTerminal('FunDecl')))).addTo();
+        </script>
 
-        <!-- i think this is wrong -->
-        <div>FunDecl</div>
-        <script>
-        Diagram(Sequence('👑', NonTerminal('Type'), NonTerminal('id'),
-            Optional(Sequence('(', OneOrMore(NonTerminal('Binding')), ')')), '🚀', NonTerminal('Body'))).addTo();
-        </script>
+        <div>FunDecl</div>
+        <script>
+        Diagram(Sequence('👑', NonTerminal('Type'), NonTerminal('id'),
+            Optional(Sequence('(', OneOrMore(NonTerminal('Binding')), ')')), '🚀', NonTerminal('Body'))).addTo();
+        </script>
 
-        <div>Block</div>
-        <script>
-        Diagram(OneOrMore(Sequence(NonTerminal('Stmt'), ';'))).addTo();
-        </script>
+        <div>Binding</div>
+        <script>
+        Diagram(Choice(0,
+          Sequence(NonTerminal('id'), ':', NonTerminal('Type')))).addTo();
+        </script>
 
-        <div>Binding</div>
-        <script>
-        Diagram(Choice(0,
-          Sequence(NonTerminal('id'), ':', NonTerminal('Type')))).addTo();
-        </script>
+        <div>Body</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('Exp'), NonTerminal('Let'), NonTerminal('Funcall'))).addTo();
+        </script>
 
-        <div>Body</div>
-        <script>
-        Diagram(Choice(0, NonTerminal('Exp'), NonTerminal('Let'), NonTerminal('Funcall'))).addTo();
-        </script>
+        <div>Exp</div>
+        <script>
+        Diagram(Choice(0, Sequence('🖨', Choice(0, NonTerminal('stringlit'), NonTerminal('id'))), NonTerminal('Binexp'),
+            NonTerminal('Append'), NonTerminal('Conditional'), NonTerminal('Match'), NonTerminal('Let'),
+            Sequence('(', NonTerminal('Exp'), ')'), NonTerminal('id'), NonTerminal('boollit'), NonTerminal('stringlit'),
+            NonTerminal('numlit'), NonTerminal('🍽'), Sequence('🍝', NonTerminal('Exp')))).addTo();
+        </script>
 
-        <div>patternElements</div>
-        <script>
-        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('id'))).addTo();
-        </script>
+        <div>Pattern</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('Cons'), '🕳', Sequence('[', NonTerminal('patternElements'),
+            ZeroOrMore(Sequence(',', NonTerminal('patternElements'))), ']'))).addTo();
+        </script>
 
-        <div>listElement</div>
+        <div>Cons</div>
+        <script>
+        Diagram(Choice(0, '[]', Sequence(NonTerminal('Exp'), '⚡️', '[]'), Sequence(NonTerminal('Exp'),
+        ZeroOrMore(Sequence('⚡️', NonTerminal('Cons')))))).addTo();
+        </script>
+
+        <div>Funcall</div>
+        <script>
+        Diagram(Sequence(NonTerminal('id'), '(', OneOrMore(Sequence(NonTerminal('id'), ',')), ')')).addTo();
+        </script>
+
+        <div>patternElements</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('id'))).addTo();
+        </script>
+
+        <div>List</div>
+        <script>
+        Diagram(Sequence('[', NonTerminal('Exp'), ZeroOrMore(Sequence(',', NonTerminal('Exp'))), ']')).addTo();
+        </script>
+
+        <div>Match</div>
+        <script>
+        Diagram(Sequence('match', NonTerminal('id'), 'with', OneOrMore(NonTerminal('MatchExp')))).addTo();
+        </script>
+
+        <div>MatchExp</div>
+        <script>
+        Diagram(Sequence('🍭', NonTerminal('Pattern'), '->', NonTerminal('Exp'))).addTo();
+        </script>
+
+        <div>Let</div>
+        <script>
+        Diagram(Choice(0, Sequence('let', NonTerminal('id'), '🚀', NonTerminal('Exp'), Optional(Sequence('in', NonTerminal('Let')))),
+        NonTerminal('Exp'))).addTo();
+        </script>
+
+        <div>Append</div>
         <script>
-        Diagram(Choice(0, NonTerminal('numlit'), NonTerminal('stringlit'), NonTerminal('id'))).addTo();
+        Diagram(Sequence(NonTerminal("List"), "@", NonTerminal("List"))).addTo();
         </script>
 
         <div>Binexp</div>
         <script>
-        Diagram(OneOrMore(NonTerminal('Exp1'), NonTerminal('addop'))).addTo();
+        Diagram(Choice(0, Sequence(NonTerminal('Binexp'), NonTerminal('addop'), NonTerminal('Exp1')),
+            Sequence(NonTerminal('Exp1'), NonTerminal('relop'), NonTerminal('Exp1')), NonTerminal('Exp1'))).addTo();
         </script>
 
         <div>Exp1</div>
         <script>
-        Diagram(OneOrMore(NonTerminal('Exp2'), NonTerminal('mulop'))).addTo();
+        Diagram(Choice(0, Sequence(NonTerminal('Exp1'), NonTerminal('mulop'), NonTerminal('Exp2')), NonTerminal('Exp2'))).addTo();
+        </script>
+
+        <div>Exp2</div>
+        <script>
+        Diagram(Sequence(Optional('-'), NonTerminal('Exp3'))).addTo();
+        </script>
+
+        <div>Exp3</div>
+        <script>
+        Diagram(Sequence(Choice(0, NonTerminal('numlit'), NonTerminal('id')), Optional("!"))).addTo();
+        </script>
+
+        <div>Conditional</div>
+        <script>
+        Diagram(Sequence("🤔", NonTerminal('Exp'), ZeroOrMore(Sequence(NonTerminal('logical'), NonTerminal('Exp'))),
+            'then', NonTerminal('Exp'), ZeroOrMore(Sequence("else🤔", NonTerminal('Exp'), ZeroOrMore(Sequence('logical', NonTerminal('Exp'))),
+            "then", NonTerminal('Exp'))), Optional(Sequence("else", NonTerminal('Exp'))))).addTo();
         </script>
 
         <div>logical</div>
@@ -184,6 +242,11 @@
         Diagram(Choice(0, 'true', 'false')).addTo();
         </script>
 
+        <div>id</div>
+        <script>
+        Diagram(Sequence(Comment('any letter except keywords'), ZeroOrMore('idrest'))).addTo();
+        </script>
+
         <div>idrest</div>
         <script>
         Diagram(Choice(0, NonTerminal('letter'), NonTerminal('digit'), '-', '$')).addTo();
@@ -194,8 +257,34 @@
         Diagram(Sequence(
           Choice(0,'👑', '🚀', '🖨', '⚡️', '🕳', 'match',
             'with', '🍭', '->', 'let', 'in', '🤔', 'else🤔',
-            'then', 'else', 'true', 'false', '👍', '🖕'),
+            'then', 'else', 'true', 'false', '👍', '🖕', '💩'),
           Comment('NEGLOOKAHEAD:(alnum|"_")'))).addTo();
+        </script>
+
+        <div>char</div>
+        <script>
+        Diagram(Choice(0, NonTerminal('escape'), Comment('any character except \\, \", \', \\n'))).addTo();
+        </script>
+
+        <div>escape</div>
+        <script>
+        Diagram(Choice(0, '\\\\', '\\\"', "\\'", '\\n', '\\t', Sequence("\\u{", OneOrMore('hexDigit'), "}"))).addTo();
+        </script>
+
+        <div>charlit</div>
+        <script>
+        Diagram(Sequence('\'', Choice(0, 'char', '\"'), '\'')).addTo();
+        </script>
+
+        <div>stringlit</div>
+        <script>
+        Diagram(Sequence('\"', ZeroOrMore(Choice(0, 'char', '\'')), '\"')).addTo();
+        </script>
+
+        <div>numlit</div>
+        <script>
+        Diagram(Sequence(OneOrMore('digit'), Optional(Sequence('.', OneOrMore('digit'))),
+            Optional(Sequence('^', OneOrMore('digit'))))).addTo();
         </script>
 
         <div>addop</div>
@@ -208,137 +297,23 @@
         Diagram(Choice(0, '*', '/')).addTo();
         </script>
 
-        <!-- this code is toal's code from piazza: -->
-        <div class="syntaxdiagrams">
-            <div>Program</div>
-            <script>
-            Diagram(NonTerminal('Block')).addTo();
-            </script>
+        <div>relop</div>
+        <script>
+        Diagram(Choice(0, '<', '>', '<=', '>=', '==')).addTo();
+        </script>
 
-            <div>Block</div>
-            <script>
-            Diagram(OneOrMore(Sequence(NonTerminal('Stmt'), ';'))).addTo();
-            </script>
+        <div>space</div>
+        <script>
+        Diagram(Choice(0,
+          Comment('any character in range \\x09..\\x0d '),
+          Comment('any character in category Zs '),
+          '\\ufeff',
+          NonTerminal('comment'))).addTo();
+        </script>
 
-            <div>Stmt</div>
-            <script>
-            Diagram(Choice(0,
-              Sequence('var', NonTerminal('id'), ':', NonTerminal('Type')),
-              Sequence(NonTerminal('VarExp'), '=', NonTerminal('Exp')),
-              Sequence('read', OneOrMore(NonTerminal('VarExp'), ',')),
-              Sequence('write', OneOrMore(NonTerminal('Exp'), ',')),
-              Sequence('while', NonTerminal('Exp'), 'loop', NonTerminal('Block'), 'end'))).addTo();
-            </script>
-
-            <div>Type</div>
-            <script>
-            Diagram(Choice(0, NonTerminal('int'), NonTerminal('bool'))).addTo();
-            </script>
-
-            <div>Exp</div>
-            <script>
-            Diagram(OneOrMore('Exp1', 'or')).addTo();
-            </script>
-
-            <div>Exp1</div>
-            <script>
-            Diagram(OneOrMore(NonTerminal('Exp2'), 'and')).addTo();
-            </script>
-
-            <div>Exp2</div>
-            <script>
-            Diagram(Sequence(NonTerminal('Exp3'),
-              Optional(Sequence(NonTerminal('relop'), NonTerminal('Exp3')), 'skip'))).addTo();
-            </script>
-
-            <div>Exp3</div>
-            <script>
-            Diagram(OneOrMore(NonTerminal('Exp4'), NonTerminal('addop'))).addTo();
-            </script>
-
-            <div>Exp4</div>
-            <script>
-            Diagram(OneOrMore(NonTerminal('Exp5'), NonTerminal('mulop'))).addTo();
-            </script>
-
-            <div>Exp5</div>
-            <script>
-            Diagram(Sequence(
-              Optional('prefixop', 'skip'),
-              NonTerminal('Exp6'))).addTo();
-            </script>
-
-            <div>Exp6</div>
-            <script>
-            Diagram(Choice(0, NonTerminal('boollit'), NonTerminal('intlint'), NonTerminal('VarExp'),
-              Sequence('(', NonTerminal('Exp'), ')'))).addTo();
-            </script>
-
-            <div>VarExp</div>
-            <script>
-            Diagram(NonTerminal('id')).addTo();
-            </script>
-
-            <div>keyword</div>
-            <script>
-            Diagram(Sequence(
-              Choice(0,'var','read','write','while','loop','end','int','bool','true','false'),
-              Comment('NEGLOOKAHEAD:(alnum|"_")'))).addTo();
-            </script>
-
-            <div>id</div>
-            <script>
-            Diagram(Sequence(Comment(`NEGLOOKAHEAD:keyword`), NonTerminal('letter'), ZeroOrMore(Choice(0, NonTerminal('alnum'), '_')))).addTo();
-            </script>
-
-            <div>intlit</div>
-            <script>
-            Diagram(OneOrMore(NonTerminal('digit'))).addTo();
-            </script>
-
-            <div>boollit</div>
-            <script>
-            Diagram(Choice(0, 'true', 'false')).addTo();
-            </script>
-
-            <div>addop</div>
-            <script>
-            Diagram(Choice(0, '+', '-')).addTo();
-            </script>
-
-            <div>relop</div>
-            <script>
-            Diagram(Choice(0,
-              Sequence(Choice(0, '<', '>'), Choice(0, Skip(), '=')),
-              '==',
-              '!='
-            )).addTo();
-            </script>
-
-            <div>mulop</div>
-            <script>
-            Diagram(Choice(1, '*', '/', '%')).addTo();
-            </script>
-
-            <div>prefixop</div>
-            <script>
-            Diagram(Choice(0, '-', 'not')).addTo();
-            </script>
-
-            <div>space</div>
-            <script>
-            Diagram(Choice(0,
-              Comment('any character in range \\x09..\\x0d '),
-              Comment('any character in category Zs '),
-              '\\ufeff',
-              NonTerminal('comment'))).addTo();
-            </script>
-
-            <div>comment</div>
-            <script>
-            Diagram(Sequence('--', ZeroOrMore(Comment('any character except \\n')), '\\n')).addTo();
-            </script>
-
-
+        <div>comment</div>
+        <script>
+        Diagram(Sequence('💩', ZeroOrMore(Comment('any character except 💩')), '💩')).addTo();
+        </script>
   </body>
 </html>
