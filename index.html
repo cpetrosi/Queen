@@ -127,7 +127,7 @@
         <div>FunDecl</div>
         <script>
         Diagram(Sequence('👑', NonTerminal('Type'), NonTerminal('id'),
-            '(', OneOrMore(NonTerminal('Binding')), ')', '🚀', NonTerminal('Body'))).addTo();
+            Optional(Sequence('(', OneOrMore(NonTerminal('Binding')), ')')), '🚀', NonTerminal('Body'))).addTo();
         </script>
 
         <div>Block</div>
