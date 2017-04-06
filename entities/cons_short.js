@@ -8,7 +8,7 @@ class consShort extends Cons {
   }
 
   toString() {
-    return `(${this.exp1})`;
+    return `${this.e}`;
   }
 
   analyze(context) {
@@ -23,7 +23,7 @@ class consShort extends Cons {
       throw new Error(`UNDECLARED VARIABLE: ${this.e} has not been declared.`);
     }
 
-    if (!elementType.isNumeric()) {
+    if (!elementType.isNumeric) {
       throw new Error(`TYPE ERROR: ${this.e} must be numeric.`);
     }
   }

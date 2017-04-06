@@ -47,4 +47,28 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     };
     assert.throws(func, Error, 'TYPE ERROR: Both lists must contain elements of the same type.');
   });
+  it('👑 float Floaty 🚀 let floatList 🚀 3.0', () => {
+    const func = () => {
+      parse('👑 float Floaty 🚀 let floatList 🚀 3.0').analyze();
+    };
+    assert.doesNotThrow(func);
+  });
+  it('👑 string Floaty 🚀 let floatList 🚀 3.0', () => {
+    const func = () => {
+      parse('👑 string Floaty 🚀 let floatList 🚀 3.0').analyze();
+    };
+    assert.throws(func, Error, 'TYPE ERROR: Function was expected to evaluate to type string.');
+  });
+  it('👑 bool consMe 🚀 let odd 🚀 5 in match odd with 🍭 [] -> true 🍭 3 ⚡️ tl -> false', () => {
+    const func = () => {
+      parse('👑 bool consMe 🚀 let odd 🚀 5 in match odd with 🍭 [] -> true 🍭 3 ⚡️ odd -> false').analyze();
+    };
+    assert.doesNotThrow(func);
+  });
+  it('👑 bool consMe 🚀 let odd 🚀 5 in match odd with 🍭 [] -> true 🍭 3 ⚡️ tl -> false', () => {
+    const func = () => {
+      parse('👑 bool consMe 🚀 let odd 🚀 5 in match odd with 🍭 [] -> 4 🍭 3 ⚡️ odd -> false').analyze();
+    };
+    assert.throws(func, Error, 'TYPE ERROR: Must match to something of the same type.');
+  });
 });

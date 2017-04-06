@@ -44,12 +44,12 @@ describe('QUEEN PARSER', () => {
   });
   it('👑 float m (x: float) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0', () => {
       const ast = parse('👑 float m (x: float) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0').toString();
-      const expected = 'Program (Function Declaration ({x: float} match x with [] -> 5.0,any -> 6.0))';
+      const expected = 'Program (Function Declaration ({x: float} match x with nil -> 5.0,any -> 6.0))';
       assert.equal(ast, expected);
   });
   it('👑 bool b (odd : int) 🚀 match odd with 🍭 [] -> true 🍭 hd ⚡️ tl -> false', () => {
       const ast = parse('👑 bool b (odd : int) 🚀 match odd with 🍭 [] -> true 🍭 hd ⚡️ tl -> false').toString();
-      const expected = 'Program (Function Declaration ({odd: int} match odd with [] -> true,hd ⚡️ tl -> false))';
+      const expected = 'Program (Function Declaration ({odd: int} match odd with nil -> true,hd cons tl -> false))';
       assert.equal(ast, expected);
   });
       it('👑 bool wild (x: int) 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false', () => {
@@ -84,7 +84,7 @@ describe('QUEEN PARSER', () => {
   });
   it('👑 bool consMe (odd : int list) 🚀 match odd with 🍭 [] -> true 🍭 3 ⚡️ tl -> false', () => {
     const ast = parse('👑 bool consMe (odd : int list) 🚀 match odd with 🍭 [] -> true 🍭 3 ⚡️ tl -> false').toString();
-    const expected = 'Program (Function Declaration ({odd: int list} match odd with [] -> true,3 ⚡️ tl -> false))';
+    const expected = 'Program (Function Declaration ({odd: int list} match odd with nil -> true,3 cons tl -> false))';
     assert.equal(ast, expected);
   });
   it('👑 int plus (x: int y: int) 🚀 x + 💩 hiiiiiiii 💩 y 👑 int * int tup (x: int) 🚀 [6] @ [9]', () => {

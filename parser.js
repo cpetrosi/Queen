@@ -64,14 +64,14 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Exp_parens(right, exp, left) { return new ExpParens(exp.ast()); },
   Exp_print(printer, string) { return new ExpPrint(string.sourceString); },
   Exp_string(string) { return new ExpString(string.sourceString); },
-  Pattern_cons(cons) { return new PatternCons(cons.sourceString); },
+  Pattern_cons(cons) { return new PatternCons(cons.ast()); },
   Pattern_wild(blackHole) { return new PatternWild(blackHole.sourceString); },
   Pattern_pattern(left, first, colon, rest, right) {
       return new PatternPattern(first.sourceString, rest.sourceString);
   },
   Cons_long(first, lightning, rest) { return new ConsLong(first.sourceString, rest.ast()); },
   Cons_short(first) { return new ConsShort(first.sourceString); },
-  Cons_nil(nil) { return new ConsNil(nil.ast()); },
+  Cons_nil(nil) { return new ConsNil(nil.sourceString); },
   Funcall(id, left, params, commas, right) {
       return new Funcall(id.sourceString, params.sourceString);
   },

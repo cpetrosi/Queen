@@ -20,9 +20,11 @@ class Match {
 
     const newContext = new Context();
     newContext.parent = context;
-    newContext.matchWith = val;
-    this.matchexp.analyze(newContext);
-    this.type = this.matchexp.type;
+
+    this.matchexp.forEach((m) => {
+      m.analyze(newContext);
+      this.type = m.type;
+    });
   }
 }
 
