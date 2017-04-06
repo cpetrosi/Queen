@@ -53,7 +53,11 @@ svg.railroad-diagram g.diagram-text:hover path.diagram-text {
     margin: 30px;
 }
 
-#column1 {
-    -webkit-column-gap: 5em;
-    column-gap: 1000px;
+#heading {
+    font-family: "Verdana", Geneva, san-serif;
+    font-size: 1.3em;
+}
+
+#tabs {
+    font-size: 1.5em;
 }

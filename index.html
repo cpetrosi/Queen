@@ -9,52 +9,59 @@
     <title>Queen</title>
   </head>
   <body>
-    <center><img src="logo.jpg" width="1000" height="255" alt="Queen logo"></center>
-    <h3> <center>Queen is a JavaScript ES6 language that includes OCaml's pattern matching and first class functions.
+    <center><img src="logo.jpg" width="900" height="230" alt="Queen logo"></center>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+    <h3 id="heading"> <center>Queen is a JavaScript ES6 language that includes OCaml's pattern matching and first class functions.
     Coders everywhere can now create and complete projects on their laptops, tablets, and smartphones while enjoying the
     expressiveness of emojis. Queen is also a global language, relying on pictures to convey meanings rather than words in the English language. </center></h3>
-    <h3> <center>Queen is also a great way to excite kids about computer science. They will be able to immediately see how fun and creative programming can be.
+    <h3 id="heading"> <center>Queen is also a great way to excite kids about computer science. They will be able to immediately see how fun and creative programming can be.
       The pictures can also help further understanding. For example, it is easy to understand the idea of "printing" something when it is paired with the
       printer emoji. Likewise, grasping the difference between None and Some is easier when they are connected to the tangible symbols of no food and some food. </center></h3>
-    <h3> <center>We hope you enjoy seeing your functions come to life as much as we do!</center></h3>
-    <div>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#features" aria-controls="features" role="tab" data-toggle="tab">Features</a></li>
-        <li role="presentation"><a href="#examples" aria-controls="examples" role="tab" data-toggle="tab">Example Programs</a></li>
-        <li role="presentation"><a href="#diagrams" aria-controls="diagrams" role="tab" data-toggle="tab">Syntax Diagrams</a></li>
+    <h3 id="heading"> <center>We hope you enjoy seeing your functions come to life as much as we do!</center></h3>
+</div>
+<div class="col-lg-2"></div>
+</div>
+</div>
+<br><br>
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-12">
+      <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li role="presentation" class="active"><a href="#features" aria-controls="features" role="tab" data-toggle="tab" id="tabs">Features</a></li>
+        <li role="presentation"><a href="#examples" aria-controls="examples" role="tab" data-toggle="tab" id="tabs">Example Programs</a></li>
+        <li role="presentation"><a href="#diagrams" aria-controls="diagrams" role="tab" data-toggle="tab" id="tabs">Syntax Diagrams</a></li>
       </ul>
 
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="features">
-            <h3>Features</h3>
-                <ul>
-                  <li>Emoji keywords</li>
-                  <li>First class functions</li>
-                  <li>Higher order functions</li>
-                  <li>Anonymous functions</li>
-                  <li>Pattern matching</li>
-                  <li>No while loops (pattern matching instead)</li>
-                  <li>No for loops (pattern matching instead)</li>
-                  <li>Static typing</li>
-                  <li>👑 - start a function</li>
-                  <li>🖨 - print</li>
-                  <li>😡 - error message</li>
-                  <li>🕳 - _</li>
-                  <li>🚀 - =</li>
-                  <li>🍭 - |</li>
-                  <li>🤔 - if</li>
-                  <li>❗️- not</li>
-                  <li>💁🏼 - ||</li>
-                  <li>🍽 - None</li>
-                  <li>🍝 - Some</li>
-                  <li>⚡️ - cons</li>
-                  <li>// - comment</li>
-                </ul>
+            <h3 class="text-center">Features</h3> <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        Emoji keywords <br><br>
+                        First class functions <br><br>
+                        Higher order functions <br><br>
+                        Anonymous functions <br><br>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        Pattern matching <br><br>
+                        No while loops (pattern matching instead) <br><br>
+                        No for loops (pattern matching instead) <br><br>
+                        Static typing <br><br>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="examples">
+            <h3 class="text-center">Example Programs</h3> <br>
             <div class="container">
-                <h3>Example Programs</h3>
-                <div class="col-md-3" id="column1">
+
+                <div class="col-md-4" id="column1">
                     QUEEN: <br><br>
                     <code>
                         🖨 "Hello World!" <br><br>
@@ -84,7 +91,7 @@
                     }; <br><br>
                     </code>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     QUEEN: <br><br>
                     <code>
                     👑 int length (l : string) 🚀 <br>
@@ -114,7 +121,7 @@
                     } <br><br>
                     </code>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     QUEEN: <br><br>
                     <code>
                     👑 string reverse (l : string) 🚀 <br>
@@ -158,7 +165,7 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="diagrams">
-            <h3>Syntax Diagrams</h3>
+            <h3 class="text-center">Syntax Diagrams</h3><br>
                 <div class="syntaxdiagrams">
                     <script src="railroad-diagrams.js"></script>
 
@@ -364,5 +371,21 @@
         </div>
       </div>
     </div>
+</div>
   </body>
 </html>
+
+<!--
+<li>👑 - start a function</li>
+<li>🖨 - print</li>
+<li>😡 - error message</li>
+<li>🕳 - _</li>
+<li>🚀 - =</li>
+<li>🍭 - |</li>
+<li>🤔 - if</li>
+<li>❗️- not</li>
+<li>💁🏼 - ||</li>
+<li>🍽 - None</li>
+<li>🍝 - Some</li>
+<li>⚡️ - cons</li>
+<li>💩 - comment</li> -->
