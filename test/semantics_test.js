@@ -71,4 +71,19 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     };
     assert.throws(func, Error, 'TYPE ERROR: Must match to something of the same type.');
   });
+
+  it('👑 bool wild 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false', () => {
+    const func = () => {
+      parse('👑 bool wild 🚀 let x 🚀 5 in match x with 🍭 🕳 -> true 🍭 🕳 -> false').analyze();
+    };
+    assert.doesNotThrow(func);
+  });
+
+  it('👑 int mult 🚀 let m 🚀 2 in let n 🚀 4 in n * m * 38 * 2', () => {
+    const func = () => {
+      parse('👑 int mult 🚀 let m 🚀 2 in let n 🚀 4 in n * m * 38 * 2').analyze();
+    };
+    parse('👑 int mult 🚀 let m 🚀 2 in let n 🚀 4 in n * m * 38 * 2').analyze();
+    assert.doesNotThrow(func);
+  });
 });

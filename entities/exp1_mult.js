@@ -16,9 +16,9 @@ class exp1Mult extends Exp1 {
   analyze(context) {
     this.exp1.analyze(context);
     this.exp2.analyze(context);
-    this.type = Type.NUMBER;
+    this.type = Type.FLOAT;
 
-    if (!this.exp1.type.isNumeric() || !this.exp2.type.isNumeric()) {
+    if (!this.exp1.type.isNumeric || !this.exp2.type.isNumeric) {
       throw new Error('TYPE ERROR: Only numeric types can be multiplied and divided.');
     }
   }
