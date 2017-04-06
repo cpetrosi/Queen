@@ -61,3 +61,31 @@ svg.railroad-diagram g.diagram-text:hover path.diagram-text {
 #tabs {
     font-size: 1.5em;
 }
+
+#cons-long {
+    text-indent: 75px;
+}
+
+#cons-short {
+    text-indent: 75px;
+}
+
+#exp-print {
+    text-indent: 63px;
+}
+
+#exp3 {
+    text-indent: 37px;
+}
+
+#funcall {
+    text-indent: 50px;
+}
+
+#pattern-pattern {
+    text-indent: 100px;
+}
+
+#emoji {
+    font-size: 1.3em;
+}
