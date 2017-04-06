@@ -12,7 +12,6 @@ class typeList extends Type {
 
   analyze(context) {
     this.type = Type.LIST;
-    // if statements to see the type of elelemnt
   }
 }
 

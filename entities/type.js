@@ -26,7 +26,6 @@ Type.STRING = new Type(false, true, [Type.STRING]);
 Type.TUPLE = new Type(false, true, []);
 Type.BOOL = new Type(false, true, [Type.BOOL]);
 Type.CONS = new Type(false, true, [Type.CONS]);
-Type.LIST = new Type(false, true, [Type.LIST]);
 Type.CONDITIONAL = new Type(false, false, []);
 Type.PRINT = new Type(false, false, []);
 

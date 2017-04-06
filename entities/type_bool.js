@@ -1,9 +1,9 @@
 const Type = require('./type.js');
 
 class typeBool extends Type {
-  constructor(type) {
+  constructor(typeName) {
     super();
-    this.typeName = type;
+    this.typeName = typeName;
   }
 
   toString() {

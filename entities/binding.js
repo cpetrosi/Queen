@@ -1,11 +1,18 @@
 class Binding {
-  constructor(id, type) {
+  constructor(id, typeName) {
     this.id = id;
-    this.type = type;
+    this.typeName = typeName;
   }
 
   toString() {
-    return `${this.id}: ${this.type}`;
+    let string = `${this.id}: `;
+    string += `${this.typeName}`;
+    return string;
+  }
+
+  analyze(context) {
+    this.typeName.analyze(context);
+    this.type = this.typeName.type;
   }
 }
 

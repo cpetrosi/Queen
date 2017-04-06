@@ -1,18 +1,35 @@
 const Context = require('./context.js');
 
 class FunDecl {
-  constructor(/* type,*/ id, bindings, body) {
+  constructor(type, id, bindings, body) {
     this.bindings = bindings;
     this.body = body;
     this.id = id;
-  //  this.type = type;
+    this.returnType = type;
   }
 
-  analyze() {
-    context.declare(this.id, this); // should the type of our function be its "return type"???
-    const innerContext = new Context({ parent: context, inFunDecl: true });
-    this.bindings.forEach(b => innerContext.declare(b.id, b));
+  analyze(context) {
+    context.declare(this.id, this);
+    const innerContext = new Context();
+    innerContext.parent = context;
+
+    this.parameters = [];
+    this.paramTypes = [];
+
+    this.bindings.forEach((b) => {
+      b.analyze(context);
+      this.parameters.push(b.id);
+      this.paramTypes.push(b.Type);
+      innerContext.declare(b.id, b);
+    });
+
+
     this.body.analyze(innerContext);
+    this.type = this.body.type;
+
+    if (this.type !== this.returnType) {
+      throw Error(`TYPE ERROR: Function was expected to evaluate to type ${this.returnType}.`);
+    }
   }
 
   toString() {
