@@ -23,7 +23,7 @@ class FunDecl {
       const b = this.bindings[i];
       b.analyze(context);
       this.parameters.push(b.id);
-      this.paramTypes.push(b.Type);
+      this.paramTypes.push(b.type);
       innerContext.declare(b.id, b);
     }
 

@@ -136,10 +136,4 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     };
     assert.throws(func, Error, 'TYPE ERROR: Must match to something of the same type.');
   });
-  it('👑 string hi 🚀 let odd 🚀 5 in match odd with 🍭 [] -> "Hola" 🍭 3 ⚡️ tl -> "Adios"', () => {
-    const func = () => {
-      parse('👑 string hi 🚀 let odd 🚀 5 in match odd with 🍭 [] -> "Hola" 🍭 3 ⚡️ odd -> "Adios"').analyze();
-    };
-    assert.doesNotThrow(func);
-  });
 });
