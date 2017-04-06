@@ -37,3 +37,23 @@ svg.railroad-diagram path.diagram-text {
 svg.railroad-diagram g.diagram-text:hover path.diagram-text {
     fill: #eee;
 }
+
+#features {
+    font-size: 1.2em;
+    margin: 30px;
+}
+
+#examples {
+    font-size: 1.1em;
+    margin: 30px;
+}
+
+#diagrams {
+    font-size: 1.2em;
+    margin: 30px;
+}
+
+#column1 {
+    -webkit-column-gap: 5em;
+    column-gap: 1000px;
+}
