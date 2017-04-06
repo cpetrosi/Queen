@@ -31,8 +31,10 @@
             <div class="col-lg-12">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li role="presentation" class="active"><a href="#features" aria-controls="features" role="tab" data-toggle="tab" id="tabs">Features</a></li>
+                    <li role="presentation"><a href="#emojis" aria-controls="emojis" role="tab" data-toggle="tab" id="tabs">Emojis</a></li>
                     <li role="presentation"><a href="#examples" aria-controls="examples" role="tab" data-toggle="tab" id="tabs">Example Programs</a></li>
                     <li role="presentation"><a href="#diagrams" aria-controls="diagrams" role="tab" data-toggle="tab" id="tabs">Syntax Diagrams</a></li>
+                    <li role="presentation"><a href="#errors" aria-controls="errors" role="tab" data-toggle="tab" id="tabs">Error Messages</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -55,6 +57,26 @@
                             </div>
                             <div class="col-lg-4">
                             </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="emojis">
+                        <h3 class="text-center">Emojis</h3> <br>
+                        <div id="emoji">
+                        <center>
+                            👑 - start a function <br>
+                            🖨 - print <br>
+                            😡 - error message <br>
+                            🕳 - _ <br>
+                            🚀 - = <br>
+                            🍭 - | <br>
+                            🤔 - if <br>
+                            ❗️- not <br>
+                            💁🏼 - || <br>
+                            🍽 - None <br>
+                            🍝 - Some <br>
+                            ⚡️ - cons <br>
+                            💩 - comment <br>
+                        </center>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="examples">
@@ -161,8 +183,42 @@
                                     }; <br><br>
                                 </code>
                             </div>
-                            <!-- </div> -->
                         </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="errors">
+                        <h3 class="text-center">Errors</h3> <br>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5">
+                            <p><b>Append</b> &#8594; <code>😡 TYPE ERROR: Both lists must contain elements of the same type.</code></p> <br>
+                            <p><b>BinExp Add</b> &#8594; <code>😡 TYPE ERROR: Only numeric types can be added and subtracted.</code></p> <br>
+                            <p><b>BinExp Rel</b> &#8594; <code>😡 TYPE ERROR: Incomparable types.</code></p> <br>
+                            <p><b>Conditional</b> &#8594; <code>😡 TYPE ERROR: Condition must be a boolean.</code></p> <br>
+                            <p><b>Cons Long</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.e} has not been declared.</code></p> <br>
+                            <p id="cons-long">&#8594; <code>😡 TYPE ERROR: ${this.e} must be numeric.</code></p> <br>
+                            <p><b>Cons Short</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.e} has not been declared.</code></p><br>
+                            <p id="cons-short">&#8594; <code>😡 TYPE ERROR: ${this.e} must be numeric.</code></p><br>
+                            <p><b>Exp Id</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.id} has not been declared.</code></p><br>
+                            <p><b>Exp Print</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.n} has not been declared.</code></p><br>
+                            <p id="exp-print">&#8594; <code>😡 TYPE ERROR: ${this.string} is not a string.</code></p><br>
+                            <p><b>Exp1 Mult</b> &#8594; <code>😡 TYPE ERROR: Only numeric types can be multiplied and divided.</code></p><br>
+                            <p><b>Exp2</b> &#8594; <code>😡 TYPE ERROR: Only numeric types can be negated.</code></p><br>
+                        </div>
+                        <div class="col-lg-5">
+                            <p><b>Exp3</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.n} has not been declared.</code></p><br>
+                            <p id="exp3">&#8594; <code>😡 TYPE ERROR: ${this.n} must be numeric.</code></p><br>
+                            <p><b>Funcall</b> &#8594; <code>😡 ARITY ERROR: ${this.args.length} arguments provided and ${func.parameters.length} were expected.</code></p><br>
+                            <p id="funcall">&#8594; <code>😡 UNDECLARED VARIABLE: ${this.args[i]} has not been declared.</code></p><br>
+                            <p id="funcall">&#8594; <code>😡 TYPE ERROR: Expected ${this.args[i]} to be ${func.paramTypes[i].toString()}.</code></p><br>
+                            <p id="funcall">&#8594; <code>😡 UNDECLARED VARIABLE: ${this.id} has not been declared.</code></p><br>
+                            <p><b>FunDecl</b> &#8594; <code>😡 TYPE ERROR: Function was expected to evaluate to type ${this.returnType}.</code></p><br>
+                            <p><b>Let Let</b> &#8594; <code>😡 VARIABLE DECLARARTION ERROR: ${this.exp} cannot be assigned to a variable.</code></p><br>
+                            <p><b>List</b> &#8594; <code>😡 TYPE ERROR: List elements must all be of the same type.</code></p><br>
+                            <p><b>Match</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.id} has not been declared.</code></p><br>
+                            <p><b>MatchExp</b> &#8594; <code>😡 TYPE ERROR: Must match to something of the same type.</code></p><br>
+                            <p><b>Pattern Pattern</b> &#8594; <code>😡 UNDECLARED VARIABLE: ${this.e} has not been declared.</code></p><br>
+                            <p id="pattern-pattern">&#8594; <code>😡 TYPE ERROR: ${this.e} must be numeric.</code></p><br>
+                        </div>
+                        <div class="col-lg-1"></div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="diagrams">
                         <h3 class="text-center">Syntax Diagrams</h3><br>
@@ -374,18 +430,3 @@
     </div>
 </body>
 </html>
-
-                        <!--
-                        <li>👑 - start a function</li>
-                        <li>🖨 - print</li>
-                        <li>😡 - error message</li>
-                        <li>🕳 - _</li>
-                        <li>🚀 - =</li>
-                        <li>🍭 - |</li>
-                        <li>🤔 - if</li>
-                        <li>❗️- not</li>
-                        <li>💁🏼 - ||</li>
-                        <li>🍽 - None</li>
-                        <li>🍝 - Some</li>
-                        <li>⚡️ - cons</li>
-                        <li>💩 - comment</li> -->
