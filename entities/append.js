@@ -15,7 +15,7 @@ class Append {
     this.list2.analyze(context);
     this.type = Type.LIST;
 
-    if (this.list1.listType !== this.list2.listType) {
+    if (!this.list1.listType.canBeComparedTo(this.list2.listType)) {
       throw new Error('TYPE ERROR: Both lists must contain elements of the same type.');
     }
   }

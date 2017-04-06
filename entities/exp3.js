@@ -20,7 +20,7 @@ class Exp3 {
       throw new Error(`UNDECLARED VARIABLE: ${this.n} has not been declared.`);
     }
 
-    if (this.type.canBeComparedTo(Type.FLOAT)) {
+    if (!this.type.canBeComparedTo(Type.INT)) {
       throw new Error(`TYPE ERROR: ${this.n} must be numeric.`);
     }
   }

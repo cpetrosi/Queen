@@ -18,21 +18,33 @@ class List {
 
   analyze(context) {
     this.type = Type.LIST;
-    this.first.analyze(context);
+    this.listType = null;
 
+    if (this.first === 'true' || this.first === 'false') {
+      this.listType = Type.BOOL;
+    } else if (this.first.charAt(0) === '"' && this.first.charAt(this.first.length - 1) === '"') {
+      this.listType = Type.STRING;
+    } else if (isNaN(this.first)) {
+      this.first.analyze(context);
+      this.listType = this.first.type;
+    } else {
+      this.listType = Type.FLOAT;
+    }
 
     let newContext = context;
-    if (!context.listType) {
+    if (!newContext.listType) {
       newContext = new Context();
       newContext.parent = context;
-      newContext.listType = this.first.type;
+      newContext.listType = this.listType;
     }
 
-    if (this.first.type !== context.listType) {
-      throw new Error('TYPE ERROR: List elements must all be of the same type.');
+    for (let i = 0; i < this.rest.length; i += 1) {
+      this.rest[i].analyze(newContext);
+      this.listType = this.rest[i].type;
+      if (this.listType.canBeComparedTo(newContext.listType)) {
+        throw new Error('TYPE ERROR: List elements must all be of the same type.');
+      }
     }
-
-    this.rest.analyze(newContext);
   }
 }
 
