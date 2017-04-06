@@ -11,7 +11,7 @@ class Program {
   }
 
   analyze() {
-    this.FunDecls.forEach(s => s.analyze(context.INITIAL_CONTEXT));
+    this.FunDecls.forEach(s => s.analyze(Context.INITIAL_CONTEXT));
   }
 }
 

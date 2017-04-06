@@ -21,12 +21,11 @@ class Type {
 }
 Type.FLOAT = new Type(true, true, [Type.FLOAT, Type.INT]);
 Type.INT = new Type(true, true, [Type.FLOAT, Type.INT]);
-Type.LIST = new Type(true, true, []);
+Type.LIST = new Type(true, true, [Type.LIST]);
 Type.STRING = new Type(false, true, [Type.STRING]);
-Type.TUPLE = new Type(false, true, []);
+Type.TUPLE = new Type(false, true, [Type.TUPLE]);
 Type.BOOL = new Type(false, true, [Type.BOOL]);
 Type.CONS = new Type(false, true, [Type.CONS]);
-Type.CONDITIONAL = new Type(false, false, []);
-Type.PRINT = new Type(false, false, []);
+Type.CONDITIONAL = new Type(false, false, [Type.CONDITIONAL]);
 
 module.exports = Type;

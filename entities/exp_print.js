@@ -5,20 +5,17 @@ class expPrint extends Exp {
   constructor(string) {
     super();
     this.string = string;
+    this.type = Type.STRING;
   }
 
   analyze(context) {
-    let elementType = Type.STRING;
-
     if (context.hasBeenDeclared(this.string)) {
       const val = context.getValue(this.string);
-      elementType = val.type;
-    } else if (!(typeof this.string === 'string' || this.string instanceof String)) {
-      throw new Error(`UNDECLARED VARIABLE: ${this.n} has not been declared.`);
-    }
-
-    if (this.string.type !== Type.STRING) {
-      throw new Error(`TYPE ERROR: ${this.string} is not a string.`);
+      if (val.type !== Type.STRING) {
+        throw new Error(`TYPE ERROR: ${this.string} is not a string.`);
+      }
+    } else if (!(this.string.charAt(0) === '"' && this.string.charAt(this.string.length - 1) === '"')) {
+      throw new Error(`UNDECLARED VARIABLE: ${this.string} has not been declared.`);
     }
   }
 
