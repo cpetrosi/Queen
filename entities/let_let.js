@@ -26,8 +26,11 @@ class letLet extends Let {
       throw new Error(`VARIABLE DECLARARTION ERROR: ${this.exp} cannot be assigned to a variable.`);
     }
 
-    this.rest.analyze(newContext);
-    this.type = this.rest.type;
+    for (let i = 0; i < this.rest.length; i += 1) {
+      this.rest[i].analyze(newContext);
+    }
+
+    this.type = this.rest[this.rest.length - 1].type;
   }
 }
 

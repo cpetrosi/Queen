@@ -14,4 +14,17 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     };
     assert.throws(func, Error, 'UNDECLARED VARIABLE: H has not been declared.');
   });
+  it('👑 int n 🚀 1 + 1', () => {
+    const func = () => {
+      parse('👑 int n 🚀 1 + 1').analyze();
+    };
+    assert.doesNotThrow(func);
+  });
+  it('👑 int n 🚀 let s 🚀 5 in 1 + s', () => {
+    const func = () => {
+      parse('👑 int n 🚀 let s 🚀 5 in 1 + s').analyze();
+    };
+    parse('👑 int n 🚀 let s 🚀 5 in 1 + s').analyze();
+    assert.doesNotThrow(func);
+  });
 });

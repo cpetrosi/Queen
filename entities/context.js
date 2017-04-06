@@ -18,12 +18,12 @@ class Context {
   }
 
   declare(id, obj) {
-    this.localVariables.id = obj;
+    this.localVariables[id] = obj;
   }
 
   getValue(id) {
     if (id in this.localVariables) {
-      return this.localVariables.id;
+      return this.localVariables[id];
     }
     if (this.parent) {
       return this.parent.getValue(id);

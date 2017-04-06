@@ -6,10 +6,6 @@ class Type {
     this.comparableTypeList = comparableTypeList;
   }
 
-  isNumeric() {
-    return this.isNumeric;
-  }
-
   cannotBeAssignedToAVariable() {
     return !this.canBeAssigned;
   }

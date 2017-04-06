@@ -11,17 +11,16 @@ class Exp3 {
   }
 
   analyze(context) {
-    this.type = Type.NUMBER;
+    this.type = Type.FLOAT;
 
-    if (context.hasBeenDeclared(this.n)) {
+    if (context.hasBeenDeclared(this.n) && isNaN(this.n)) {
       const val = context.getValue(this.n);
-      val.analyze(context);
       this.type = val.type;
     } else if (isNaN(this.n)) {
       throw new Error(`UNDECLARED VARIABLE: ${this.n} has not been declared.`);
     }
 
-    if (this.type !== Type.NUMBER) {
+    if (this.type.canBeComparedTo(Type.FLOAT)) {
       throw new Error(`TYPE ERROR: ${this.n} must be numeric.`);
     }
   }

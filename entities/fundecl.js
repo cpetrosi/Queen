@@ -9,9 +9,9 @@ class FunDecl {
   }
 
   analyze(context) {
-    context.declare(this.id, this);
     const innerContext = new Context();
     innerContext.parent = context;
+    innerContext.declare(this.id, this);
 
     this.parameters = [];
     this.paramTypes = [];

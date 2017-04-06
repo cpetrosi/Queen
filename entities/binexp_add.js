@@ -16,9 +16,9 @@ class binexpAdd extends BinExp {
   analyze(context) {
     this.binexp.analyze(context);
     this.exp1.analyze(context);
-    this.type = Type.NUMBER;
+    this.type = Type.FLOAT;
 
-    if (!this.binexp.type.isNumeric() || !this.exp1.isNumeric()) {
+    if (!this.binexp.type.isNumeric || !this.exp1.type.isNumeric) {
       throw new Error('TYPE ERROR: Only numeric types can be added and subtracted.');
     }
   }
