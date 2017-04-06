@@ -9,6 +9,9 @@ class FunDecl {
   }
 
   analyze(context) {
+    this.returnType.analyze(context);
+    this.returnType = this.returnType.type;
+
     const innerContext = new Context();
     innerContext.parent = context;
     innerContext.declare(this.id, this);
@@ -27,8 +30,8 @@ class FunDecl {
     this.body.analyze(innerContext);
     this.type = this.body.type;
 
-    if (this.type.canBeComparedTo(this.returnType)) {
-      throw Error(`TYPE ERROR: Function was expected to evaluate to type ${this.returnType}.`);
+    if (!this.type.comparables.includes(this.returnType.str)) {
+      throw new Error(`TYPE ERROR: Function was expected to evaluate to type ${this.returnType.str}.`);
     }
   }
 

@@ -18,7 +18,7 @@ class binexpRel extends BinExp {
     this.exp1.analyze(context);
     this.type = Type.BOOL;
 
-    if (!(this.op === '==' || this.op === '!=') && !this.binexp.type.canBeComparedTo(this.exp1.type)) {
+    if (!this.binexp.type.comparables.includes(this.exp1.type.str)) {
       throw new Error('TYPE ERROR: Incomparable types.');
     }
   }

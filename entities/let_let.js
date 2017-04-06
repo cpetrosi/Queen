@@ -22,7 +22,7 @@ class letLet extends Let {
     this.exp.analyze(newContext);
     newContext.declare(this.id, this.exp);
 
-    if (this.exp.type.cannotBeAssignedToAVariable()) {
+    if (this.exp.type.cannotBeAssigned) {
       throw new Error(`VARIABLE DECLARARTION ERROR: ${this.exp} cannot be assigned to a variable.`);
     }
 

@@ -2,17 +2,9 @@ class Type {
 
   constructor(isNumeric, canBeAssigned, comparableTypeList, str) {
     this.isNumeric = isNumeric;
-    this.canBeAssigned = canBeAssigned;
-    this.comparableTypeList = comparableTypeList;
+    this.cannotBeAssigned = !canBeAssigned;
+    this.comparables = comparableTypeList;
     this.str = str;
-  }
-
-  cannotBeAssignedToAVariable() {
-    return !this.canBeAssigned;
-  }
-
-  canBeComparedTo(type2) {
-    return this.comparableTypeList.includes(type2.str);
   }
 
 }
@@ -23,6 +15,6 @@ Type.STRING = new Type(false, true, ['string'], 'string');
 Type.TUPLE = new Type(false, true, ['tuple'], 'tuple');
 Type.BOOL = new Type(false, true, ['bool'], 'bool');
 Type.CONS = new Type(false, true, ['cons'], 'cons');
-Type.CONDITIONAL = new Type(false, false, ['conditional'], 'conditional');
+Type.CONDITIONAL = new Type(false, false, [], 'conditional');
 
 module.exports = Type;

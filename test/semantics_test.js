@@ -35,11 +35,10 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     assert.throws(func, Error, 'TYPE ERROR: s must be numeric.');
   });
 
-  it('👑 int * int tup 🚀 [6] @ [9]', () => {
+  it('👑 int list tup 🚀 [6] @ [9]', () => {
     const func = () => {
-      parse('👑 int * int tup 🚀 [6] @ [9]').analyze();
+      parse('👑 int list tup 🚀 [6] @ [9]').analyze();
     };
-    parse('👑 int * int tup 🚀 [6] @ [9]').analyze();
     assert.doesNotThrow(func);
   });
   it('👑 int * int tup 🚀 ["s"] @ [9]', () => {
