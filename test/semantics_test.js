@@ -136,4 +136,23 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     };
     assert.throws(func, Error, 'TYPE ERROR: Must match to something of the same type.');
   });
+  it('👑 int me (m : int) 🚀 m + 1', () => {
+    const func = () => {
+      parse('👑 int me (m : int) 🚀 m + 1').analyze();
+    };
+    assert.doesNotThrow(func);
+  });
+  it('👑 int me (m : string) 🚀 m + 1', () => {
+    const func = () => {
+      parse('👑 int me (m : string) 🚀 m + 1').analyze();
+    };
+    assert.throws(func, Error, 'TYPE ERROR: m must be numeric.');
+  });
+  it('👑 int me (m : int n : int) 🚀 m + n', () => {
+    const func = () => {
+      parse('👑 int me (m : int n: int) 🚀 m + n').analyze();
+    };
+    parse('👑 int me (m : int n: int) 🚀 m + n').analyze();
+    assert.doesNotThrow(func);
+  });
 });

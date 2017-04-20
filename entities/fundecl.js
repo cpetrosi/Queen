@@ -19,12 +19,14 @@ class FunDecl {
     this.parameters = [];
     this.paramTypes = [];
 
-    for (let i = 0; i < this.bindings.length; i += 1) {
-      const b = this.bindings[i];
-      b.analyze(context);
-      this.parameters.push(b.id);
-      this.paramTypes.push(b.type);
-      innerContext.declare(b.id, b);
+    if (this.bindings.length > 0) {
+      for (let i = 0; i < this.bindings[0].length; i += 1) {
+        const b = this.bindings[0][i];
+        b.analyze(context);
+        this.parameters.push(b.id);
+        this.paramTypes.push(b.type);
+        innerContext.declare(b.id, b);
+      }
     }
 
     this.body.analyze(innerContext);
