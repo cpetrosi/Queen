@@ -147,19 +147,19 @@ Object.assign(ExpString.prototype, {
 Object.assign(List.prototype, {
   gen() {
     let items;
-    const firstCheck = findInDict(this.first);
+    const firstCheck = lookup(this.first);
     if (firstCheck) {
       items = `[${firstCheck}`;
     } else {
-      items = `[${this.first.gen()}`;
+      items = `[${this.first}`;
     }
 
     this.rest.forEach((item) => {
-      const check = findInDict(item);
+      const check = lookup(item);
       if (check) {
         items += `, ${check}`;
       } else {
-        items += `, ${item.gen()}`;
+        items += `, ${item}`;
       }
     });
 
