@@ -1,6 +1,7 @@
 // Mary
 const Append = require('./entities/append');
 const Binding = require('./entities/binding');
+
 const BinExpAdd = require('./entities/binexp_add');
 const BinExpRel = require('./entities/binexp_rel');
 const BinExpExp = require('./entities/binexp_exp');
@@ -85,5 +86,14 @@ Object.assign(FunDecl.prototype, {
     const params = getParams(this.bindings);
     const id = declare(this.id);
     console.log(`function ${id} ${params} {${this.body.gen()}}`);
+  },
+});
+
+Object.assign(Append.prototype, {
+  gen() {
+    const listOne = this.list1.gen();
+    const listTwo = this.list2.gen();
+    const lists = `${listOne}.concat(${listTwo})`;
+    return `(${lists})`;
   },
 });
