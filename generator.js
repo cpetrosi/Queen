@@ -132,6 +132,35 @@ Object.assign(Conditional.prototype, {
   },
 });
 
+//carleen's part
+Object.assign(ConsNil.prototype, {
+  gen() {
+    return '[]';
+  },
+});
+
+Object.assign(ConsShort.prototype, {
+  gen() {
+    const e = lookup(this.e) || this.e;
+    return `([${e}])`;
+  },
+});
+
+Object.assign(ConsLong.prototype, {
+  gen() {
+    const e = declare(this.e) || this.e;
+    const rest = declare(this.rest.gen());
+    return `([${e}]).concat(rest)`;
+  },
+});
+
+Object.assign(ExpAppend.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
 //megan's part
 Object.assign(Exp1Exp.prototype, {
     gen() {
