@@ -114,8 +114,10 @@ Object.assign(Append.prototype, {
 
 Object.assign(BinExpAdd.prototype, {
   gen() {
-    const exp1 = this.exp1.gen();
-    const binexp = this.binexp.gen();
+    let exp1 = this.exp1.gen();
+    exp1 = exp1.replace(';', '');
+    let binexp = this.binexp.gen();
+    binexp = binexp.replace(';', '');
     const exp = `${binexp} ${this.op} ${exp1})`;
     return `(${exp});`;
   },
@@ -286,11 +288,12 @@ Object.assign(LetLet.prototype, {
   gen() {
     const id = declare(this.id);
     let exp = this.exp.gen();
-    const rest = this.rest[0].gen();
+    let rest = this.rest[0].gen();
+    rest = rest.replace(';', '');
     exp = exp.replace('return', '');
     exp = exp.replace(';', '');
 
-    return `let ${id} = ${exp} ${rest}`;
+    return `let ${id} = ${exp} ${rest};`;
   },
 });
 
