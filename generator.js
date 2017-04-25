@@ -77,7 +77,62 @@ Object.assign(FunDecl.prototype, {
   },
 });
 
-//megan's pattern_part
+//mary's part
+Object.assign(Append.prototype, {
+  gen() {
+    const listOne = this.list1.gen();
+    const listTwo = this.list2.gen();
+    const lists = `${listOne}.concat(${listTwo})`;
+    return `(${lists})`;
+  },
+});
+
+Object.assign(BinExpAdd.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    const binexp = this.binexp.gen();
+    const exp = `${binexp} ${this.op} ${exp1})`;
+    return `(${exp})`;
+  },
+});
+
+Object.assign(BinExpRel.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    const binexp = this.binexp.gen();
+    const op = translateRelOp(this.op);
+    return `(${binexp} ${op} ${exp1})`;
+  },
+});
+
+Object.assign(BinExpExp.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    return `(${exp1})`;
+  },
+});
+
+Object.assign(Body.prototype, {
+  gen() {
+    return `(${this.body.gen()})`;
+  },
+});
+
+Object.assign(Conditional.prototype, {
+  gen() {
+    let string = `if (${this.Exp1}${this.ifLogical}${this.Exp2s}) {${this.Exp3}} `;
+
+    if (this.Exp4.length !== 0) {
+      string += `else if (${this.Exp4} ${this.elseIfLogical} ${this.Exp5s} ${this.elseIfLogical} {${this.Exp6}}) `;
+    }
+    if (this.Exp7.length !== 0) {
+      string += `else {${this.Exp7}}`;
+    }
+    return `(${string})`;
+  },
+});
+
+//megan's part
 Object.assign(Exp1Exp.prototype, {
     gen() {
         const expOne = this.exp1.gen();
