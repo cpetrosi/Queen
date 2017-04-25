@@ -85,16 +85,16 @@ Object.assign(ConsNil.prototype, {
 
 Object.assign(ConsShort.prototype, {
   gen() {
-    const e = declare(this.e);
+    const e = findInDict(this.e) || this.e;
     return `([${e}])`;
   },
 });
 
 Object.assign(ConsLong.prototype, {
   gen() {
-    const e = declare(this.e);
-    const rest = declare(this.rest);
-    // return `([${e}])`;
+    const e = declare(this.e) || this.e;
+    const rest = declare(this.rest.gen());
+    return `([${e}]).concat(rest)`;
   },
 });
 
