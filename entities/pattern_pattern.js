@@ -11,9 +11,11 @@ class patternPattern extends Pattern {
   toString() {
     let string = `[${this.e}`;
 
-      this.rest.forEach((e) => {
-        string += `, ${e}`;
-      });
+      if (this.rest) {
+        this.rest.forEach((e) => {
+          string += `, ${e}`;
+        });
+      }
 
       string += ']';
       return string;

@@ -348,7 +348,6 @@ Object.assign(LetExp.prototype, {
 });
 
 // mackenzie's part
-
 Object.assign(MatchExp.prototype, {
   gen() {
   },
@@ -363,21 +362,19 @@ Object.assign(PatternCons.prototype, {
 Object.assign(PatternPattern.prototype, {
   gen() {
     let items;
-    const firstCheck = lookup(this.e);
-    if (firstCheck) {
-      items = `[${firstCheck}`;
-    } else {
-      items = `[${this.first}`;
-    }
+    const first = lookup(this.e) || this.e;
+    items = `[${first}`;
 
-    this.rest.forEach((item) => {
-      const check = lookup(item);
-      if (check) {
-        items += `, ${check}`;
-      } else {
-        items += `, ${item}`;
-      }
-    });
+    if (this.rest) {
+      this.rest.forEach((item) => {
+        const check = lookup(item);
+        if (check) {
+          items += `, ${check}`;
+        } else {
+          items += `, ${item}`;
+        }
+      });
+    }
 
     items += ']';
 
@@ -400,16 +397,16 @@ Object.assign(ExpBool.prototype, {
 
 function makeMatchIfs(matchWith, matchTo) {
   let ifs = '';
-  ifs += `${matchWith}.length === ${matchTo}.length`;
+  ifs += `(${matchWith}).length === (${matchTo}).length`;
 
   const list1 = matchWith.split(',');
-  const list2 = matchWith.split(',');
+  const list2 = matchTo.split(',');
 
-  for (let i = 0; i < matchWith.length; i += 1) {
+  for (let i = 0; i < list1.length; i += 1) {
     const e1 = lookup(list1[i]);
     const e2 = lookup(list2[i]);
     if (!e1 && !e2) {
-      ifs += ' && list1[i] === list2[i]';
+      ifs += ` && list1[${i}] === list2[${i}]`;
     }
   }
 
@@ -422,22 +419,22 @@ Object.assign(Match.prototype, {
     let ifStatement = '';
     this.matchexp[0].gen();
 
-    if (this.matchExp[0].pattern.isWild) {
-      return this.matchExp[0].exp.gen();
+    if (this.matchexp[0].pattern.isWild) {
+      return this.matchexp[0].exp.gen();
     }
     for (let i = 0; i < this.matchexp.length; i += 1) {
       const currCase = this.matchexp[i];
       currCase.pattern.gen();
 
       if (currCase.pattern.isWild) {
-        ifStatement += `else { return ${currCase.exp.gen()}}`;
+        ifStatement += ` else { ${currCase.exp.gen()}}`;
         return ifStatement;
       } else if (ifStatement.length === 0) {
         const ifs = makeMatchIfs(matchWith, currCase.pattern.gen());
-        ifStatement += `if (${ifs}) { return ${currCase.exp.gen()}}`;
+        ifStatement += `if (${ifs}) { ${currCase.exp.gen()}}`;
       } else {
         const ifs = makeMatchIfs(matchWith, currCase.pattern.gen());
-        ifStatement += `else if (${ifs}) { return ${currCase.exp.gen()}}`;
+        ifStatement += ` else if (${ifs}) { ${currCase.exp.gen()}}`;
       }
     }
 
