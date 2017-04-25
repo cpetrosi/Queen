@@ -1,3 +1,0 @@
-describe('QUEEN GENERATOR', () => {
-  it();
-});

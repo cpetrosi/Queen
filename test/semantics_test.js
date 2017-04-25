@@ -112,6 +112,12 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
     };
     assert.doesNotThrow(func);
   });
+  it('👑 bool compare 🚀 1 > "apple"', () => {
+    const func = () => {
+      parse('👑 bool compare 🚀 1 > "apple"').analyze();
+    };
+    assert.throws(func, Error, 'TYPE ERROR');
+  });
   it('👑 bool compare 🚀 let m 🚀 false in 1 == m', () => {
     const func = () => {
       parse('👑 bool compare 🚀 let m 🚀 false in 1 == m').analyze();
@@ -153,6 +159,40 @@ describe('QUEEN SEMANTIC ANALYZER', () => {
       parse('👑 int me (m : int n: int) 🚀 m + n').analyze();
     };
     parse('👑 int me (m : int n: int) 🚀 m + n').analyze();
+    assert.doesNotThrow(func);
+  });
+  it('👑 int me (m : string n : int) 🚀 m + n', () => {
+    const func = () => {
+      parse('👑 int me (m : string n: int) 🚀 m + n').analyze();
+    };
+    assert.throws(func, Error, '😡 TYPE ERROR: m must be numeric.');
+  });
+  it('👑 string list test 🚀 [apple]@[orange]', () => {
+    const func = () => {
+      parse('👑 string list test 🚀 ["apple"]@["orange"]').analyze();
+    };
+    parse('👑 string list test 🚀 ["apple"]@["orange"]').analyze();
+    assert.doesNotThrow(func);
+  });
+  it('👑 int me (m : int n : int) 🚀 m - n', () => {
+    const func = () => {
+      parse('👑 int me (m : int n: int) 🚀 m - n').analyze();
+    };
+    parse('👑 int me (m : int n: int) 🚀 m - n').analyze();
+    assert.doesNotThrow(func);
+  });
+  it('👑 int me (m : int n : int) 🚀 m * n', () => {
+    const func = () => {
+      parse('👑 int me (m : int n: int) 🚀 m * n').analyze();
+    };
+    parse('👑 int me (m : int n: int) 🚀 m * n').analyze();
+    assert.doesNotThrow(func);
+  });
+  it('👑 float me (m : float n : float) 🚀 m / n', () => {
+    const func = () => {
+      parse('👑 float me (m : float n: float) 🚀 m / n').analyze();
+    };
+    parse('👑 float me (m : float n: float) 🚀 m / n').analyze();
     assert.doesNotThrow(func);
   });
 });
