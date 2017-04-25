@@ -2,10 +2,10 @@
 const Append = require('./entities/append');
 const Binding = require('./entities/binding');
 const BinExpAdd = require('./entities/binexp_add');
-
+const Body = require('./entities/body');
 const BinExpRel = require('./entities/binexp_rel');
 const BinExpExp = require('./entities/binexp_exp');
-const Body = require('./entities/body');
+
 const Conditional = require('./entities/conditional');
 
 // Carleen
@@ -53,14 +53,17 @@ const TypeList = require('./entities/type_list');
 const TypeString = require('./entities/type_string');
 const TypeTuple = require('./entities/type_tuple');
 
-Object.assign(Program.prototype, {
-  gen() {
-    this.FunDecls.forEach(funDecl => funDecl.gen());
-  },
-});
-
 function declare(varName) {
   return 'v';
+}
+
+function translateRelOp(op) {
+  const relOpDict = {
+    '==': '===',
+    '!=': '!==',
+  };
+
+  return relOpDict[op] || op;
 }
 
 function getParams(bindings) {
@@ -80,6 +83,12 @@ function getParams(bindings) {
   params += `${nextId})`;
   return params;
 }
+
+Object.assign(Program.prototype, {
+  gen() {
+    this.FunDecls.forEach(funDecl => funDecl.gen());
+  },
+});
 
 Object.assign(FunDecl.prototype, {
   gen() {
@@ -104,6 +113,22 @@ Object.assign(BinExpAdd.prototype, {
     const binexp = this.binexp.gen();
     const exp = `${binexp} ${this.op} ${exp1})`;
     return `(${exp})`;
+  },
+});
+
+Object.assign(BinExpRel.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    const binexp = this.binexp.gen();
+    const op = translateRelOp(this.op);
+    return `(${binexp} ${op} ${exp1})`;
+  },
+});
+
+Object.assign(BinExpExp.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    return `(${exp1})`;
   },
 });
 
