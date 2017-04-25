@@ -39,4 +39,10 @@ describe('QUEEN GENERATOR', () => {
       const expected = 'function v_12 (v_4) {(((return ((((v_4)))*((v_4))));))};';
       assert.equal(console.string, expected);
   });
+  it('👑 float div (x: float) 🚀 x / x', () => {
+      const program = parse('👑 float div (x: float) 🚀 x / x');
+      program.gen();
+      const expected = 'function v_2 (v_1) {(((return ((((v_1)))/((v_1))));))};';
+      assert.equal(console.string, expected);
+  });
 });
