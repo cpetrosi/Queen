@@ -49,24 +49,24 @@ console.log("Hello World!");
 QUEEN:
 ```
 '👑 float fib (x: int) 🚀 
-	match x with 
-	🍭 [0] -> 0 
-	🍭 [1] -> 1 
-	🍭   🕳 -> (let a  🚀 x - 1 in let b 
-			  🚀 x - 2 in let z 
-			  🚀 fib (a) in let y 
-			  🚀 fib (b) in y + z)
+    match x with 
+    🍭 [0] -> 0 
+    🍭 [1] -> 1 
+    🍭   🕳 -> (let a  🚀 x - 1 in let b 
+	       🚀 x - 2 in let z 
+	       🚀 fib (a) in let y 
+	       🚀 fib (b) in y + z)
 
 ```
 
 JS:
 ```
 myRecursiveFunction = (n) => {
-	if (n > 0) {
-		return myRecursiveFunction(n-1);
-	} else {
-		return n;
-	}
+    if (n > 0) {
+        return myRecursiveFunction(n-1);
+    } else {
+	return n;
+    }
 };  
 ```
 
@@ -93,9 +93,9 @@ else🤔 (c 🚀 0) then c
 JS:
 ```				
 if (a  == 0 || b == 0) {
-	return a
+    return a
 } else if (c == 0) {
-	return c
+    return c
 }
 ```
 
