@@ -91,3 +91,9 @@ Object.assign(PatternWild.prototype, {
   },
 });
 
+Object.assign(ExpBool.prototype, {
+  gen() {
+    const body = this.body;
+    return `${body})`;
+  },
+});
