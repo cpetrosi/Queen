@@ -52,16 +52,24 @@ const TypeList = require('./entities/type_list');
 const TypeString = require('./entities/type_string');
 const TypeTuple = require('./entities/type_tuple');
 
+const variableMap = new Map();
+
 const declare = (() => {
   let lastId = 0;
-  const map = new Map();
   return (v) => {
-    if (!(map.has(v))) {
-      map.set(v, ++lastId); // eslint-disable-line no-plusplus
+    if (!(variableMap.has(v))) {
+      variableMap.set(v, ++lastId); // eslint-disable-line no-plusplus
     }
-    return `v_${map.get(v)}`;
+    return `v_${variableMap.get(v)}`;
   };
 })();
+
+function lookup(id) {
+  if (!(variableMap.has(id))) {
+    return null;
+  }
+  return `v_${variableMap.get(id)}`;
+}
 
 function translateRelOp(op) {
   const relOpDict = {

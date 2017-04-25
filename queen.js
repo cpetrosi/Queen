@@ -35,7 +35,7 @@ const argv = require('yargs')
 const fs = require('fs');
 const util = require('util');
 const parse = require('./parser');
-require('./mary_generator');
+require('./generator');
 
 fs.readFile(argv._[0], 'utf-8', (err, text) => {
   if (err) {
