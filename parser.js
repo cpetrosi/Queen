@@ -8,6 +8,7 @@ const Conditional = require('./entities/conditional');
 const ConsNil = require('./entities/cons_nil');
 const ConsShort = require('./entities/cons_short');
 const ConsLong = require('./entities/cons_long');
+const ExpFunCall = require('./entities/exp_funcall');
 const ExpAppend = require('./entities/exp_append');
 const ExpBinExp = require('./entities/exp_binexp');
 const ExpBool = require('./entities/exp_bool');
@@ -53,6 +54,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   },
   Binding(id, colon, type) { return new Binding(id.sourceString, type.ast()); },
   Body(exp) { return new Body(exp.ast()); },
+  Exp_funcall(funcall) { return new ExpFunCall(funcall.ast()); },
   Exp_append(append) { return new ExpAppend(append.ast()); },
   Exp_binexp(binexp) { return new ExpBinExp(binexp.ast()); },
   Exp_bool(bool) { return new ExpBool(bool.sourceString); },
@@ -72,7 +74,7 @@ const semantics = grammar.createSemantics().addOperation('ast', {
   Cons_long(first, lightning, rest) { return new ConsLong(first.sourceString, rest.ast()); },
   Cons_short(first) { return new ConsShort(first.sourceString); },
   Cons_nil(nil) { return new ConsNil(nil.sourceString); },
-  Funcall(id, left, params, commas, right) {
+  Funcall(id, left, params, right) {
       return new Funcall(id.sourceString, params.sourceString);
   },
   List(left, first, comma, rest, right) {

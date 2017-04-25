@@ -27,4 +27,10 @@ describe('QUEEN GENERATOR', () => {
       const expected = 'function v_6 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((return (((3))));)}))};';
       assert.equal(console.string, expected);
   });
+  it('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> fib (x)', () => {
+      const program = parse('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> fib (x)');
+      program.gen();
+      const expected = 'function v_7 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((v_7(v_4)))}))};';
+      assert.equal(console.string, expected);
+  });
 });

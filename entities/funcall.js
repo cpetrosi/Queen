@@ -1,7 +1,7 @@
 class Funcall {
-  constructor(id, args) {
+  constructor(id, args, rest) {
     this.id = id;
-    this.args = args;
+    this.args = args.split(',');
   }
 
    analyze(context) {
@@ -31,7 +31,7 @@ class Funcall {
 
 
   toString() {
-    return `${this.id}${this.args}`;
+    return `${this.id}(${this.args})`;
   }
 }
 

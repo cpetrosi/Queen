@@ -4,8 +4,8 @@ QUEEN {
     Binding = (id ":" Type)
     Body = Exp
          | Let
-         | Funcall
     Exp = "🖨" (stringlit | id)       --print
+        | Funcall                     --funcall
         | Binexp                      --binexp
         | Append                      --append
         | Conditional                 --conditional
@@ -24,7 +24,7 @@ QUEEN {
     Cons = "[]"                         --nil
          | patternElement "⚡️" Cons     --long
          | patternElement               --short
-    Funcall = id "(" (id ",")+ ")"
+    Funcall = id "(" NonemptyListOf<id, ","> ")"
     patternElement = numlit | id
     List = "[" Exp ("," Exp)* "]"
     Match = "match" id "with" MatchExp+

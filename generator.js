@@ -10,6 +10,7 @@ const ConsShort = require('./entities/cons_short');
 const ConsLong = require('./entities/cons_long');
 const ExpAppend = require('./entities/exp_append');
 const ExpBinExp = require('./entities/exp_binexp');
+const ExpFunCall = require('./entities/exp_funcall');
 const ExpBool = require('./entities/exp_bool');
 const ExpConditional = require('./entities/exp_conditional');
 const ExpId = require('./entities/exp_id');
@@ -289,11 +290,18 @@ Object.assign(LetLet.prototype, {
     for (let i = 0; i < this.rest.length - 1; i += 1) {
       items += `${this.rest[i].gen()}; \n`;
     }
-    return `let ${id} = ${this.exp.gen()}; \n${items} return ${this.rest[this.rest.length - 1].gen()}`;
+    return `let ${id} = ${this.exp.gen()}; \n${items} ${this.rest[this.rest.length - 1].gen()}`;
   },
 });
 
 Object.assign(ExpBinExp.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(ExpFunCall.prototype, {
   gen() {
     const body = this.body.gen();
     return `(${body})`;
@@ -335,7 +343,11 @@ Object.assign(Exp3.prototype, {
 Object.assign(Funcall.prototype, {
     gen() {
         const funId = lookup(this.id);
-        const args = this.args.gen();
+        let args = [];
+        this.args.forEach((arg) => {
+          args.push(lookup(arg));
+        });
+        args = args.join(',');
         return `(${funId}(${args}))`;
     },
 });
