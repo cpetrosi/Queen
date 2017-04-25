@@ -52,9 +52,16 @@ const TypeList = require('./entities/type_list');
 const TypeString = require('./entities/type_string');
 const TypeTuple = require('./entities/type_tuple');
 
-function declare(varName) {
-  return 'v';
-}
+const declare = (() => {
+  let lastId = 0;
+  const map = new Map();
+  return (v) => {
+    if (!(map.has(v))) {
+      map.set(v, ++lastId); // eslint-disable-line no-plusplus
+    }
+    return `v_${map.get(v)}`;
+  };
+})();
 
 function translateRelOp(op) {
   const relOpDict = {
