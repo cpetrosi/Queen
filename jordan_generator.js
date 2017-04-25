@@ -179,3 +179,10 @@ Object.assign(LetLet.prototype, {
     return `let ${id} = ${this.exp.gen()}; \n${items} return ${this.rest[this.rest.length - 1].gen()}`;
   },
 });
+
+Object.assign(ExpBinExp.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
