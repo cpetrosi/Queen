@@ -32,30 +32,29 @@ function getParams(bindings) {
   return params;
 }
 
-// Object.assign(FunDecl.prototype, {
-//   gen() {
-//     const params = getParams(this.bindings);
-//     const id = declare(this.id);
-//     console.log(`function ${id} ${params} {${this.body.gen()}}`);
-//   },
-// });
-
 Object.assign(Match.prototype, {
   gen() {
-    const id = declare(this.id);
-    const matchExp = declare(this.matchexp);
+    const id = this.id.gen();
+    const matchExp = this.matchexp.gen();
     //if type and length match return the body
     //can be a number, stirng, or variable name in the list
-    const idLen = id.length;
-    const matchLen = matchExp.length;
-
-
-    const match = `match ${this.id} with ${this.matchexp}`
-
-
+    const idLen = id.length.gen();
+    const matchLen = matchExp.length.gen();
+    // const match = `match ${this.id} with ${this.matchexp}`
     return `(${
         if (idLen == matchLen) {
-            if ()
+            //Figure this out below |
+            if (id.TYPE == numLit) {
+                if (matchExp == variable || matchExp == id) {
+                    return this.body
+                }
+            }
+            if (idLen.type == string) {
+
+            }
+            if (idLen.type == variable) {
+
+            }
         }
 
     })`;
@@ -87,6 +86,14 @@ Object.assign(PatternPattern.prototype, {
 });
 Object.assign(PatternWild.prototype, {
   gen() {
+//find out what goes in these brackets
     return 'else {}';
+  },
+});
+
+Object.assign(ExpBool.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `${body})`;
   },
 });
