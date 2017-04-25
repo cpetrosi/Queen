@@ -31,7 +31,7 @@ class Funcall {
 
 
   toString() {
-    return `${this.funId}${this.argument}`;
+    return `${this.id}${this.args}`;
   }
 }
 
