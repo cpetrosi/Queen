@@ -2,9 +2,9 @@
 const Append = require('./entities/append');
 const Binding = require('./entities/binding');
 const BinExpAdd = require('./entities/binexp_add');
+const Body = require('./entities/body');
 const BinExpRel = require('./entities/binexp_rel');
 const BinExpExp = require('./entities/binexp_exp');
-const Body = require('./entities/body');
 const Conditional = require('./entities/conditional');
 
 // Carleen
@@ -52,14 +52,24 @@ const TypeList = require('./entities/type_list');
 const TypeString = require('./entities/type_string');
 const TypeTuple = require('./entities/type_tuple');
 
-Object.assign(Program.prototype, {
-  gen() {
-    this.FunDecls.forEach(funDecl => funDecl.gen());
-  },
-});
+const declare = (() => {
+  let lastId = 0;
+  const map = new Map();
+  return (v) => {
+    if (!(map.has(v))) {
+      map.set(v, ++lastId); // eslint-disable-line no-plusplus
+    }
+    return `v_${map.get(v)}`;
+  };
+})();
 
-function declare(varName) {
-  return 'v';
+function translateRelOp(op) {
+  const relOpDict = {
+    '==': '===',
+    '!=': '!==',
+  };
+
+  return relOpDict[op] || op;
 }
 
 function getParams(bindings) {
@@ -80,10 +90,70 @@ function getParams(bindings) {
   return params;
 }
 
+Object.assign(Program.prototype, {
+  gen() {
+    this.FunDecls.forEach(funDecl => funDecl.gen());
+  },
+});
+
 Object.assign(FunDecl.prototype, {
   gen() {
     const params = getParams(this.bindings);
     const id = declare(this.id);
     console.log(`function ${id} ${params} {${this.body.gen()}}`);
+  },
+});
+
+Object.assign(Append.prototype, {
+  gen() {
+    const listOne = this.list1.gen();
+    const listTwo = this.list2.gen();
+    const lists = `${listOne}.concat(${listTwo})`;
+    return `(${lists})`;
+  },
+});
+
+Object.assign(BinExpAdd.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    const binexp = this.binexp.gen();
+    const exp = `${binexp} ${this.op} ${exp1})`;
+    return `(${exp})`;
+  },
+});
+
+Object.assign(BinExpRel.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    const binexp = this.binexp.gen();
+    const op = translateRelOp(this.op);
+    return `(${binexp} ${op} ${exp1})`;
+  },
+});
+
+Object.assign(BinExpExp.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    return `(${exp1})`;
+  },
+});
+
+Object.assign(Body.prototype, {
+  gen() {
+    return `(${this.body.gen()})`;
+  },
+});
+
+Object.assign(Conditional.prototype, {
+  gen() {
+    let string = `if (${this.Exp1}${this.ifLogical}${this.Exp2s}) {${this.Exp3}} `;
+
+    if (this.Exp4.length !== 0) {
+      string += `else if (${this.Exp4} ${this.elseIfLogical} ${this.Exp5s} ${this.elseIfLogical} {${this.Exp6}}) `;
+    }
+    if (this.Exp7.length !== 0) {
+      string += `else {${this.Exp7}}`;
+    }
+    return `(${string})`;
   },
 });
