@@ -161,6 +161,142 @@ Object.assign(ExpAppend.prototype, {
   },
 });
 
+//jordan's part
+Object.assign(Program.prototype, {
+  gen() {
+    this.FunDecls.forEach(funDecl => funDecl.gen());
+  },
+});
+
+function declare(varName) {
+  return 'v';
+}
+
+function getParams(bindings) {
+  if (!bindings[0]) {
+    return '()';
+  }
+
+  let params = '(';
+  let nextId = '';
+
+  for (let i = 0; i < bindings[0].length - 1; i += 1) {
+    nextId = declare(bindings[0][i].id);
+    params += (`${nextId}, `);
+  }
+
+  nextId = declare(bindings[0][bindings.length - 1].id);
+  params += `${nextId})`;
+  return params;
+}
+
+Object.assign(FunDecl.prototype, {
+  gen() {
+    const params = getParams(this.bindings);
+    const id = declare(this.id);
+    console.log(`function ${id} ${params} {${this.body.gen()}}`);
+  },
+});
+
+Object.assign(ExpConditional.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(ExpId.prototype, {
+  gen() {
+    const id = this.id.gen();
+    return `(${id})`;
+  },
+});
+
+Object.assign(ExpLet.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(ExpMatch.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(ExpNumLit.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(ExpParens.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(ExpPrint.prototype, {
+  gen() {
+    const str = this.string.gen();
+    return `console.log(${str})`;
+  },
+});
+
+Object.assign(ExpString.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
+Object.assign(List.prototype, {
+  gen() {
+    let items;
+    const firstCheck = lookup(this.first);
+    if (firstCheck) {
+      items = `[${firstCheck}`;
+    } else {
+      items = `[${this.first}`;
+    }
+
+    this.rest.forEach((item) => {
+      const check = lookup(item);
+      if (check) {
+        items += `, ${check}`;
+      } else {
+        items += `, ${item}`;
+      }
+    });
+
+    items += ']';
+
+    return `(${items})`;
+  },
+});
+
+Object.assign(LetLet.prototype, {
+  gen() {
+    const id = declare(this.id);
+    let items;
+    for (let i = 0; i < this.rest.length - 1; i += 1) {
+      items += `${this.rest[i].gen()}; \n`;
+    }
+    return `let ${id} = ${this.exp.gen()}; \n${items} return ${this.rest[this.rest.length - 1].gen()}`;
+  },
+});
+
+Object.assign(ExpBinExp.prototype, {
+  gen() {
+    const body = this.body.gen();
+    return `(${body})`;
+  },
+});
+
 //megan's part
 Object.assign(Exp1Exp.prototype, {
     gen() {
