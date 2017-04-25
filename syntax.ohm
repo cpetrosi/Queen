@@ -24,7 +24,7 @@ QUEEN {
     Cons = "[]"                         --nil
          | patternElement "⚡️" Cons     --long
          | patternElement               --short
-    Funcall = id "(" NonemptyListOf<id, ","> ")"
+    Funcall = id "(" ListOf<id, ","> ")"
     patternElement = numlit | id
     List = "[" Exp ("," Exp)* "]"
     Match = "match" id "with" MatchExp+
