@@ -38,7 +38,7 @@ npm start <absoulte_path_to_file>
 
 QUEEN:
 ```
-🖨 "Hello World!"
+👑 string helloWorld 🚀 🖨 "Hello World!
 ```
 
 JS:
@@ -48,10 +48,15 @@ console.log("Hello World!");
 
 QUEEN:
 ```
-👑 int myRecursiveFunction (n : int) 🚀
-    match n with
-    🍭 n 🤔 n > 0   → myRecursiveFunction n - 1
-    🍭 🕳           → n
+'👑 float fib (x: int) 🚀 
+	match x with 
+	🍭 [0] -> 0 
+	🍭 [1] -> 1 
+	🍭   🕳 -> (let a  🚀 x - 1 in let b 
+			  🚀 x - 2 in let z 
+			  🚀 fib (a) in let y 
+			  🚀 fib (b) in y + z)
+
 ```
 
 JS:
