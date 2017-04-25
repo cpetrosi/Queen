@@ -21,6 +21,7 @@ npm start <absoulte_path_to_file>
 * No for loops (pattern matching instead)
 * Static typing
 
+### Emojis
 👑 - start a function <br>
 🖨 - print <br>
 😡 - error message <br>
@@ -30,10 +31,8 @@ npm start <absoulte_path_to_file>
 🤔 - if <br>
 ❗️- not <br>
 💁🏼 - || <br>
-🍽 - None <br>
-🍝 - Some <br>
 ⚡️ - cons <br>
-// - comment <br>
+💩 - comment <br>
 
 ### Example Problems
 
