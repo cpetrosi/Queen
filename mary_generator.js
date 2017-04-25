@@ -1,8 +1,8 @@
 // Mary
 const Append = require('./entities/append');
 const Binding = require('./entities/binding');
-
 const BinExpAdd = require('./entities/binexp_add');
+
 const BinExpRel = require('./entities/binexp_rel');
 const BinExpExp = require('./entities/binexp_exp');
 const Body = require('./entities/body');
@@ -95,5 +95,20 @@ Object.assign(Append.prototype, {
     const listTwo = this.list2.gen();
     const lists = `${listOne}.concat(${listTwo})`;
     return `(${lists})`;
+  },
+});
+
+Object.assign(BinExpAdd.prototype, {
+  gen() {
+    const exp1 = this.exp1.gen();
+    const binexp = this.binexp.gen();
+    const exp = `${binexp} ${this.op} ${exp1})`;
+    return `(${exp})`;
+  },
+});
+
+Object.assign(Body.prototype, {
+  gen() {
+    return `(${this.body.gen()})`;
   },
 });
