@@ -85,7 +85,7 @@ Object.assign(ConsNil.prototype, {
 
 Object.assign(ConsShort.prototype, {
   gen() {
-    const e = findInDict(this.e) || this.e;
+    const e = lookup(this.e) || this.e;
     return `([${e}])`;
   },
 });
