@@ -76,3 +76,50 @@ Object.assign(FunDecl.prototype, {
     console.log(`function ${id} ${params} {${this.body.gen()}}`);
   },
 });
+
+//megan's pattern_part
+Object.assign(Exp1Exp.prototype, {
+    gen() {
+        const expOne = this.exp1.gen();
+        return `(${expOne})`;
+    },
+});
+
+Object.assign(Exp1Mult.prototype, {
+    gen() {
+        const expOne = this.exp1.gen();
+        const expTwo = this.exp2.gen();
+        return `(${expOne}${this.op}${expTwo})`;
+    },
+});
+
+Object.assign(Exp2.prototype, {
+    gen() {
+        const negSign = this.negativeSign;
+        const expThree = this.exp3.gen();
+        return `(${negSign}${expThree})`;
+    },
+});
+
+Object.assign(Exp3.prototype, {
+    gen() {
+        const num = this.n.gen();
+        const fact = this.factorial;
+        return `(${num}${fact})`;
+    },
+});
+
+Object.assign(Funcall.prototype, {
+    gen() {
+        const funId = findInDict(this.id);
+        const arguments = this.args.gen();
+        return `(${funId}(${arguments}))`;
+    },
+});
+
+Object.assign(LetExp.prototype, {
+    gen() {
+        const express = this.exp.gen();
+        return `(${express})`;
+    },
+});
