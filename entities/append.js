@@ -16,7 +16,7 @@ class Append {
     this.type = Type.LIST;
 
     if (!this.list1.listType.comparables.includes(this.list2.listType.str)) {
-      throw new Error('TYPE ERROR: Both lists must contain elements of the same type.');
+      throw new Error('😡 TYPE ERROR: Both lists must contain elements of the same type.');
     }
   }
 }

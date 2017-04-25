@@ -33,7 +33,7 @@ class FunDecl {
     this.type = this.body.type;
 
     if (!this.type.comparables.includes(this.returnType.str)) {
-      throw new Error(`TYPE ERROR: Function was expected to evaluate to type ${this.returnType.str}.`);
+      throw new Error(`😡 TYPE ERROR: Function was expected to evaluate to type ${this.returnType.str}.`);
     }
   }
 

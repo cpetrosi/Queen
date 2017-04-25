@@ -12,7 +12,7 @@ class Exp2 {
     this.exp3.analyze(context);
     this.type = this.exp3.type;
     if (!this.type.isNumeric) {
-      throw new Error(`TYPE ERROR: ${this.exp3} must be numeric.`);
+      throw new Error(`😡 TYPE ERROR: ${this.exp3} must be numeric.`);
     }
   }
 }

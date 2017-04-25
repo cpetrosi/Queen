@@ -24,7 +24,7 @@ class letLet extends Let {
     newContext.declare(this.id, this.exp);
 
     if (this.type.cannotBeAssigned) {
-      throw new Error(`VARIABLE DECLARARTION ERROR: ${this.exp} cannot be assigned to a variable.`);
+      throw new Error(`😡 VARIABLE DECLARARTION ERROR: ${this.exp} cannot be assigned to a variable.`);
     }
 
     for (let i = 0; i < this.rest.length; i += 1) {

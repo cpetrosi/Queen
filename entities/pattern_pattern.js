@@ -28,11 +28,11 @@ class patternPattern extends Pattern {
       val.analyze(context);
       elementType = val.type;
     } else if (isNaN(this.e)) {
-      throw new Error(`UNDECLARED VARIABLE: ${this.e} has not been declared.`);
+      throw new Error(`😡 UNDECLARED VARIABLE: ${this.e} has not been declared.`);
     }
 
     if (!elementType.isNumeric()) {
-      throw new Error(`TYPE ERROR: ${this.e} must be numeric.`);
+      throw new Error(`😡 TYPE ERROR: ${this.e} must be numeric.`);
     }
 
     this.rest.forEach((p) => {
@@ -43,11 +43,11 @@ class patternPattern extends Pattern {
         val.analyze(context);
         elementType = val.type;
       } else if (isNaN(p)) {
-        throw new Error(`UNDECLARED VARIABLE: ${p} has not been declared.`);
+        throw new Error(`😡 UNDECLARED VARIABLE: ${p} has not been declared.`);
       }
 
       if (!elementType.isNumeric()) {
-        throw new Error(`TYPE ERROR: ${p} must be numeric.`);
+        throw new Error(`😡 TYPE ERROR: ${p} must be numeric.`);
       }
     });
   }

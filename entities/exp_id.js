@@ -15,7 +15,7 @@ class expId extends Exp {
       const val = context.getValue(this.id);
       this.type = val.type;
     } else {
-      throw new Error(`UNDECLARED VARIABLE: ${this.id} has not been declared.`);
+      throw new Error(`😡 UNDECLARED VARIABLE: ${this.id} has not been declared.`);
     }
   }
 }

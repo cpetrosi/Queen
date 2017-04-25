@@ -19,7 +19,7 @@ class binexpAdd extends BinExp {
     this.type = Type.FLOAT;
 
     if (!this.binexp.type.isNumeric || !this.exp1.type.isNumeric) {
-      throw new Error('TYPE ERROR: Only numeric types can be added and subtracted.');
+      throw new Error('😡 TYPE ERROR: Only numeric types can be added and subtracted.');
     }
   }
 }

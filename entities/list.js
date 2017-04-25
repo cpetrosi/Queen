@@ -56,7 +56,7 @@ class List {
 
       this.listType = this.rest[i].type;
       if (!this.listType.comparables.includes(newContext.listType.str)) {
-        throw new Error('TYPE ERROR: List elements must all be of the same type.');
+        throw new Error('😡 TYPE ERROR: List elements must all be of the same type.');
       }
     }
   }

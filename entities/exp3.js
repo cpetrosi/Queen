@@ -17,11 +17,11 @@ class Exp3 {
       const val = context.getValue(this.n);
       this.type = val.type;
     } else if (isNaN(this.n)) {
-      throw new Error(`UNDECLARED VARIABLE: ${this.n} has not been declared.`);
+      throw new Error(`😡 UNDECLARED VARIABLE: ${this.n} has not been declared.`);
     }
 
     if (!this.type.isNumeric) {
-      throw new Error(`TYPE ERROR: ${this.n} must be numeric.`);
+      throw new Error(`😡 TYPE ERROR: ${this.n} must be numeric.`);
     }
   }
 }

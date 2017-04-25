@@ -19,7 +19,7 @@ class MatchExp {
     }
 
     if (!this.exp.type.comparables.includes(newContext.matchToType.str)) {
-      throw new Error('TYPE ERROR: Must match to something of the same type.');
+      throw new Error('😡 TYPE ERROR: Must match to something of the same type.');
     }
     this.type = this.exp.type;
   }

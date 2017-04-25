@@ -12,7 +12,7 @@ class Match {
 
   analyze(context) {
     if (!context.hasBeenDeclared(this.id)) {
-      throw new Error(`UNDECLARED VARIABLE: ${this.id} has not been declared.`);
+      throw new Error(`😡 UNDECLARED VARIABLE: ${this.id} has not been declared.`);
     }
 
     const val = context.getValue(this.id);

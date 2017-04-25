@@ -19,7 +19,7 @@ class exp1Mult extends Exp1 {
     this.type = Type.FLOAT;
 
     if (!this.exp1.type.isNumeric || !this.exp2.type.isNumeric) {
-      throw new Error('TYPE ERROR: Only numeric types can be multiplied and divided.');
+      throw new Error('😡 TYPE ERROR: Only numeric types can be multiplied and divided.');
     }
   }
 }

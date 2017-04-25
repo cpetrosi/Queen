@@ -21,11 +21,11 @@ class consLong extends Cons {
       const val = context.getValue(this.e);
       elementType = val.type;
     } else if (isNaN(this.e)) {
-      throw new Error(`UNDECLARED VARIABLE: ${this.e} has not been declared.`);
+      throw new Error(`😡 UNDECLARED VARIABLE: ${this.e} has not been declared.`);
     }
 
     if (!elementType.isNumeric) {
-      throw new Error(`TYPE ERROR: ${this.e} must be numeric.`);
+      throw new Error(`😡 TYPE ERROR: ${this.e} must be numeric.`);
     }
 
     this.rest.analyze(context);

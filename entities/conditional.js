@@ -26,7 +26,7 @@ class Conditional {
     this.Exp7.analyze(context);
 
     if (!this.Exp1.type.isBoolean() || !this.Exp4.type.isBoolean()) {
-      throw new Error('TYPE ERROR: Condition must be a boolean.');
+      throw new Error('😡 TYPE ERROR: Condition must be a boolean.');
     }
   }
 
