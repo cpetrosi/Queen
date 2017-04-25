@@ -5,7 +5,6 @@ const BinExpAdd = require('./entities/binexp_add');
 const Body = require('./entities/body');
 const BinExpRel = require('./entities/binexp_rel');
 const BinExpExp = require('./entities/binexp_exp');
-
 const Conditional = require('./entities/conditional');
 
 // Carleen
@@ -135,5 +134,19 @@ Object.assign(BinExpExp.prototype, {
 Object.assign(Body.prototype, {
   gen() {
     return `(${this.body.gen()})`;
+  },
+});
+
+Object.assign(Conditional.prototype, {
+  gen() {
+    let string = `if (${this.Exp1}${this.ifLogical}${this.Exp2s}) {${this.Exp3}} `;
+
+    if (this.Exp4.length !== 0) {
+      string += `else if (${this.Exp4} ${this.elseIfLogical} ${this.Exp5s} ${this.elseIfLogical} {${this.Exp6}}) `;
+    }
+    if (this.Exp7.length !== 0) {
+      string += `else {${this.Exp7}}`;
+    }
+    return `(${string})`;
   },
 });
