@@ -117,7 +117,7 @@ Object.assign(BinExpAdd.prototype, {
     const exp1 = this.exp1.gen();
     const binexp = this.binexp.gen();
     const exp = `${binexp} ${this.op} ${exp1})`;
-    return `(return ${exp});`;
+    return `(${exp});`;
   },
 });
 
@@ -259,23 +259,22 @@ Object.assign(ExpString.prototype, {
 });
 
 Object.assign(List.prototype, {
+
   gen() {
     let items;
-    const firstCheck = lookup(this.first);
-    if (firstCheck) {
-      items = `[${firstCheck}`;
-    } else {
-      items = `[${this.first}`;
-    }
+    const first = lookup(this.first) || this.first;
+    items = `[${first}`;
 
-    this.rest.forEach((item) => {
-      const check = lookup(item);
-      if (check) {
-        items += `, ${check}`;
-      } else {
-        items += `, ${item}`;
-      }
-    });
+    if (this.rest) {
+      this.rest.forEach((item) => {
+        const check = lookup(item);
+        if (check) {
+          items += `, ${check}`;
+        } else {
+          items += `, ${item}`;
+        }
+      });
+    }
 
     items += ']';
 
@@ -286,11 +285,12 @@ Object.assign(List.prototype, {
 Object.assign(LetLet.prototype, {
   gen() {
     const id = declare(this.id);
-    let items;
-    for (let i = 0; i < this.rest.length - 1; i += 1) {
-      items += `${this.rest[i].gen()}; \n`;
-    }
-    return `let ${id} = ${this.exp.gen()}; \n${items} ${this.rest[this.rest.length - 1].gen()}`;
+    let exp = this.exp.gen();
+    const rest = this.rest[0].gen();
+    exp = exp.replace('return', '');
+    exp = exp.replace(';', '');
+
+    return `let ${id} = ${exp} ${rest}`;
   },
 });
 

@@ -27,10 +27,10 @@ describe('QUEEN GENERATOR', () => {
       const expected = 'function v_6 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((return (((3))));)}))};';
       assert.equal(console.string, expected);
   });
-  it('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> fib (x)', () => {
-      const program = parse('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> fib (x)');
+  it('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)', () => {
+      const program = parse('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)');
       program.gen();
-      const expected = 'function v_7 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((v_7(v_4)))}))};';
+      const expected = 'function v_7 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((let v_8 = ((( (((v_4)))) - (((1)))));) let v_9 = ((( (((v_4)))) - (((2)))));) let v_10 = ((v_7(v_8))) let v_11 = ((v_7(v_9))) ((((return (((v_11)))); + (((v_10)))));))))}))};';
       assert.equal(console.string, expected);
   });
 });
