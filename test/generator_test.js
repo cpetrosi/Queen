@@ -33,4 +33,10 @@ describe('QUEEN GENERATOR', () => {
       const expected = 'function v_7 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((let v_8 = ((( (((v_4)))) - (((1)))))) let v_9 = ((( (((v_4)))) - (((2)))))) let v_10 = ((v_7(v_8))) let v_11 = ((v_7(v_9))) ((((return (((v_11)))) + (((v_10)))))));))}))};';
       assert.equal(console.string, expected);
   });
+  it('👑 float mult (x: int) 🚀 x * x', () => {
+      const program = parse('👑 float mult (x: int) 🚀 x * x');
+      program.gen();
+      const expected = 'function v_12 (v_4) {(((return ((((v_4)))*((v_4))));))};';
+      assert.equal(console.string, expected);
+  });
 });
