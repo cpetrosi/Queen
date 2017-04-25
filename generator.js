@@ -116,7 +116,7 @@ Object.assign(BinExpAdd.prototype, {
     const exp1 = this.exp1.gen();
     const binexp = this.binexp.gen();
     const exp = `${binexp} ${this.op} ${exp1})`;
-    return `(return ${exp})`;
+    return `(return ${exp});`;
   },
 });
 
@@ -132,7 +132,7 @@ Object.assign(BinExpRel.prototype, {
 Object.assign(BinExpExp.prototype, {
   gen() {
     const exp1 = this.exp1.gen();
-    return `(return ${exp1})`;
+    return `(return ${exp1});`;
   },
 });
 
@@ -181,7 +181,7 @@ Object.assign(ConsLong.prototype, {
 Object.assign(ExpAppend.prototype, {
   gen() {
     const body = this.body.gen();
-    return `(return ${body})`;
+    return `(return ${body});`;
   },
 });
 
@@ -211,7 +211,7 @@ Object.assign(ExpConditional.prototype, {
 Object.assign(ExpId.prototype, {
   gen() {
     const id = this.id.gen();
-    return `(return ${id})`;
+    return `(return ${id});`;
   },
 });
 

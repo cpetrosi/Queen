@@ -12,7 +12,7 @@ describe('QUEEN GENERATOR', () => {
   it('👑 int num (n: int) 🚀 n', () => {
       const program = parse('👑 int num (n: int) 🚀 n');
       const js = program.gen();
-      const expected = 'Program (Function Declaration ({n: int} n))';
+      const expected = 'function v_3 (v_2) {(((return (((v_2))));))};';
       assert.equal(console.string, expected);
   });
 });
