@@ -46,3 +46,33 @@ Object.assign(Program.prototype, {
     this.FunDecls.forEach(funDecl => funDecl.gen());
   },
 });
+
+function declare(varName) {
+  return 'v';
+}
+
+function getParams(bindings) {
+  if (!bindings[0]) {
+    return '()';
+  }
+
+  let params = '(';
+  let nextId = '';
+
+  for (let i = 0; i < bindings[0].length - 1; i += 1) {
+    nextId = declare(bindings[0][i].id);
+    params += (`${nextId}, `);
+  }
+
+  nextId = declare(bindings[0][bindings.length - 1].id);
+  params += `${nextId})`;
+  return params;
+}
+
+Object.assign(FunDecl.prototype, {
+  gen() {
+    const params = getParams(this.bindings);
+    const id = declare(this.id);
+    console.log(`function ${id} ${params} {body}`);
+  },
+});
