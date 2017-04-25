@@ -34,12 +34,12 @@ function getParams(bindings) {
 
 Object.assign(Match.prototype, {
   gen() {
-    const id = declare(this.id);
-    const matchExp = declare(this.matchexp);
+    const id = this.id.gen();
+    const matchExp = this.matchexp.gen();
     //if type and length match return the body
     //can be a number, stirng, or variable name in the list
-    const idLen = id.length;
-    const matchLen = matchExp.length;
+    const idLen = id.length.gen();
+    const matchLen = matchExp.length.gen();
     // const match = `match ${this.id} with ${this.matchexp}`
     return `(${
         if (idLen == matchLen) {
@@ -93,7 +93,7 @@ Object.assign(PatternWild.prototype, {
 
 Object.assign(ExpBool.prototype, {
   gen() {
-    const body = this.body;
+    const body = this.body.gen();
     return `${body})`;
   },
 });
