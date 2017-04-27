@@ -14,6 +14,11 @@ class letExp extends Let {
     this.exp.analyze(context);
     this.type = this.exp.type;
   }
+
+  optimize() {
+    this.exp.optimize();
+    return this;
+  }
 }
 
 module.exports = letExp;

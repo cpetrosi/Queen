@@ -14,6 +14,10 @@ class patternWild extends Pattern {
   analyze(context) {
     this.type = Type.PATTERN;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = patternWild;

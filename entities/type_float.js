@@ -13,6 +13,10 @@ class typeFloat extends Type {
   toString() {
     return `${this.typeName}`;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = typeFloat;

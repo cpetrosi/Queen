@@ -32,6 +32,14 @@ class letLet extends Let {
       this.type = this.rest[i].type;
     }
   }
+
+  optimize() {
+    this.exp.optimize();
+    for (let i = 0; i < this.rest.length; i += 1) {
+      this.rest[i].optimize();
+    }
+    return this;
+  }
 }
 
 module.exports = letLet;

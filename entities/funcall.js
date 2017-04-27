@@ -33,6 +33,10 @@ class Funcall {
   toString() {
     return `${this.id}(${this.args})`;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = Funcall;

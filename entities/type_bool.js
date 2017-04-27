@@ -13,6 +13,10 @@ class typeBool extends Type {
   analyze(context) {
     this.type = Type.BOOL;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = typeBool;

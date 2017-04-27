@@ -22,6 +22,12 @@ class exp1Mult extends Exp1 {
       throw new Error('😡 TYPE ERROR: Only numeric types can be multiplied and divided.');
     }
   }
+
+  optimize() {
+    this.exp1.optimize();
+    this.exp2.optimize();
+    return this;
+  }
 }
 
 module.exports = exp1Mult;

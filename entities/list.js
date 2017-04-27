@@ -60,6 +60,14 @@ class List {
       }
     }
   }
+
+  optimize() {
+    this.first.optimize();
+    for (let i = 0; i < this.rest.length; i += 1) {
+      this.rest[i].optimize();
+    }
+    return this;
+  }
 }
 
 module.exports = List;

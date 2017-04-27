@@ -14,6 +14,10 @@ class typeTuple extends Type {
   analyze(context) {
     this.type = Type.TUPLE;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = typeTuple;

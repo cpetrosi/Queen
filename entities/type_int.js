@@ -13,6 +13,10 @@ class typeInt extends Type {
   analyze(context) {
     this.type = Type.INT;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = typeInt;

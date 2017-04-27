@@ -6,7 +6,6 @@ class Type {
     this.comparables = comparableTypeList;
     this.str = str;
   }
-
 }
 Type.FLOAT = new Type(true, true, ['float', 'int'], 'float');
 Type.INT = new Type(true, true, ['float', 'int'], 'int');

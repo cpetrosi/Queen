@@ -13,6 +13,10 @@ class typeString extends Type {
   analyze(context) {
     this.type = Type.STRING;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = typeString;

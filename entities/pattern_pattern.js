@@ -53,6 +53,10 @@ class patternPattern extends Pattern {
       }
     });
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = patternPattern;

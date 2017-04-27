@@ -15,6 +15,11 @@ class Exp2 {
       throw new Error(`😡 TYPE ERROR: ${this.exp3} must be numeric.`);
     }
   }
+
+  optimize() {
+    this.exp3.optimize();
+    return this;
+  }
 }
 
 module.exports = Exp2;

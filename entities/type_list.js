@@ -13,6 +13,10 @@ class typeList extends Type {
   analyze(context) {
     this.type = Type.LIST;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = typeList;

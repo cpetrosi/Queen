@@ -45,6 +45,12 @@ class FunDecl {
     string += `${this.body})`;
     return string;
   }
+
+  optimize() {
+    this.returnType.optimize();
+    this.body.optimize();
+    return this;
+  }
 }
 
 module.exports = FunDecl;
