@@ -16,7 +16,7 @@ class exp1Exp extends Exp1 {
   }
 
   optimize() {
-    this.exp1.optimize();
+    this.exp1 = this.exp1.optimize();
     return this;
   }
 }

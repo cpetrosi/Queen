@@ -24,8 +24,12 @@ class binexpAdd extends BinExp {
   }
 
   optimize() {
-    this.binexp.optimize();
-    this.exp1.optimize();
+    this.binexp = this.binexp.optimize();
+    this.exp1 = this.exp1.optimize();
+
+    if (this.exp1.exp1.toString() === '0') {
+      return this.binexp;
+    }
     return this;
   }
 }

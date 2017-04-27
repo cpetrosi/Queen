@@ -21,8 +21,8 @@ class Append {
   }
 
   optimize() {
-    this.list1.optimize();
-    this.list2.optimize();
+    this.list1 = this.list1.optimize();
+    this.list2 = this.list2.optimize();
     return this;
   }
 }

@@ -32,7 +32,7 @@ class consLong extends Cons {
   }
 
   optimize() {
-    this.rest.optimize();
+    this.rest = this.rest.optimize();
     return this;
   }
 }

@@ -16,7 +16,7 @@ class binexpExp extends BinExp {
   }
 
   optimize() {
-    this.exp1.optimize();
+    this.exp1 = this.exp1.optimize();
     return this;
   }
 }
