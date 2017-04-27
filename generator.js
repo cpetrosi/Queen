@@ -425,11 +425,9 @@ function makeMatchIfs(matchWith, matchTo) {
     const list2 = matchTo.split(',');
 
     for (let i = 0; i < list1.length; i += 1) {
-      const e1 = lookup(list1[i]);
-      const e2 = lookup(list2[i]);
-      if (!e1 && !e2) {
-        ifs += ` && list1[${i}] === list2[${i}]`;
-      }
+      const e1 = list1[i];
+      const e2 = list2[i];
+      ifs += ` && ${e1}[${i}] === ${e2}[${i}]`;
     }
   } else {
     ifs += `${matchWith} === ${matchTo}`;
