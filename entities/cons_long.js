@@ -30,6 +30,11 @@ class consLong extends Cons {
 
     this.rest.analyze(context);
   }
+
+  optimize() {
+    this.rest.optimize();
+    return this;
+  }
 }
 
 module.exports = consLong;

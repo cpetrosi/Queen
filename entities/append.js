@@ -19,6 +19,12 @@ class Append {
       throw new Error('😡 TYPE ERROR: Both lists must contain elements of the same type.');
     }
   }
+
+  optimize() {
+    this.list1.optimize();
+    this.list2.optimize();
+    return this;
+  }
 }
 
 module.exports = Append;

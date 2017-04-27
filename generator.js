@@ -118,6 +118,11 @@ Object.assign(BinExpAdd.prototype, {
     exp1 = exp1.replace(';', '');
     let binexp = this.binexp.gen();
     binexp = binexp.replace(';', '');
+
+    // OPTIMIZATION: adding or subtracting zero has no effect
+    if (exp1 === 0) {
+      return `(${binexp});`;
+    }
     const exp = `${binexp} ${this.op} ${exp1})`;
     return `(${exp});`;
   },
@@ -435,6 +440,7 @@ Object.assign(Match.prototype, {
     this.matchexp[0].gen();
 
     if (this.matchexp[0].pattern.isWild) {
+      // OPTIMIZATION: if the first pattern is wild, dont even put it in an 'if'
       return this.matchexp[0].exp.gen();
     }
     for (let i = 0; i < this.matchexp.length; i += 1) {
@@ -443,6 +449,7 @@ Object.assign(Match.prototype, {
 
       if (currCase.pattern.isWild) {
         ifStatement += ` else { ${currCase.exp.gen()}}`;
+        // OPTIMIZATION: all cases after a wild are not added to the code
         return ifStatement;
       } else if (ifStatement.length === 0) {
         const ifs = makeMatchIfs(matchWith, currCase.pattern.gen());

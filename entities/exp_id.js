@@ -18,6 +18,10 @@ class expId extends Exp {
       throw new Error(`😡 UNDECLARED VARIABLE: ${this.id} has not been declared.`);
     }
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = expId;

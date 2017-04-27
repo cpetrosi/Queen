@@ -14,6 +14,10 @@ class expNumlit extends Exp {
   analyze(context) {
     this.type = Type.NUMBER;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = expNumlit;

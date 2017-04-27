@@ -26,6 +26,19 @@ class Match {
       this.type = m.type;
     });
   }
+
+  optimize() {
+    let afterWild = false;
+
+    for (let i = 0; i < this.matchexp.length; i += 1) {
+      if (afterWild) {
+        this.matchexp[i] = null;
+      }
+      afterWild = this.matchexp[i].isWild;
+    }
+    this.matchexp.map(s => s.optimize()).filter(s => s !== null);
+    return this;
+  }
 }
 
 module.exports = Match;

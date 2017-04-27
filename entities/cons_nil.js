@@ -15,6 +15,10 @@ class consNil extends Cons {
     this.type = Type.CONS;
   }
 
+  optimize() {
+    return this;
+  }
+
 }
 
 module.exports = consNil;

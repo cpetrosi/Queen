@@ -2,6 +2,7 @@ class MatchExp {
   constructor(pattern, exp) {
     this.pattern = pattern;
     this.exp = exp;
+    this.isWild = false;
   }
 
   toString() {
@@ -22,6 +23,13 @@ class MatchExp {
       throw new Error('😡 TYPE ERROR: Must match to something of the same type.');
     }
     this.type = this.exp.type;
+  }
+
+  optimize() {
+    if (this.pattern === '🕳') {
+      this.isWild = true;
+    }
+    return this;
   }
 }
 

@@ -14,6 +14,11 @@ class expMatch extends Exp {
     this.body.analyze(context);
     this.type = this.body.type;
   }
+
+  optimize() {
+    this.body.optimize();
+    return this;
+  }
 }
 
 module.exports = expMatch;

@@ -14,6 +14,10 @@ class Binding {
     this.typeName.analyze(context);
     this.type = this.typeName.type;
   }
+
+  optimize() {
+   return this;
+  }
 }
 
 module.exports = Binding;

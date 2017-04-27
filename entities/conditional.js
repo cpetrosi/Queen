@@ -40,6 +40,10 @@ class Conditional {
     }
     return string;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = Conditional;

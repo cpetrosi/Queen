@@ -14,6 +14,10 @@ class expBool extends Exp {
   analyze(context) {
     this.type = Type.BOOL;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = expBool;

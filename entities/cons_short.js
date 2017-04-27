@@ -27,6 +27,10 @@ class consShort extends Cons {
       throw new Error(`😡 TYPE ERROR: ${this.e} must be numeric.`);
     }
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = consShort;

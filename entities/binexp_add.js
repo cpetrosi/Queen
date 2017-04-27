@@ -22,6 +22,12 @@ class binexpAdd extends BinExp {
       throw new Error('😡 TYPE ERROR: Only numeric types can be added and subtracted.');
     }
   }
+
+  optimize() {
+    this.binexp.optimize();
+    this.exp1.optimize();
+    return this;
+  }
 }
 
 module.exports = binexpAdd;

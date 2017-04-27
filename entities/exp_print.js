@@ -22,6 +22,10 @@ class expPrint extends Exp {
   toString() {
     return `(print ${this.string})`;
   }
+
+  optimize() {
+    return this;
+  }
 }
 
 module.exports = expPrint;

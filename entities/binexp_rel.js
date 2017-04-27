@@ -22,6 +22,13 @@ class binexpRel extends BinExp {
       throw new Error('😡 TYPE ERROR: Incomparable types.');
     }
   }
+
+  optimize() {
+    this.binexp.optimize();
+    this.exp1.optimize();
+    return this;
+
+  }
 }
 
 module.exports = binexpRel;
