@@ -44,4 +44,16 @@ describe('QUEEN OPTIMIZATION', () => {
       const expected = 'Program (Function Declaration ({n: int,m: int} 8))';
       assert.equal(ast, expected);
   });
+  it('👑 int nM (n: int m: int) 🚀 5 * 4', () => {
+      const program = parse('👑 int nM (n: int m: int) 🚀 5 * 4').optimize();
+      const ast = program.toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} 20))';
+      assert.equal(ast, expected);
+  });
+  it('👑 int nM (n: int m: int) 🚀 10 / 2', () => {
+      const program = parse('👑 int nM (n: int m: int) 🚀 10 / 2').optimize();
+      const ast = program.toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} 5))';
+      assert.equal(ast, expected);
+  });
 });
