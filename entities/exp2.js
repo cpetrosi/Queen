@@ -17,7 +17,7 @@ class Exp2 {
   }
 
   optimize() {
-    this.exp3.optimize();
+    this.exp3 = this.exp3.optimize();
     return this;
   }
 }

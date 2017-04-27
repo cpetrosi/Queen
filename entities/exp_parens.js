@@ -16,7 +16,7 @@ class expParens extends Exp {
   }
 
   optimize() {
-    this.body.optimize();
+    this.body = this.body.optimize();
     return this;
   }
 }

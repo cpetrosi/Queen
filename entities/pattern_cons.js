@@ -16,7 +16,7 @@ class patternCons extends Pattern {
   }
 
   optimize() {
-    this.body.optimize();
+    this.body = this.body.optimize();
     return this;
   }
 }
