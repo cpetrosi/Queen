@@ -41,7 +41,7 @@ class exp1Mult extends Exp1 {
       return new Exp3(`${compiledNumber}`, '');
     }
 
-    if (this.exp1.exp1.toString() === '0') {
+    if (this.exp2.toString() === '0' && this.op === '*') {
       return new Exp3('0', '');
     }
     return this;
