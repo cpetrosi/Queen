@@ -1,5 +1,6 @@
 const BinExp = require('./binexp.js');
 const Type = require('./type.js');
+const Exp3 = require('./exp3.js');
 
 class binexpAdd extends BinExp {
   constructor(binexp, addop, exp1) {
@@ -26,6 +27,18 @@ class binexpAdd extends BinExp {
   optimize() {
     this.binexp = this.binexp.optimize();
     this.exp1 = this.exp1.optimize();
+
+    let exp = this.binexp;
+    while (exp.exp1) {
+      exp = exp.exp1;
+    }
+
+    if (!isNaN(exp.toString()) && !isNaN(this.exp1.exp1.toString())) {
+      const first = Number(exp.toString());
+      const second = Number(this.exp1.exp1.toString());
+      const compiledNumber = (this.op === '+' ? first + second : first - second);
+      return new Exp3(`${compiledNumber}`, '');
+    }
 
     if (this.exp1.exp1.toString() === '0') {
       return this.binexp;

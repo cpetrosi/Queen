@@ -27,7 +27,6 @@ class binexpRel extends BinExp {
     this.binexp = this.binexp.optimize();
     this.binexp = this.exp1.optimize();
     return this;
-
   }
 }
 

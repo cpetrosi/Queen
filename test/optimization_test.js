@@ -17,7 +17,31 @@ describe('QUEEN OPTIMIZATION', () => {
   it('👑 int nM (n: int m: int) 🚀 n + m + 0', () => {
       const program = parse('👑 int nM (n: int m: int) 🚀 n + m + 0').optimize();
       const ast = program.toString();
-      const expected = '';
+      const expected = 'Program (Function Declaration ({n: int,m: int} (n + m)))';
+      assert.equal(ast, expected);
+  });
+  it('👑 int nM (n: int m: int) 🚀 n + m - 0', () => {
+      const program = parse('👑 int nM (n: int m: int) 🚀 n + m - 0').optimize();
+      const ast = program.toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} (n + m)))';
+      assert.equal(ast, expected);
+  });
+  it('👑 int nM (n: int m: int) 🚀 5 + 4', () => {
+      const program = parse('👑 int nM (n: int m: int) 🚀 5 + 4').optimize();
+      const ast = program.toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} 9))';
+      assert.equal(ast, expected);
+  });
+  it('👑 int nM (n: int m: int) 🚀 5 + 4 + 1', () => {
+      const program = parse('👑 int nM (n: int m: int) 🚀 5 + 4 + 1').optimize();
+      const ast = program.toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} 10))';
+      assert.equal(ast, expected);
+  });
+  it('👑 int nM (n: int m: int) 🚀 5 + 4 + 1', () => {
+      const program = parse('👑 int nM (n: int m: int) 🚀 5 + 4 - 1').optimize();
+      const ast = program.toString();
+      const expected = 'Program (Function Declaration ({n: int,m: int} 8))';
       assert.equal(ast, expected);
   });
 });
