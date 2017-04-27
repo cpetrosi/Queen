@@ -28,9 +28,15 @@ class exp1Mult extends Exp1 {
     this.exp1 = this.exp1.optimize();
     this.exp2 = this.exp2.optimize();
 
-    if (!isNaN(this.exp2.toString()) && !isNaN(this.exp1.exp1.toString())) {
-      const second = Number(this.exp2.toString());
-      const first = Number(this.exp1.exp1.toString());
+    const second = Number(this.exp2.toString());
+
+    let exp = this.exp1;
+    while (exp.exp1) {
+      exp = exp.exp1;
+    }
+    const first = Number(exp.toString());
+
+    if (!isNaN(first) && !isNaN(second)) {
       const compiledNumber = (this.op === '*' ? first * second : first / second);
       return new Exp3(`${compiledNumber}`, '');
     }
