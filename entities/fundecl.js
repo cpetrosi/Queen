@@ -47,8 +47,8 @@ class FunDecl {
   }
 
   optimize() {
-    this.returnType.optimize();
-    this.body.optimize();
+    this.returnType = this.returnType.optimize();
+    this.body = this.body.optimize();
     return this;
   }
 }

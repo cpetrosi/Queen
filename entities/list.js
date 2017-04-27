@@ -62,9 +62,9 @@ class List {
   }
 
   optimize() {
-    this.first.optimize();
+    this.first = this.first.optimize();
     for (let i = 0; i < this.rest.length; i += 1) {
-      this.rest[i].optimize();
+      this.rest[i] = this.rest[i].optimize();
     }
     return this;
   }

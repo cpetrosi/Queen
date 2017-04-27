@@ -24,8 +24,8 @@ class exp1Mult extends Exp1 {
   }
 
   optimize() {
-    this.exp1.optimize();
-    this.exp2.optimize();
+    this.exp1 = this.exp1.optimize();
+    this.exp2 = this.exp2.optimize();
     return this;
   }
 }

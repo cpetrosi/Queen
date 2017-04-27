@@ -16,7 +16,7 @@ class letExp extends Let {
   }
 
   optimize() {
-    this.exp.optimize();
+    this.exp = this.exp.optimize();
     return this;
   }
 }
