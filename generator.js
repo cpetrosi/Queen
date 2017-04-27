@@ -427,7 +427,9 @@ function makeMatchIfs(matchWith, matchTo) {
     for (let i = 0; i < list1.length; i += 1) {
       const e1 = list1[i];
       const e2 = list2[i];
-      ifs += ` && ${e1}[${i}] === ${e2}[${i}]`;
+
+      // ALlows patterns to have undefined variables.
+      ifs += ` && (${e1}[${i}] === ${e2}[${i}] || typeof ${e2}[${i}] === "undefined")`;
     }
   } else {
     ifs += `${matchWith} === ${matchTo}`;

@@ -18,13 +18,13 @@ describe('QUEEN GENERATOR', () => {
   it('👑 float m (x: float list) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0', () => {
       const program = parse('👑 float m (x: float list) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0');
       program.gen();
-      const expected = 'function v_5 (v_4) {((if ((v_4).length === (([])).length && v_4[0] === ([])[0]) { ((return (((5.0))));)} else { ((return (((6.0))));)}))};';
+      const expected = 'function v_5 (v_4) {((if ((v_4).length === (([])).length && (v_4[0] === ([])[0] || typeof ([])[0] === "undefined")) { ((return (((5.0))));)} else { ((return (((6.0))));)}))};';
       assert.equal(console.string, expected);
   });
   it('👑 float nums (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> 3', () => {
       const program = parse('👑 float nums (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> 3');
       program.gen();
-      const expected = 'function v_6 (v_4) {((if ((v_4).length === (([0])).length && v_4[0] === ([0])[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && v_4[0] === ([1])[0]) { ((return (((1))));)} else { ((return (((3))));)}))};';
+      const expected = 'function v_6 (v_4) {((if ((v_4).length === (([0])).length && (v_4[0] === ([0])[0] || typeof ([0])[0] === "undefined")) { ((return (((0))));)} else if ((v_4).length === (([1])).length && (v_4[0] === ([1])[0] || typeof ([1])[0] === "undefined")) { ((return (((1))));)} else { ((return (((3))));)}))};';
       assert.equal(console.string, expected);
   });
   it('👑 float fib (x: int) 🚀 match x with 🍭 0 -> 0 🍭 1 -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)', () => {
