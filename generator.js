@@ -167,14 +167,14 @@ Object.assign(Conditional.prototype, {
 // carleen's part
 Object.assign(ConsNil.prototype, {
   gen() {
-    return '[]';
+    return '([])';
   },
 });
 
 Object.assign(ConsShort.prototype, {
   gen() {
     const e = lookup(this.e) || this.e;
-    return `([${e}])`;
+    return `(${e})`;
   },
 });
 
@@ -417,17 +417,22 @@ Object.assign(ExpBool.prototype, {
 
 function makeMatchIfs(matchWith, matchTo) {
   let ifs = '';
-  ifs += `(${matchWith}).length === (${matchTo}).length`;
 
-  const list1 = matchWith.split(',');
-  const list2 = matchTo.split(',');
+  if (matchTo.startsWith('([')) {
+    ifs += `(${matchWith}).length === (${matchTo}).length`;
 
-  for (let i = 0; i < list1.length; i += 1) {
-    const e1 = lookup(list1[i]);
-    const e2 = lookup(list2[i]);
-    if (!e1 && !e2) {
-      ifs += ` && list1[${i}] === list2[${i}]`;
+    const list1 = matchWith.split(',');
+    const list2 = matchTo.split(',');
+
+    for (let i = 0; i < list1.length; i += 1) {
+      const e1 = lookup(list1[i]);
+      const e2 = lookup(list2[i]);
+      if (!e1 && !e2) {
+        ifs += ` && list1[${i}] === list2[${i}]`;
+      }
     }
+  } else {
+    ifs += `${matchWith} === ${matchTo}`;
   }
 
   return ifs;

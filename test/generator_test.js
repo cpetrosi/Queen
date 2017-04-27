@@ -18,7 +18,7 @@ describe('QUEEN GENERATOR', () => {
   it('👑 float m (x: float list) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0', () => {
       const program = parse('👑 float m (x: float list) 🚀 match x with 🍭 [] -> 5.0 🍭 🕳 -> 6.0');
       program.gen();
-      const expected = 'function v_5 (v_4) {((if ((v_4).length === ([]).length && list1[0] === list2[0]) { ((return (((5.0))));)} else { ((return (((6.0))));)}))};';
+      const expected = 'function v_5 (v_4) {((if ((v_4).length === (([])).length && list1[0] === list2[0]) { ((return (((5.0))));)} else { ((return (((6.0))));)}))};';
       assert.equal(console.string, expected);
   });
   it('👑 float nums (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> 3', () => {
@@ -27,10 +27,10 @@ describe('QUEEN GENERATOR', () => {
       const expected = 'function v_6 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((return (((3))));)}))};';
       assert.equal(console.string, expected);
   });
-  it('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)', () => {
-      const program = parse('👑 float fib (x: int) 🚀 match x with 🍭 [0] -> 0 🍭 [1] -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)');
+  it('👑 float fib (x: int) 🚀 match x with 🍭 0 -> 0 🍭 1 -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)', () => {
+      const program = parse('👑 float fib (x: int) 🚀 match x with 🍭 0 -> 0 🍭 1 -> 1 🍭 🕳 -> (let a  🚀 x - 1 in let b  🚀 x - 2 in let z 🚀 fib (a) in let y 🚀 fib (b) in y + z)');
       program.gen();
-      const expected = 'function v_7 (v_4) {((if ((v_4).length === (([0])).length && list1[0] === list2[0]) { ((return (((0))));)} else if ((v_4).length === (([1])).length && list1[0] === list2[0]) { ((return (((1))));)} else { ((let v_8 = ((( (((v_4)))) - (((1)))))) let v_9 = ((( (((v_4)))) - (((2)))))) let v_10 = ((v_7(v_8))) let v_11 = ((v_7(v_9))) ((((return (((v_11)))) + (((v_10)))))));))}))};';
+      const expected = 'function v_7 (v_4) {((if (v_4 === (0)) { ((return (((0))));)} else if (v_4 === (1)) { ((return (((1))));)} else { ((let v_8 = ((( (((v_4)))) - (((1)))))) let v_9 = ((( (((v_4)))) - (((2)))))) let v_10 = ((v_7(v_8))) let v_11 = ((v_7(v_9))) ((((return (((v_11)))) + (((v_10)))))));))}))};';
       assert.equal(console.string, expected);
   });
   it('👑 float mult (x: int) 🚀 x * x', () => {
