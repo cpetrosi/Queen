@@ -7,7 +7,16 @@ class Match {
   }
 
   toString() {
-    return `match ${this.id} with ${this.matchexp}`;
+    let matchexps = '';
+
+    for (let i = 0; i < this.matchexp.length; i += 1) {
+      if (i === this.matchexp.length - 1) {
+        matchexps += `${this.matchexp[i]}`;
+      } else {
+        matchexps += `${this.matchexp[i]}, `;
+      }
+    }
+    return `match ${this.id} with ${matchexps}`;
   }
 
   analyze(context) {
@@ -31,12 +40,13 @@ class Match {
     let afterWild = false;
 
     for (let i = 0; i < this.matchexp.length; i += 1) {
+      this.matchexp[i].optimize();
       if (afterWild) {
-        this.matchexp[i] = null;
+        this.matchexp.splice(i, 1);
+      } else {
+        afterWild = this.matchexp[i].isWild;
       }
-      afterWild = this.matchexp[i].isWild;
     }
-    this.matchexp.map(s => s.optimize()).filter(s => s !== null);
     return this;
   }
 }

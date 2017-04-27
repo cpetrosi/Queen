@@ -26,7 +26,7 @@ class MatchExp {
   }
 
   optimize() {
-    if (this.pattern === '🕳') {
+    if (this.pattern.body === 'any') {
       this.isWild = true;
     }
     return this;
